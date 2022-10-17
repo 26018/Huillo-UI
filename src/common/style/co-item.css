@@ -1,0 +1,20 @@
+.item-main {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px 30px 20px 30px;
+}
+
+.move {
+    user-select: none;
+    cursor: pointer;
+    color: dodgerblue;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.item-container {
+    width: 100%;
+}
+.line {
+    border: 1px solid red;
+}

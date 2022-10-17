@@ -1,0 +1,30 @@
+[
+     {
+       "componentName":"jh-file",
+        "title":"姓名"
+    },   {
+       "componentName":"jh-file",
+        "title":"日期"
+    },   {
+       "componentName":"jh-file",
+        "title":"手机号"
+    },   {
+       "componentName":"jh-file",
+        "title":"邮箱"
+    },   {
+       "componentName":"jh-file",
+        "title":"温度"
+    },  {
+       "componentName":"jh-file",
+        "title":"身份证"
+    },  {
+       "componentName":"jh-file",
+        "title":"知情确认"
+    },  {
+       "componentName":"jh-file",
+        "title":"excel填写"
+    },  {
+       "componentName":"jh-file",
+        "title":"word填写"
+    }
+]

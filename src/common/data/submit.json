@@ -1,0 +1,32 @@
+[
+    {
+        "key": "jh-head",
+        "value": {
+            "title": "青年大学习截图",
+            "need": true,
+            "collector": "Moon",
+            "tip": "请尽快上交青年大学习截图，辛苦各位！ \n                                               团支书",
+            "start": "2022-09-01",
+            "end": "2022-09-07"
+        }
+    },
+    {
+        "key": "jh-file",
+        "value": {
+            "title": "请上传附件",
+            "need": true,
+            "list": ["学校", "班级", "学号"],
+            "selected": []
+        }
+    },    {
+        "key": "jh-radio",
+        "value": {
+            "title": "知情确认",
+            "need": false,
+            "deleted": false,
+            "data":"",
+            "options":[{"title":"我已知晓情况。"}],
+            "correctAnswer":""
+        }
+    }
+]

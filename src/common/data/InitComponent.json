@@ -1,0 +1,14 @@
+[
+    {
+        "componentName":"jh-head",
+        "title":"文件收集",
+        "start":"2022",
+        "end":"2028"
+    },
+    {
+       "componentName":"jh-file",
+        "title":"附件",
+        "autoUpload":false
+    }
+    
+]

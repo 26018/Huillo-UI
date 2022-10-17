@@ -1,0 +1,30 @@
+
+@font-face {
+    font-family: 'pingfang';
+    src: url("http://at.alicdn.com/t/webfont_ubb5y75blx.ttf");
+}
+
+.font-title{
+    border: 0px;
+    height: 100%;
+}
+
+.font-title:deep(*) {
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.font-text:deep(*){
+    font-size: 30px;
+    font-weight: 500;
+}
+
+
+
+
+
+
+
+
+
+
