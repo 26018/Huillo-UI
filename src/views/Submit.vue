@@ -58,12 +58,12 @@ export default {
       return obj
     },
     submitCollect() {
-      alert('晚了,等死吧')
+      alert('截止了')
     },
   },
   created() {
     // TODO 获取服务器数据，动态生成页面
-    pullData(17).then((res) => {
+    pullData(1).then((res) => {
       let dataList = res.data.data
       let result = []
       dataList.forEach((data) => {

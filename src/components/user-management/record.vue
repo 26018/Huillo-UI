@@ -1,35 +1,19 @@
 <template>
   <div>
     <div class="record">
-      <el-table :data="tableData"
-                :cell-style="center"
-                :header-cell-style="center"
-                @row-click="choose">
-        <el-table-column prop="title"
-                         label="收集标题"
-                         width="180"> </el-table-column>
-        <el-table-column prop="author"
-                         label="收集者"
-                         width="180"> </el-table-column>
-        <el-table-column prop="status"
-                         label="收集状态"
-                         width="180">
+      <el-table :data="tableData" :cell-style="center" :header-cell-style="center" @row-click="choose">
+        <el-table-column prop="title" label="收集标题" width="180"> </el-table-column>
+        <el-table-column prop="author" label="收集者" width="180"> </el-table-column>
+        <el-table-column prop="status" label="收集状态" width="180">
           <template slot-scope="scope"> <i :class="getStatus(scope.row.status)"></i>
             <span v-html="'\u00a0'"></span>
             {{ scope.row.status }} </template>
         </el-table-column>
-        <el-table-column prop="count"
-                         label="提交次数"
-                         width="180"> </el-table-column>
-        <el-table-column prop="dueDate"
-                         label="截止时间"
-                         width="180"> </el-table-column>
-        <el-table-column prop="opt"
-                         label="操作">
-          <el-button size="medium"
-                     type="text">分享</el-button>
-          <el-button size="medium"
-                     type="text">结束收集</el-button>
+        <el-table-column prop="count" label="提交次数" width="180"> </el-table-column>
+        <el-table-column prop="dueDate" label="截止时间" width="180"> </el-table-column>
+        <el-table-column prop="opt" label="操作">
+          <el-button size="medium" type="text">分享</el-button>
+          <el-button size="medium" type="text">结束收集</el-button>
         </el-table-column>
       </el-table>
     </div>
@@ -38,46 +22,11 @@
 
 <script>
 import { goto } from '@/api/util'
+import { getList } from '@/api/request'
 export default {
   data() {
     return {
-      tableData: [
-        {
-          title: '学习强国任务截图',
-          author: '王小虎',
-          status: '进行中',
-          count: '23',
-          dueDate: '2023-05-24',
-        },
-        {
-          title: '学习强国任务截图',
-          author: '王小虎',
-          status: '进行中',
-          count: '23',
-          dueDate: '2023-05-24',
-        },
-        {
-          title: '学习强国任务截图',
-          author: '王小虎',
-          status: '已结束',
-          count: '23',
-          dueDate: '2023-05-24',
-        },
-        {
-          title: '学习强国任务截图',
-          author: '王小虎',
-          status: '已结束',
-          count: '23',
-          dueDate: '2023-05-24',
-        },
-        {
-          title: '学习强国任务截图',
-          author: '王小虎',
-          status: '已结束',
-          count: '23',
-          dueDate: '2023-05-24',
-        },
-      ],
+      tableData: []
     }
   },
 
@@ -98,6 +47,13 @@ export default {
       else return 'el-icon-success'
     },
   },
+
+  created() {
+    getList().then(res => {
+      this.tableData = res.data.data
+      console.log(this.tableData)
+    });
+  }
 }
 </script>
 <style lang="css" scoped>

@@ -40,3 +40,11 @@ export function QuestionList() {
     method: "get",
   });
 }
+
+
+export function getList(){
+  return axios({
+    url:"http://localhost/question/list",
+    method:"get"
+  })
+}

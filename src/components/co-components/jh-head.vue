@@ -72,9 +72,12 @@ export default {
 
 .row {
   display: flex;
+  /* border: 1px solid red; */
+  overflow: hidden;
 }
 .row :deep(*) {
-  /* border: 1px solid red; */
+
+
 }
 
 .author >>> .el-input__inner {
@@ -97,7 +100,7 @@ export default {
 }
 .date-start,
 .date-end {
-  max-width: 150px;
+  max-width: 150px; 
 }
 .tip {
   font-size: 16px;
