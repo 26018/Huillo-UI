@@ -64,7 +64,7 @@ export default {
           localStorage.setItem('currentNavIndex', index)
           localStorage.setItem('currentNavPath', val)
           document.getElementById('nav' + idx).style.borderRight =
-            '4px solid black'
+            '4px solid #38b48b'
         } else {
           document.getElementById('nav' + idx).style.borderRight = '0px'
         }
@@ -92,7 +92,8 @@ export default {
   /* border: 1px solid red; */
   height: 100%;
   user-select: none;
-  background-color: #80aba9;
+  /*background-color: honeydew;*/
+  border-right: 2px solid gainsboro;
   position: relative;
 }
 .left-bar > *:hover {

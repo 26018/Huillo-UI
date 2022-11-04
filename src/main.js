@@ -15,9 +15,23 @@ export default new Vue({
   render: (h) => h(App),
 }).$mount("#app");
 
+// 添加请求拦截器
 // 全局拦截 加token
 axios.interceptors.request.use((config) => {
   config.headers["token"] =
     "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwYXNzd29yZCI6ImpheTI1NzI0OCIsImlkIjoiMSIsImV4cCI6MTk2NTM3MTYwOCwiYWNjb3VudCI6IjIwMzM0NzEzNDlAcXEuY29tIn0.CycRBdg3-zaUBltCIWzufrfYJKKjeY-GUs7oReLhOIg";
   return config;
+});
+
+
+// 添加响应拦截器
+axios.interceptors.response.use(function (response) {
+  // 2xx 范围内的状态码都会触发该函数。
+  // 对响应数据做点什么
+  return response;
+}, function (error) {
+  // 超出 2xx 范围的状态码都会触发该函数。
+  // 对响应错误做点什么
+  alert(error)
+  return Promise.reject(error);
 });

@@ -1,21 +1,16 @@
 <template>
   <div>
-    <div class="item-main">
-      <div class="item-container">
+    <div class="item-main ">
+      <div class="item-container ">
+
         <div class="header">
-          <div class="title font-title">
-            <slot name="title"></slot>
-          </div>
-          <div class="options">
-            <slot name="options"></slot>
-          </div>
+          <slot name="header"></slot>
         </div>
-        <div>
-          <slot></slot>
-        </div>
+
         <div class="content font-text">
           <slot name="content"></slot>
         </div>
+
       </div>
     </div>
   </div>
@@ -33,40 +28,27 @@ export default {
     },
   },
   data() {
-    return {}
+    return {};
   },
   methods: {},
-}
+};
 </script>
 <style lang="css" scoped>
-@import url('@/common/style/co-item.css');
-@import url('@/common/style/font.css');
+@import url("@/common/style/co-item.css");
+@import url("@/common/style/font.css");
+
 .header {
   display: flex;
   align-items: center;
   margin-left: auto;
-  /* border: 1px solid red; */
 }
-.title {
-  height: 100%;
-  flex-grow: 1;
+
+/*统一设置标题的文字大小*/
+.header > * {
+  font-size: 18px;
 }
-.title :deep(*) {
-  background-color: transparent;
-  border: 0px;
-  padding: 0px;
-}
-.options {
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: auto;
-  justify-content: flex-end;
-  align-items: center;
-}
-.options > * {
-  margin-left: 16px;
-}
+
 .content {
-  margin-top: 8px;
+
 }
 </style>

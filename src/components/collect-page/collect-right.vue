@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="right font-text">
+    <div class="  font-text">
       <h3>我的模板</h3>
       <div class="card"
            v-for="(it,index) in 15"
@@ -27,8 +27,10 @@ export default {
 </script>
 <style lang="css" scoped>
 @import url('@/common/style/font.css');
-.right {
-  background-color: transparent;
+
+.items-container {
+  width: 100%;
+  position: sticky;
 }
 h3 {
   height: 50px;
@@ -38,8 +40,8 @@ h3 {
   align-items: center;
   background-color: rgb(255, 255, 255);
   overflow: hidden !important;
-  position: sticky;
-  top: 0px;
+  /*position: sticky;*/
+  /*top: 0px;*/
   width: 100%;
 }
 .card {

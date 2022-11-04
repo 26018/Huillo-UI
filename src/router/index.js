@@ -52,7 +52,7 @@ const routes = [
         ],
     },
     {
-        path: '/submit',
+        path: '/submit/:id',
         components: {
             main_view: () => import('@/views/Submit'),
         },

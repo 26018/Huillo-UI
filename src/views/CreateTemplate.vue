@@ -3,8 +3,7 @@
     <div class="collect"
          ref="content">
       <div class="left">
-        <collect-left :componentList="moduleData"
-                      :mostUse="mostUseModuleData"></collect-left>
+        <collect-left :componentList="moduleData" :mostUse="mostUseModuleData"></collect-left>
       </div>
       <div class="mid">
         <collect-mid :templates="templateData"></collect-mid>
@@ -20,10 +19,15 @@
 import CollectLeft from '@/components/collect-page/collect-left.vue'
 import CollectMid from '@/components/collect-page/collect-mid.vue'
 import CollectRight from '@/components/collect-page/collect-right.vue'
+
 export default {
-  components: { CollectLeft, CollectMid, CollectRight },
+  components: {CollectLeft, CollectMid, CollectRight},
   data() {
-    return {}
+    return {
+      // module:[],
+      // template:[],
+      // mostUseModule:[]
+    }
   },
   computed: {
     templateData() {
@@ -36,6 +40,11 @@ export default {
       return this.$store.state.mostUseModule
     },
   },
+  created() {
+    // this.template = this.templateData();
+    // this.module = this.moduleData();
+    // this.mostUseModule = this.mostUseModuleData();
+  }
 }
 </script>
 
@@ -45,6 +54,7 @@ export default {
   width: 100%;
   height: 100%;
 }
+
 .left,
 .right {
   flex: 2;
@@ -52,6 +62,7 @@ export default {
   background-color: transparent;
   overflow: auto;
 }
+
 .mid {
   flex: 6;
   overflow: auto;

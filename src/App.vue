@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view class="main-view"
-                 name="main_view" />
+                 name="main_view"/>
   </div>
 </template>
 
@@ -33,9 +33,11 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 2px;
+  width: 0px;
   height: 10px;
 }
+
+
 
 ::-webkit-scrollbar-track {
   width: 6px;

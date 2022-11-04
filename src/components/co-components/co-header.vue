@@ -1,15 +1,10 @@
 <template>
   <div>
-    <div class="co-header font-text"
-         ref="coHeader">
-      <div @click="goto('/index')"
-           class="logo click-able">Huillo</div>
-      <div class="text-content click-able space"
-           @click="query(current)">{{ current }}</div>
+    <div class="co-header font-text" ref="coHeader">
+      <div @click="goto('/index')" class="logo click-able">Huillo</div>
+      <div class="text-content click-able space" @click="query(current)">{{ current }}</div>
       <div class="menus">
-        <div class="logo space click-able"
-             v-for="(menu,index) in menus"
-             @click="execute(menu)"
+        <div class="logo space click-able" v-for="(menu, index) in menus" @click="execute(menu)"
              :style="menu.colorStyle"
              :key="index">
           {{ menu.name }}
@@ -21,6 +16,7 @@
 
 <style scoped>
 @import url('@/common/style/font.css');
+
 .co-header {
   width: 100%;
   height: 50px;
@@ -29,7 +25,9 @@
   position: sticky;
   box-sizing: border-box;
   display: flex;
+  box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, .2);
 }
+
 .co-header :deep(*) {
   text-align: justify;
   word-break: break-all;
@@ -62,13 +60,15 @@
   cursor: pointer;
   user-select: none;
 }
+
 .click-able:hover {
   cursor: pointer;
   color: dodgerblue;
 }
 </style>
 <script>
-import { goto } from '@/api/util'
+import {goto} from '@/api/util'
+
 export default {
   props: {
     menus: {

@@ -1,12 +1,12 @@
 <template>
    <div>
-    <img class="co-icon" :src="imgSrc" />
+      <img class="co-icon" :src="imgSrc" />
    </div>
 </template>
 
 <script>
 export default {
-    props:['imgSrc'],
+   props: ['imgSrc'],
    data () {
       return {
 
@@ -15,8 +15,8 @@ export default {
 }
 </script>
 <style lang='css' scoped>
-.co-icon{
-    width: 15px;
-    aspect-ratio: 1/1;
+.co-icon {
+   width: 15px;
+   aspect-ratio: 1/1;
 }
 </style>

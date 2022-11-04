@@ -1,46 +1,29 @@
 <template>
   <div>
-    <draggable v-model="templateData"
-               :move="onMove"
-               handle=".move"
-               animation="500">
+    <draggable v-model="templateData" :move="onMove" handle=".move" animation="500">
       <transition-group>
-        <div class="item"
-             v-for="(element, index) in templateData"
-             :key="index">
+        <div class="item" v-for="(element, index) in templateData" :key="index">
           <div style="margin: 0px 48px 0px 48px">
-            <components :ref="'jh' + index"
-                        :is="element.componentName"
-                        :idx="index"
-                        id="test"
-                        :params="getElementValue(element, index)"
-                        :key="index"></components>
+            <components :ref="'jh' + index" :is="element.componentName" :idx="index" id="test"
+                        :params="getParams(element, index)" :key="index"></components>
           </div>
         </div>
       </transition-group>
     </draggable>
 
-    <el-dialog title="提示"
-               :visible.sync="dialogVisible"
-               width="30%"
-               :before-close="handleClose">
+    <el-dialog title="提示" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
       <h2>发布成功！快去分享吧</h2>
       <h4>复制以下链接或扫描二维码参与</h4>
       <div class="urlString">
         <div>http://fixyou.top</div>
-        <el-button type="text"
-                   @click="copyUrl('http://fixyou.top')">快速复制</el-button>
+        <el-button type="text" @click="copyUrl('http://fixyou.top')">快速复制</el-button>
       </div>
 
-      <img src="@/assets/fixyou.png"
-           alt=""
-           class="urlImg" />
+      <img src="@/assets/fixyou.png" alt="" class="urlImg"/>
 
-      <span slot="footer"
-            class="dialog-footer">
+      <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary"
-                   @click="dialogVisible = false">确 定</el-button>
+        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
       </span>
     </el-dialog>
   </div>
@@ -49,14 +32,15 @@
 <script>
 import draggable from 'vuedraggable'
 import coCard from '@/components/co-components/co-card.vue'
-import jhHead from '@/components/co-components/jh-head.vue'
-import jhFile from '@/components/co-components/jh-file.vue'
-import jhInput from '@/components/co-components/jh-input.vue'
-import jhRadio from '@/components/co-components/jh-radio.vue'
-import jhMulti from '@/components/co-components/jh-multi.vue'
-import { Message } from 'element-ui'
-import { goto } from '@/api/util'
-import { publish } from '@/api/request'
+import jhHead from '@/components/co-components/create/jh-head.vue'
+import jhFile from '@/components/co-components/create/jh-file.vue'
+import jhInput from '@/components/co-components/create/jh-input.vue'
+import jhRadio from '@/components/co-components/create/jh-radio.vue'
+import jhMulti from '@/components/co-components/create/jh-multi.vue'
+import {Message} from 'element-ui'
+import {goto} from '@/api/util'
+import {publish} from '@/api/request'
+
 export default {
   data() {
     return {
@@ -93,6 +77,7 @@ export default {
 
   watch: {
     templateDataString(n, o) {
+      // console.log("实时更新")
       localStorage.setItem('template', n)
     },
   },
@@ -115,10 +100,11 @@ export default {
     goto,
     handleClose(done) {
       this.$confirm('确认关闭？')
-        .then((_) => {
-          done()
-        })
-        .catch((_) => {})
+          .then((_) => {
+            done()
+          })
+          .catch((_) => {
+          })
     },
     clearFormData() {
       alert('TODO 还没写')
@@ -126,7 +112,7 @@ export default {
     onMove(e, originalEvent) {
       return e.relatedContext.index != 0
     },
-    getElementValue(obj, index) {
+    getParams(obj, index) {
       obj.number = index
       return obj
     },
@@ -151,9 +137,8 @@ export default {
         dom._props.params.componentName = dom.$options._componentTag
         let data = dom._props.params
         if (
-          data.deleted == null ||
-          data.deleted == undefined ||
-          data.deleted == false
+            data.deleted == null ||
+            data.deleted == false
         )
           ret.push(data)
       }
@@ -171,7 +156,7 @@ export default {
       // TODO 上传数据，接收二维码和链接地址
       publish(ret);
 
-    //   that.dialogVisible = true
+      //   that.dialogVisible = true
     },
 
     initMenus() {
@@ -209,7 +194,7 @@ export default {
             color: 'rgb(235,181,99)',
           },
         },
-        { name: '我的', execute: this.goto, param: '/user' },
+        {name: '我的', execute: this.goto, param: '/user'},
       ]
       menus.length = 0
       options.forEach((option) => {
@@ -224,16 +209,24 @@ export default {
 }
 </script>
 <style lang="css" scoped>
+
+.item {
+  border-left: 2px solid gainsboro;
+  border-right: 2px solid gainsboro;
+}
+
 .urlString {
   display: flex;
   align-items: center;
   font-size: 16px;
   font-weight: 500;
 }
+
 .urlString > * {
   /* border: 1px solid red; */
   margin-right: 20px;
 }
+
 .urlImg {
   width: 200px;
   /* border: 1px solid red; */
@@ -242,10 +235,10 @@ export default {
 }
 
 #test:deep(.item-main:hover) {
-  background-color: rgb(255, 255, 255);
-  transform: scale(1.001);
-  transition-duration: 200ms;
-  box-shadow: 0 1px 4px rgba(104, 105, 155, 0.3),
-    0 0 40px rgba(104, 105, 155, 0.1) inset;
+  /*background-color: rgb(255, 255, 255);*/
+  /*transform: scale(1.001);*/
+  /*transition-duration: 200ms;*/
+  /*box-shadow: 0 1px 4px rgba(104, 105, 155, 0.3),*/
+  /*  0 0 40px rgba(104, 105, 155, 0.1) inset;*/
 }
 </style>

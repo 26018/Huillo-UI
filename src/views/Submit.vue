@@ -1,39 +1,29 @@
 <template>
-  <div>
-    <co-card class="submit">
-      <template v-slot:content>
-        <div>
-          <div class="item"
-               v-for="(element, index) in templateData"
-               :key="index">
-            <div style="margin: 0px 8px 8px 8px">
-              <components :ref="'jh' + index"
-                          :is="element.key"
-                          :idx="index"
-                          :params="getElementValue(element.value, index)"
-                          :key="index"></components>
-            </div>
-          </div>
-          <co-card style="margin: 0px 10px 10px 10px">
-            <template v-slot:content>
-              <el-button @click="submitCollect"
-                         type="primary">提交</el-button>
-            </template>
-          </co-card>
-        </div>
-      </template>
-    </co-card>
+  <div style="background-color: rgb(243,246,249)">
+    <div class="submit">
+      <div v-for="(component, index) in templateData" class="gg"
+           :key="index">
+        <components :ref="'jh' + index" :is="component.componentName" :idx="index" :params="component"
+                    :key="index"></components>
+      </div>
+
+
+    </div>
+    <div class="submitBtn">
+      <el-button @click="submitCollect" style="width: 30%;height: 40px" type="primary">提交</el-button>
+    </div>
   </div>
 </template>
 
 <script>
 import coCard from '@/components/co-components/co-card.vue'
-import jhHead from '@/components/co-components/jh-head.vue'
-import jhFile from '@/components/co-components/jh-file.vue'
-import jhInput from '@/components/co-components/jh-input.vue'
-import jhRadio from '@/components/co-components/jh-radio.vue'
-import jhMulti from '@/components/co-components/jh-multi.vue'
-import { pullData, QuestionList } from '@/api/request'
+import jhHead from '@/components/co-components/submit/jh-submit-head.vue'
+import jhFile from '@/components/co-components/submit/jh-submit-file.vue'
+import jhInput from '@/components/co-components/submit/jh-submit-input.vue'
+import jhRadio from '@/components/co-components/submit/jh-submit-radio.vue'
+import jhMulti from '@/components/co-components/submit/jh-submit-multi.vue'
+import {pullData, QuestionList} from '@/api/request'
+
 export default {
   data() {
     return {
@@ -63,35 +53,55 @@ export default {
   },
   created() {
     // TODO 获取服务器数据，动态生成页面
-    pullData(1).then((res) => {
-      let dataList = res.data.data
+    let id = this.$route.params.id
+    pullData(id).then((res) => {
+      let dataList = res.data.data.components
       let result = []
       dataList.forEach((data) => {
         if (data.options != null) {
           data.options = JSON.parse(data.options)
         }
-        result.push({
-          key: data.componentName,
-          value: data,
-        })
+        result.push(data)
       })
       this.templateData = result
       console.log(this.templateData)
       console.log("Test here!")
     })
 
-    QuestionList().then(res=>{
-        console.log("List:")
-        console.log(res.data)
-    });
+    // QuestionList().then(res=>{
+    //     console.log("List:")
+    //     console.log(res.data)
+    // });
   },
 }
 </script>
 <style lang="css" scoped>
+
+.gg{
+  border-bottom: 2px dashed rgb(238,238,238);
+}
+
 .submit {
   width: 60%;
+  height: 100vh;
   margin: 0 auto;
-  background-color: rgb(246, 246, 249);
+  height: calc(100% - 59px);
+  overflow: auto;
+  background-color: white;
+}
+
+.submitBtn {
+  display: flex;
+  justify-content: center;
+  /*border: 1px solid red;*/
+  position: sticky;
+  width: 60%;
+  margin: 0 auto;
+  height: 60px;
+  background-color: white;
+  display: flex;
+  border-top: 1px solid gainsboro;
+  align-items: center;
 }
 
 .urlString {
@@ -100,10 +110,12 @@ export default {
   font-size: 16px;
   font-weight: 500;
 }
+
 .urlString > * {
   /* border: 1px solid red; */
   margin-right: 20px;
 }
+
 .urlImg {
   width: 200px;
   /* border: 1px solid red; */

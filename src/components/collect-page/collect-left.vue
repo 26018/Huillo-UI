@@ -46,8 +46,11 @@ export default {
     change(data) {
       console.log(data)
       let idx = this.$store.state.template.length
-    //   data.number = idx
-      this.$store.commit('templatePush', data)
+      data.number = idx
+      // 使用JSON是为了拷贝对象，不这样做会导致左边组件和中间组件使用同一个对象而发送数据同步变化
+      // 例如：点击左边组件，修改中间刚刚添加的组件值，会发现左边的组件值也同步发生了变化
+      // 旧的写法： this.$store.commit('templatePush',data);
+      this.$store.commit('templatePush', JSON.parse(JSON.stringify(data)));
     },
   },
 }

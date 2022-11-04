@@ -1,11 +1,26 @@
 [
-    {
-        "componentName":"jh-head",
-        "title":"这是头"
-    },
-    {
-       "componentName":"jh-file",
-        "title":"附件",
-        "autoUpload":false
-    }
+  {
+    "componentName": "jh-file",
+    "title": "附件",
+    "autoUpload": false
+  },
+  {
+    "componentName": "jh-input",
+    "title": "问答"
+  },
+  {
+    "componentName": "jh-radio",
+    "title": "单选",
+    "options": [],
+    "answer": [],
+    "mode": "create"
+  },
+  {
+    "componentName": "jh-multi",
+    "title": "多选",
+    "options": [],
+    "selected": [],
+    "answer": [],
+    "mode": "create"
+  }
 ]

@@ -14,7 +14,45 @@
 
 .item-container {
     width: 100%;
+    /*border: 1px solid red;*/
 }
+
 .line {
     border: 1px solid red;
 }
+
+.operation-frame {
+    margin-left: auto;
+    display: flex;
+    /*background-color: gainsboro;*/
+    height: 100%;
+    font-size: 16px;
+}
+
+/* TODO 为什么是 > 而不是 >>> */
+.operation-frame > * {
+    margin-left: 20px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+.submit-title {
+    font-size: 32px;
+}
+
+.submit-title > * {
+    font-size: 32px;
+    border: 0px;
+    outline: none;
+    padding-left: 0;
+    border-radius: 0;
+    background-color: transparent;
+}
+
+.submit-description-title {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    color: gray;
+}
+
