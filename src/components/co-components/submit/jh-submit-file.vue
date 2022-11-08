@@ -4,7 +4,11 @@
       <co-card v-if="!params.deleted">
         <template v-slot:header>
           <div class="noselect font-title">{{ params.title }}</div>
-
+          <div class="operation-frame">
+            <div style="float: right;color: red;user-select: none" v-if="!params.required">
+              *
+            </div>
+          </div>
         </template>
 
         <el-input v-model="params.desc"

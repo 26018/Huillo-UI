@@ -13,7 +13,7 @@
           <div class="content">
             <div class="submit-collector">收集人:{{ params.author }}</div>
             <div v-if="params.description != null">
-              <div class="submit-description-title">详细说明：</div>
+              <div class="submit-description-title">详细说明</div>
               <pre class="submit-description-content">{{ params.description }}</pre>
             </div>
           </div>

@@ -4,12 +4,16 @@
       <co-card v-if="!params.deleted">
         <template v-slot:header>
           <div class="submit-title">{{params.title}}</div>
+          <div class="operation-frame">
+            <div style="float: right;color: red;user-select: none" v-if="!params.required">
+              *
+            </div>
+          </div>
         </template>
         <template v-slot:content>
-          <el-input class="description" v-model="params.details"
+          <el-input class="description" v-model="params.description"
                     placeholder="添加选项描述"></el-input>
-          <el-input disabled
-                    placeholder="此处由提交者填写"></el-input>
+          <el-input placeholder="此处由提交者填写" v-model="params.answer"></el-input>
         </template>
       </co-card>
     </div>
@@ -28,6 +32,7 @@ export default {
       options: Array,
       details: String,
       selected: Array,
+      answer:String,
       optional:Boolean // 选填
     },
   },
@@ -65,5 +70,6 @@ export default {
 
 :deep(.el-input__inner) {
   border: 0px;
+  padding-left: 0;
 }
 </style>

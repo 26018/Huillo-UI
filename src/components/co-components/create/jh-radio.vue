@@ -4,18 +4,19 @@
       <co-card>
         <template v-slot:header>
           <el-input v-model="params.title"></el-input>
-          <div class="operation-frame" v-if="getMode()">
-            <el-checkbox v-model="params.optional">选填</el-checkbox>
+          <div class="operation-frame">
+            <el-checkbox v-model="params.required">选填</el-checkbox>
             <i class="el-icon-sort move" title="点击拖动排序"></i>
             <i class="el-icon-circle-close" @click="closeComponent(params)"></i>
           </div>
         </template>
 
-        <el-input v-model="params.details" placeholder="添加选项描述"></el-input>
         <template v-slot:content>
+          <el-input v-model="params.description" placeholder="添加选项描述"></el-input>
           <div v-for="(option,index) in params.options" :key="index">
             <el-radio v-model="params.answer" :key="index" :label="option.id">
               <el-input class="option" v-model="option.value"></el-input>
+              <i class="el-icon-close"></i>
             </el-radio>
           </div>
           <el-button @click="addOption" size="small">新增选项</el-button>
@@ -33,7 +34,8 @@ export default {
   components: {coCard},
   props: {
     params: {
-      optional: Boolean, // 选填
+      required: Boolean,// 选填
+      description: String,
       mode: String // 模式 [ 创建模式(create) | 提交模式(submit) ]
     }
   },
@@ -53,9 +55,7 @@ export default {
   },
 
   methods: {
-    getMode() {
-      return this.params.mode == 'create'
-    },
+
     closeComponent,
     addOption() {
       let options = this.params.options
@@ -78,11 +78,11 @@ export default {
 }
 
 
-:deep(.el-input) {
+>>> .el-input {
   border: 0px;
 }
 
-:deep(.el-input__inner) {
+>>> .el-input__inner {
   border: 0px;
   padding-left: 0;
 }

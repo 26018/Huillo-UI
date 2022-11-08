@@ -7,6 +7,7 @@
         <div v-for="(i, index) in menus"
              :id="'nav' + index"
              :key="index"
+
              @click="chooseItem(i.path, index)">{{ i.name }}</div>
         <div class="exit">
           <el-button @click="exit"
@@ -52,23 +53,25 @@ export default {
   mounted() {
     let index = 0
     let page = '/user/record'
-    document.getElementById('nav' + index).style.borderRight = '4px solid black'
+    // document.getElementById('nav' + index).style.backgroundColor = 'rgb(225,226,231)'
     goto(page)
   },
   methods: {
     goto,
     chooseItem(val, index) {
       let length = this.menus.length
-      for (let idx = 0; idx < length; idx++) {
-        if (idx == index) {
-          localStorage.setItem('currentNavIndex', index)
-          localStorage.setItem('currentNavPath', val)
-          document.getElementById('nav' + idx).style.borderRight =
-            '4px solid #38b48b'
-        } else {
-          document.getElementById('nav' + idx).style.borderRight = '0px'
-        }
-      }
+      // for (let idx = 0; idx < length; idx++) {
+      //   if (idx == index) {
+      //     localStorage.setItem('currentNavIndex', index)
+      //     localStorage.setItem('currentNavPath', val)
+      //     document.getElementById('nav' + idx).style.backgroundColor =
+      //       'rgb(225,226,231)';
+      //     document.getElementById("nav" + idx).style.color = "rgb(29,99,255)";
+      //   } else {
+      //     document.getElementById('nav' + idx).style.backgroundColor = 'rgb(238,239,241)';
+      //     document.getElementById("nav" + idx).style.color = "black";
+      //   }
+      // }
       goto(val)
     },
     exit() {
@@ -80,6 +83,7 @@ export default {
 </script>
 <style lang="css" scoped>
 .index {
+  background-color: rgb(29,99,255);
 }
 
 .user {
@@ -89,16 +93,21 @@ export default {
 }
 .left-bar {
   width: 10%;
-  /* border: 1px solid red; */
   height: 100%;
   user-select: none;
-  /*background-color: honeydew;*/
+  background-color: rgb(238,239,241);
   border-right: 2px solid gainsboro;
   position: relative;
 }
+.left-bar>div{
+  /*border: 1px solid red;*/
+  width: 80%;
+  margin: 10px auto;
+  border-radius: 4px;
+}
 .left-bar > *:hover {
-  background-color: #38b48b;
-  color: azure;
+  background-color: rgb(225,226,231);
+  color: rgb(29,99,255);
   cursor: pointer;
 }
 .left-bar > * {
@@ -109,6 +118,12 @@ export default {
   justify-content: center;
   align-items: center;
 }
+
+.index:hover{
+  color: white;
+  background-color: rgb(29,99,255);
+}
+
 .exit {
   position: absolute;
   width: 100%;

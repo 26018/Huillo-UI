@@ -21,6 +21,7 @@
     <el-pagination
         style="margin-top: 8px"
         background
+        @current-change="pageChange"
         layout="prev, pager, next"
         :total="total">
     </el-pagination>
@@ -57,6 +58,18 @@ export default {
         return 'el-icon-loading'
       else return 'el-icon-success'
     },
+    pageChange(pageNumber){
+      getList(pageNumber).then(res => {
+        res = res.data.data
+        this.tableData = res.components
+        this.total = res.total
+        let index = 1;
+        this.tableData.forEach(t => {
+          t.dueDate = new Date(t.dueDate).toLocaleDateString()
+          t.count = index++;
+        })
+      });
+    }
   },
 
   created() {

@@ -11,21 +11,21 @@
       </transition-group>
     </draggable>
 
-    <el-dialog title="提示" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
-      <h2>发布成功！快去分享吧</h2>
-      <h4>复制以下链接或扫描二维码参与</h4>
-      <div class="urlString">
-        <div>http://fixyou.top</div>
-        <el-button type="text" @click="copyUrl('http://fixyou.top')">快速复制</el-button>
-      </div>
+<!--    <el-dialog title="提示" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">-->
+<!--      <h2>发布成功！快去分享吧</h2>-->
+<!--      <h4>复制以下链接或扫描二维码参与</h4>-->
+<!--      <div class="urlString">-->
+<!--        <div>http://fixyou.top</div>-->
+<!--        <el-button type="text" @click="copyUrl('http://fixyou.top')">快速复制</el-button>-->
+<!--      </div>-->
 
-      <img src="@/assets/fixyou.png" alt="" class="urlImg"/>
+<!--      <img src="@/assets/fixyou.png" alt="" class="urlImg"/>-->
 
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-      </span>
-    </el-dialog>
+<!--      <span slot="footer" class="dialog-footer">-->
+<!--        <el-button @click="dialogVisible = false">取 消</el-button>-->
+<!--        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>-->
+<!--      </span>-->
+<!--    </el-dialog>-->
   </div>
 </template>
 
@@ -211,8 +211,8 @@ export default {
 <style lang="css" scoped>
 
 .item {
-  border-left: 2px solid gainsboro;
-  border-right: 2px solid gainsboro;
+  /*border-left: 2px solid gainsboro;*/
+  /*border-right: 2px solid gainsboro;*/
 }
 
 .urlString {

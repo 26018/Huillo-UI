@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="items-container font-text">
-      <h3>选择组件</h3>
+      <h3>基础组件</h3>
       <div class="items">
         <div class="item-choice"
              v-for="(item,index) in componentList"

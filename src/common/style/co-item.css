@@ -56,3 +56,46 @@
     color: gray;
 }
 
+.submit-description-content {
+    font-size: 16px;
+    font-weight: 500;
+    font-family: "sans-serif";
+}
+
+.create-title {
+    height: 60px;
+}
+
+.create-title > .el-input {
+    border: 0;
+    outline: 0;
+    height: 100%;
+}
+
+.create-title > .el-input__inner {
+    border: 0;
+    /*border: 1px solid red;*/
+    padding-left: 0;
+    outline: 0;
+    font-size: 1.5em;
+    height: 100%;
+}
+
+.create-title > input[type='text'] {
+    height: 100%;
+}
+
+.create-select {
+    margin-left: auto;
+    border: 0;
+    max-width: 130px
+}
+
+.create-select >>> .el-input {
+    /*border: 1px solid red;*/
+}
+
+
+* {
+    font-family: "sans-serif";
+}

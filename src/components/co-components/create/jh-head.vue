@@ -3,19 +3,29 @@
     <div>
       <co-card class="head">
         <template v-slot:header class="header">
-          <el-input class="input" v-model="params.title"></el-input>
-          <el-date-picker class="date-end" v-model="params.dueDate" type="date" placeholder="截止日期"></el-date-picker>
+          <el-input class="create-title" v-model="params.title"/>
+          <el-date-picker class="date-end" v-model="params.dueDate" placeholder="截止日期"/>
         </template>
-
         <template v-slot:content>
-          <div class="row">
-            <el-input v-model="params.author" class="author" placeholder="请填写">
-              <template slot="prepend">收集人:</template>
-            </el-input>
-
+          <el-input v-model="params.author" class="author" placeholder="请填写">
+            <template slot="prepend">收集人:</template>
+          </el-input>
+          <div style="width: 100%;height: fit-content;display: flex;border: 0px solid red;align-items: center">
+            <co-tip>详细说明</co-tip>
+            <el-select v-model="params.editorValue"
+                       class="create-select"
+                       placeholder="切换编辑器">
+              <el-option v-for="editorOption in editorOptions"
+                         :key="editorOption.value"
+                         :label="editorOption.value"
+                         :value="editorOption.value"></el-option>
+            </el-select>
           </div>
-          <div class="tip">填写详细说明</div>
-          <el-input type="textarea" v-model="params.description" :autosize="{ minRows: 2}"></el-input>
+          <el-input type="textarea" v-show="params.editorValue == '纯文本编辑器' || !bigDevice"
+                    style="background-color: transparent"
+                    v-model="params.description" :autosize="{ minRows: 2}"/>
+          <mavon-editor :boxShadow="false" v-model="params.description"
+                        v-show="params.editorValue != '纯文本编辑器' && bigDevice"></mavon-editor>
         </template>
       </co-card>
     </div>
@@ -26,22 +36,38 @@
 import CoCard from '../co-card.vue'
 import {getFeature} from '@/api/util'
 import {JhHead} from '@/common/data/ComponentProps'
+import CoTip from "@/components/co-components/co-tip";
 
 export default {
   props: {
-    params: JhHead(),
+    params: {
+      editorValue: "",
+    }
   },
   data() {
     return {
-      data: {},
+      // data: {
+      editorOptions: [{
+        value: "MD编辑器",
+        label: "MD编辑器"
+      }, {
+        value: "纯文本编辑器",
+        label: "纯文本编辑器"
+      }],
+      // },
+      bigDevice: Boolean
     }
   },
   methods: {
     getFeature,
   },
-  components: {CoCard},
+  components: {CoTip, CoCard},
   created() {
     this.params.dueDate = getFeature(7)
+    // alert(document.body.clientWidth)
+    if (document.body.clientWidth < 1000) {
+      this.bigDevice = false;
+    }
   },
 }
 </script>
@@ -49,8 +75,16 @@ export default {
 @import url('@/common/style/co-item.css');
 
 
-.header{
+.header {
   font-size: 2px;
+}
+
+.input {
+  border: 0px solid red;
+  min-width: 150px;
+  height: 60px;
+  font-size: 32px;
+  outline: none;
 }
 
 .input >>> * {
@@ -61,34 +95,40 @@ export default {
   border-radius: 0;
   background-color: transparent;
 }
+
+.el-select >>> .el-input__inner {
+  border: 0px solid red;
+  max-width: 130px;
+  min-width: 130px;
+}
+
 .date-end {
   max-width: 180px;
   min-width: 160px;
 }
 
 /*设定字体大小，以免被co-card统一限定*/
-.date-end:deep(.el-input__inner){
+.date-end >>> .el-input__inner {
   border: 0;
   padding: 0 40px;
-  font-size: 16px ;
-  background-color: #e8ecef;
+  font-size: 16px;
+  background-color: #f7fcfe;
 }
 
 .row {
   display: flex;
-  /* border: 1px solid red; */
+  /*border: 1px solid red;*/
   overflow: hidden;
 }
 
-.row :deep(*) {
-
+.row >>> .el-input__inner {
 
 }
 
-.author:deep(.el-input__inner) {
+
+.author >>> .el-input__inner {
   outline: none;
   border: 0px;
-  padding: 8px;
   background-color: transparent;
   min-width: 150px;
 }
@@ -100,11 +140,5 @@ export default {
   font-size: 16px;
 }
 
-.tip {
-  font-size: 16px;
-  margin-top: 8px;
-  margin-bottom: 8px;
-  user-select: none;
-  color: rgb(144, 147, 153);
-}
+
 </style>

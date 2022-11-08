@@ -4,6 +4,11 @@
       <co-card>
         <template v-slot:header>
           <div class="submit-title">{{ params.title }}</div>
+          <div class="operation-frame">
+            <div style="float: right;color: red;user-select: none" v-if="!params.required">
+              *
+            </div>
+          </div>
         </template>
 
         <template v-slot:content>

@@ -66,5 +66,8 @@ export default {
 .mid {
   flex: 6;
   overflow: auto;
+  height: 100%;
+  border-left: 2px solid gainsboro;
+  border-right: 2px solid gainsboro;
 }
 </style>

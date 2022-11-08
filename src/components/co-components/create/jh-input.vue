@@ -5,13 +5,13 @@
         <template v-slot:header>
           <el-input class="input line" v-model="params.title"></el-input>
           <div class="operation-frame">
-            <el-checkbox v-model="params.optional">选填</el-checkbox>
+            <el-checkbox v-model="params.required">选填</el-checkbox>
             <i class="el-icon-sort move" title="点击拖动排序"></i>
             <i class="el-icon-circle-close" @click="closeComponent(params)"></i>
           </div>
         </template>
         <template v-slot:content>
-          <el-input class="description" v-model="params.details" placeholder="添加选项描述"></el-input>
+          <el-input class="description" v-model="params.description" placeholder="添加选项描述"></el-input>
           <el-input disabled placeholder="此处由提交者填写"></el-input>
         </template>
       </co-card>
@@ -29,9 +29,9 @@ export default {
       title: String,
       need: Boolean,
       options: Array,
-      details: String,
+      description: String,
       selected: Array,
-      optional:Boolean // 选填
+      required: Boolean // 选填
     },
   },
   data() {
@@ -52,21 +52,21 @@ export default {
 .input {
 }
 
-.input:deep(.el-input__inner) {
+.input >>> .el-input__inner {
   padding-left: 0;
   border-radius: 0;
   background-color: transparent;
 }
 
-.description:deep(*){
+.description >>> * {
   padding-left: 0;
 }
 
-:deep(.el-input) {
+>>> .el-input {
   border: 0px;
 }
 
-:deep(.el-input__inner) {
+>>> .el-input__inner {
   border: 0px;
 }
 </style>

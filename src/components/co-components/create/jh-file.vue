@@ -5,7 +5,7 @@
         <template v-slot:header>
           <el-input v-model="params.title"></el-input>
           <div class="operation-frame">
-            <el-checkbox v-model="params.optional">选填</el-checkbox>
+            <el-checkbox v-model="params.required">选填</el-checkbox>
             <i class="el-icon-sort move" title="点击拖动排序"></i>
             <i class="el-icon-circle-close" @click="closeComponent(params)"></i>
           </div>
@@ -23,7 +23,7 @@
             <el-button style="margin-right: 20px" v-if="!params.autoUpload" size="small" type="primary"
                        @click="uploadFile()">上传
             </el-button>
-            <el-select v-if="params.type" style="margin-top: 8px" class="name-rule" v-model="params.selected" multiple
+            <el-select style="margin-top: 8px" class="name-rule" v-model="params.selected" multiple
                        placeholder="请选择文件命名规则">
               <el-option v-for="item in params.list" :key="item.value" :label="item" :value="item"></el-option>
             </el-select>
@@ -47,7 +47,8 @@ export default {
       selected: Array,
       deleted: false,
       autoUpload: false,
-      optional: Boolean // 选填
+      required:Boolean ,// 选填
+
     },
   },
   data() {
