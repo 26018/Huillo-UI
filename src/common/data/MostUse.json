@@ -64,10 +64,6 @@
   },
   {
     "componentName": "jh-file",
-    "title": "excel填写"
-  },
-  {
-    "componentName": "jh-file",
-    "title": "word填写"
+    "title": "文件上传"
   }
 ]

@@ -6,16 +6,16 @@ Vue.use(VueRouter);
 const routes = [
     {
         path: '/',
-        components: { main_view: () => import('@/views/Home') },
+        components: {main_view: () => import('@/views/Home')},
         redirect: 'index',
         children: [
-            { path: 'index', components: { content: () => import('@/views/Test') } },
-            { path: 'create', components: { content: () => import('@/views/CreateTemplate') } },
+            {path: 'index', components: {content: () => import('@/views/Test')}},
+            {path: 'create', components: {content: () => import('@/views/CreateTemplate')}},
         ],
     },
     {
         path: '/user',
-        components: { main_view: () => import('@/views/User') },
+        components: {main_view: () => import('@/views/User')},
         redirect: '/user/record',
         children: [
             {

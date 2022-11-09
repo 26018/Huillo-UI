@@ -78,7 +78,7 @@ export default {
 .radio {
 }
 
-:deep(.el-radio) {
+>>> .el-radio {
   margin-top: 10px;
 }
 
@@ -92,11 +92,11 @@ export default {
   border-radius: 4px;
 }
 
-:deep(.el-input) {
+>>> .el-input {
   border: 0px;
 }
 
-:deep(.el-input__inner) {
+>>> .el-input__inner {
   border: 0px;
   padding-left: 0;
 }

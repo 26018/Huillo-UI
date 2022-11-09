@@ -4,7 +4,7 @@
       <co-card>
 
         <template v-slot:header>
-          <div class="submit-title">{{params.title}} </div>
+          <div class="submit-title">{{ params.title }}</div>
           <div class="operation-frame">
             <div style="float: right;color: red;user-select: none" v-if="!params.required">
               *
@@ -13,7 +13,7 @@
         </template>
 
         <template v-slot:content>
-          <div class="submit-description-title">{{params.description}}</div>
+          <div class="submit-description-title">{{ params.description }}</div>
           <el-checkbox-group v-model="params.answer">
             <div v-for="(option,index) in params.options" :key="index">
               <el-checkbox :label="option.value"></el-checkbox>
@@ -90,14 +90,13 @@ export default {
 }
 </script>
 <style lang="css" scoped>
-:deep(.el-input) {
+>>> .el-input {
   border: 0px;
 }
 
-:deep(.el-checkbox){
+>>> .el-checkbox {
   margin-top: 10px;
 }
-
 
 
 .submit-description-content {
@@ -105,7 +104,8 @@ export default {
   padding: 10px;
   border-radius: 4px;
 }
-:deep(.el-input__inner) {
+
+>>> .el-input__inner {
   border: 0px;
   padding-left: 0;
 }

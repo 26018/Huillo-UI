@@ -6,7 +6,7 @@ import store from "./store";
 import axios from "axios";
 import mavonEditor from "mavon-editor"
 import 'mavon-editor/dist/css/index.css'
-import ElementUI from 'element-ui';
+import ElementUI, {Message} from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.use(ElementUI);
@@ -32,12 +32,14 @@ axios.interceptors.request.use((config) => {
 axios.interceptors.response.use(function (response) {
     // 2xx 范围内的状态码都会触发该函数。
     // 对响应数据做点什么
-    Message({
-        message: response.data.message,
-        type: response.data.code == 200 ? "success" : "error",
-        showClose: true,
-
-    })
+    let status = response.data.code;
+    if (status != 200) {
+        Message({
+            message: response.data.message,
+            type: "error",
+            showClose: true,
+        })
+    }
     return response;
 }, function (error) {
     // 超出 2xx 范围的状态码都会触发该函数。

@@ -14,14 +14,15 @@
         <template v-slot:content>
           <el-input v-model="params.description" placeholder="添加选项描述"></el-input>
           <el-checkbox-group v-model="params.answer">
-            <div v-for="(option,index) in params.options" :key="index">
-              <el-checkbox :label="option.id">
-                <el-input v-model="option.value"></el-input>
+            <div v-for="(option,index) in params.options">
+              <el-checkbox @change="changeM" :key="index" :label="option.value">
+                <el-input :key="index" v-model="option.value"></el-input>
+                <el-button type="text" @click="removeOption(params.options,params.answer,option.value)">
+                  <i class="el-icon-close remove"></i>
+                </el-button>
               </el-checkbox>
-              <i @click="removeOption(params.options,params.answer,option.value)" class="el-icon-close remove"></i>
             </div>
           </el-checkbox-group>
-
           <el-button @click="addOption" size="small">新增选项</el-button>
         </template>
       </co-card>
@@ -31,7 +32,7 @@
 
 <script>
 import CoCard from '../co-card.vue'
-import {closeComponent} from '@/api/util'
+import {closeComponent, updateTemplate} from '@/api/util'
 
 export default {
   data() {
@@ -63,7 +64,10 @@ export default {
   },
   methods: {
     closeComponent,
+    changeM(value) {
 
+      console.log(value);
+    },
     addOption() {
       // todo id根据length来确定有bug
       let options = this.params.options
@@ -74,7 +78,7 @@ export default {
         id: Date.now(),
         value: '新选项',
       })
-      console.log("options:", this.params.options)
+      // console.log("options:", this.params.options)
     },
 
     removeOption(options, answers, targetName) {
@@ -82,6 +86,10 @@ export default {
       // option的id是options数组的下标
       // splice删除后，options下表变化，但option的id却没有变
       // @old options.splice(targetId-1, 1);
+
+      if (answers == undefined) {
+        answers = [];
+      }
 
       let length = options.length;
       for (let index = 0; index < length; index++) {
@@ -99,15 +107,19 @@ export default {
         }
       }
     }
-
   },
   created() {
-    console.log(this.params)
     this.params.answer = []
   }
 }
 </script>
 <style lang="css" scoped>
+
+>>> .el-checkbox {
+  display: flex;
+  align-items: center;
+}
+
 >>> .el-input {
   border: 0px;
 }
@@ -115,16 +127,10 @@ export default {
 >>> .el-input__inner {
   border: 0px;
   padding-left: 0;
-}
-
->>> .el-checkbox > * {
-  /*border: 1px solid red;*/
+  background-color: transparent;
 }
 
 .remove {
-  /*margin-left: 60px;*/
-  /*border: 1px solid red;*/
-  /*display: none;*/
 }
 
 </style>

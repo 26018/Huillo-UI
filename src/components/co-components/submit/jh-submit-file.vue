@@ -70,7 +70,7 @@ export default {
       selected: Array,
       deleted: false,
       autoUpload: false,
-      optional:Boolean // 选填
+      optional: Boolean // 选填
     },
   },
   data() {
@@ -137,14 +137,14 @@ export default {
   background-color: rgb(245, 247, 250);
 }
 
-:deep(.el-upload) {
+>>> .el-upload {
   margin-top: 10px;
   width: 100%;
   margin-bottom: 10px;
   /* background-color: rgb(245, 247, 250); */
 }
 
-:deep(.el-upload-dragger) {
+>>> .el-upload-dragger {
   height: 100px;
   /* border: 1px solid red; */
   width: 100%;
@@ -156,7 +156,7 @@ export default {
   background-color: rgb(245, 247, 250);
 }
 
-:deep(.el-input__inner) {
+>>> .el-input__inner {
   border: 0px;
 }
 

@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
+
 Vue.use(Vuex);
 
 const state = {
@@ -33,6 +34,13 @@ const mutations = {
     // 按下表删
     removeTemplateItem(state, index) {
         state.template.splice(index, 1);
+        let arr = state.template;
+        let length = arr.length;
+        for (let idx=0;idx<length;idx++){
+            if (arr[idx].number == index){
+                state.template.splice(idx, 1);
+            }
+        }
         localStorage.setItem('template', JSON.stringify(state.template));
     },
     // 除了head之外，删除全部元素

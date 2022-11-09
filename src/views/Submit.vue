@@ -7,7 +7,6 @@
                     :key="index"></components>
       </div>
 
-
     </div>
     <div class="submitBtn">
       <el-button @click="submitCollect" style="width: 30%;height: 40px" type="primary">提交</el-button>
@@ -93,7 +92,6 @@ export default {
 .submitBtn {
   display: flex;
   justify-content: center;
-  /*border: 1px solid red;*/
   position: sticky;
   width: 60%;
   margin: 0 auto;
@@ -121,5 +119,29 @@ export default {
   /* border: 1px solid red; */
   margin-top: 8px;
   box-shadow: 0px 2px 5px #888888;
+}
+
+@media screen and (max-width: 992px) {
+  .submit {
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+    height: calc(100% - 59px);
+    overflow: auto;
+    background-color: white;
+  }
+
+  .submitBtn {
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    margin: 0 auto;
+    height: 60px;
+    background-color: white;
+    display: flex;
+    border-top: 1px solid gainsboro;
+    align-items: center;
+    width: 100%;
+  }
 }
 </style>

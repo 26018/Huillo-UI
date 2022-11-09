@@ -11,6 +11,7 @@
           </div>
         </template>
         <template v-slot:content>
+
           <el-input class="description" v-model="params.description" placeholder="添加选项描述"></el-input>
           <el-input disabled placeholder="此处由提交者填写"></el-input>
         </template>
@@ -22,6 +23,7 @@
 <script>
 import {closeComponent} from '@/api/util'
 import CoCard from '../co-card.vue'
+import CoTip from "@/components/co-components/co-tip";
 
 export default {
   props: {
@@ -38,7 +40,7 @@ export default {
     return {}
   },
 
-  components: {CoCard},
+  components: {CoTip, CoCard},
 
   methods: {
     closeComponent,
@@ -50,6 +52,10 @@ export default {
 @import url('@/common/style/font.css');
 
 .input {
+}
+
+>>> .el-input__inner {
+  background-color: transparent;
 }
 
 .input >>> .el-input__inner {

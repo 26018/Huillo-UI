@@ -17,6 +17,7 @@
     /*border: 1px solid red;*/
 }
 
+
 .line {
     border: 1px solid red;
 }
@@ -98,4 +99,15 @@
 
 * {
     font-family: "sans-serif";
+}
+
+
+@media screen and (max-width: 992px) {
+    .item-main {
+        width: 100%;
+    }
+
+    .item-container {
+        width: 100%;
+    }
 }

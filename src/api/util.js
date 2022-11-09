@@ -24,8 +24,10 @@ export function clearTemplate(thisFunction) {
     tempList.splice(1, tempList.length - 1);
     updateTemplate(tempList);
 }
+
 // 删除组件
 export function closeComponent(params) {
+    console.log("关闭点击", params)
     store.commit('removeTemplateItem', params.number);
 }
 

@@ -16,7 +16,7 @@ export default {
 .tip{
   color: gray;
   font-size: 14px;
-  margin: 0;
+  margin: 4px 0;
   user-select: none;
 }
 </style>

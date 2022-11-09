@@ -41,6 +41,7 @@ export default {
   display: flex;
   align-items: center;
   margin-left: auto;
+  /*border: 1px solid red;*/
 }
 
 /*统一设置标题的文字大小*/

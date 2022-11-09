@@ -13,12 +13,12 @@
 
         <template v-slot:content>
           <el-input v-model="params.description" placeholder="添加选项描述"></el-input>
-          <div v-for="(option,index) in params.options" :key="index">
-            <el-radio v-model="params.answer" :key="index" :label="option.id">
-              <el-input class="option" v-model="option.value"></el-input>
-              <i class="el-icon-close"></i>
-            </el-radio>
-          </div>
+          <el-radio v-for="(option,index) in params.options" v-model="params.answer" :key="index" :label="option.id">
+            <el-input class="option" v-model="option.value"></el-input>
+            <el-button type="text" @click="removeOption(params.options,params.answer,option.value)">
+              <i class="el-icon-close remove"></i>
+            </el-button>
+          </el-radio>
           <el-button @click="addOption" size="small">新增选项</el-button>
         </template>
       </co-card>
@@ -36,6 +36,7 @@ export default {
     params: {
       required: Boolean,// 选填
       description: String,
+      answer: "",
       mode: String // 模式 [ 创建模式(create) | 提交模式(submit) ]
     }
   },
@@ -55,21 +56,61 @@ export default {
   },
 
   methods: {
-
     closeComponent,
     addOption() {
+      // todo id根据length来确定有bug
       let options = this.params.options
-      let length = 0
-      if (options == undefined) {
+      if (options === undefined || options == null) {
         this.params.options = []
       }
-      length = this.params.options.length + 1
       this.params.options.push({
-        id: length,
-        value: '新选项' + length,
+        id: Date.now(),
+        value: '新选项',
       })
     },
+
+    removeOption(options, answers, targetName) {
+      // 根据下标删除有bug
+      // option的id是options数组的下标
+      // splice删除后，options下表变化，但option的id却没有变
+      // @old options.splice(targetId-1, 1);
+
+      if (answers == undefined) {
+        answers = "";
+      }
+
+      if (options == undefined) {
+        options = [];
+      }
+
+      let length = options.length;
+      for (let index = 0; index < length; index++) {
+        if (options[index].value == targetName) {
+          // Tip 删除在answer列表中废弃的答案
+
+          // 单选的answers是字符串 多选的是数组
+          let type = typeof answers;
+          console.log(typeof answers)
+          if (type == 'string') {
+
+          } else {
+            let ansLength = answers.length;
+            for (let ansIndex = 0; ansIndex < ansLength; ansIndex++) {
+              if (answers[ansIndex] == options[index].id) {
+                answers.splice(ansIndex, 1);
+                break;
+              }
+            }
+          }
+          options.splice(index, 1);
+          break;
+        }
+      }
+    }
+
+
   },
+
 
 }
 </script>
@@ -77,6 +118,10 @@ export default {
 .radio {
 }
 
+>>> .el-radio {
+  display: flex;
+  align-items: center;
+}
 
 >>> .el-input {
   border: 0px;
@@ -85,6 +130,7 @@ export default {
 >>> .el-input__inner {
   border: 0px;
   padding-left: 0;
+  background-color: transparent;
 }
 
 .option >>> .el-input__inner {

@@ -13,6 +13,7 @@
           <div style="width: 100%;height: fit-content;display: flex;border: 0px solid red;align-items: center">
             <co-tip>详细说明</co-tip>
             <el-select v-model="params.editorValue"
+                       v-show="bigDevice"
                        class="create-select"
                        placeholder="切换编辑器">
               <el-option v-for="editorOption in editorOptions"
@@ -21,11 +22,10 @@
                          :value="editorOption.value"></el-option>
             </el-select>
           </div>
-          <el-input type="textarea" v-show="params.editorValue == '纯文本编辑器' || !bigDevice"
-                    style="background-color: transparent"
+          <el-input type="textarea" v-show="params.editorValue != 'MD编辑器' || !bigDevice"
                     v-model="params.description" :autosize="{ minRows: 2}"/>
           <mavon-editor :boxShadow="false" v-model="params.description"
-                        v-show="params.editorValue != '纯文本编辑器' && bigDevice"></mavon-editor>
+                        v-show="params.editorValue == 'MD编辑器' && bigDevice"></mavon-editor>
         </template>
       </co-card>
     </div>
@@ -74,6 +74,13 @@ export default {
 <style lang="css" scoped>
 @import url('@/common/style/co-item.css');
 
+>>>.el-textarea__inner{
+  background-color: transparent;
+}
+
+>>>.el-input__inner{
+  background-color: transparent;
+}
 
 .header {
   font-size: 2px;
@@ -103,8 +110,8 @@ export default {
 }
 
 .date-end {
-  max-width: 180px;
-  min-width: 160px;
+  /*max-width: 180px;*/
+  /*min-width: 160px;*/
 }
 
 /*设定字体大小，以免被co-card统一限定*/
@@ -112,23 +119,19 @@ export default {
   border: 0;
   padding: 0 40px;
   font-size: 16px;
+  max-width: 200px;
+  min-width: 180px;
   background-color: #f7fcfe;
 }
 
-.row {
-  display: flex;
+.author {
   /*border: 1px solid red;*/
-  overflow: hidden;
 }
-
-.row >>> .el-input__inner {
-
-}
-
 
 .author >>> .el-input__inner {
   outline: none;
   border: 0px;
+  padding: 0;
   background-color: transparent;
   min-width: 150px;
 }

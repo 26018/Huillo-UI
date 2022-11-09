@@ -54,21 +54,21 @@ export default {
 .input {
 }
 
-.input:deep(.el-input__inner) {
+.input>>>.el-input__inner {
   padding-left: 0;
   border-radius: 0;
   background-color: transparent;
 }
 
-.description:deep(*){
+.description>>>*{
   padding-left: 0;
 }
 
-:deep(.el-input) {
+>>>.el-input {
   border: 0px;
 }
 
-:deep(.el-input__inner) {
+>>>.el-input__inner {
   border: 0px;
   padding-left: 0;
 }

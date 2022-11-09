@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="co-header font-text" ref="coHeader">
+    <div class="co-header font-text" ref="coHeader" >
       <div @click="goto('/index')" class="logo click-able">Huillo</div>
-      <div class="text-content click-able space" @click="query(current)">{{ current }}</div>
+      <div v-show="bigDevice" class="text-content click-able space" @click="query(current)">{{ current }}</div>
       <div class="menus">
         <div class="logo space click-able" v-for="(menu, index) in menus" @click="execute(menu)"
              :style="menu.colorStyle"
@@ -28,7 +28,7 @@
   box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, .2);
 }
 
-.co-header :deep(*) {
+.co-header >>> * {
   text-align: justify;
   word-break: break-all;
 }
@@ -86,6 +86,8 @@ export default {
         ' 放慵真有味，应俗苦相妨。',
       ],
       current: '',
+      bigDevice: true,
+
     }
   },
   methods: {
@@ -100,6 +102,7 @@ export default {
   },
 
   created() {
+    this.bigDevice = document.body.clientWidth > 992
     let count = localStorage.getItem('idx')
     if (typeof count != Number) {
       count = 0

@@ -15,7 +15,7 @@
              class="item-choice"
              :key="index"
              @click="change(item)">
-          <co-icon :imgSrc="src[index % src.length]"></co-icon>
+<!--          <co-icon :imgSrc="src[index % src.length]"></co-icon>-->
           <span v-html="'\u00a0'"></span>
           {{ item.title}}
         </div>

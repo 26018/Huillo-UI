@@ -1,16 +1,21 @@
 <template>
   <div>
     <div class="template-details">
-      <el-button type="text"
-                 @click="goBack">返回</el-button>
+      <el-button type="text" @click="goBack">返回</el-button>
     </div>
+    <div>{{params}}</div>
+
   </div>
 </template>
 
 <script>
+import {pullData} from "@/api/request";
+
 export default {
   data() {
-    return {}
+    return {
+      params:{}
+    }
   },
 
   components: {},
@@ -22,6 +27,13 @@ export default {
       this.$router.go(-1)
     },
   },
+  created() {
+    let id = this.$route.params.id
+    // console.log(id)
+    pullData(id).then(res=>{
+      this.params = res.data.data
+    })
+  }
 }
 </script>
 

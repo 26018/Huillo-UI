@@ -2,15 +2,16 @@
   <div>
     <div class="collect"
          ref="content">
-      <div class="left">
+      <div class="left" v-show="bigDevice">
         <collect-left :componentList="moduleData" :mostUse="mostUseModuleData"></collect-left>
       </div>
       <div class="mid">
         <collect-mid :templates="templateData"></collect-mid>
       </div>
-      <div class="right">
+      <div class="right" v-show="bigDevice">
         <collect-right></collect-right>
       </div>
+
     </div>
   </div>
 </template>
@@ -27,6 +28,7 @@ export default {
       // module:[],
       // template:[],
       // mostUseModule:[]
+      bigDevice: true
     }
   },
   computed: {
@@ -44,6 +46,10 @@ export default {
     // this.template = this.templateData();
     // this.module = this.moduleData();
     // this.mostUseModule = this.mostUseModuleData();
+
+    if (document.body.clientWidth < 1000) {
+      this.bigDevice = false;
+    }
   }
 }
 </script>
@@ -70,4 +76,15 @@ export default {
   border-left: 2px solid gainsboro;
   border-right: 2px solid gainsboro;
 }
+
+@media screen and (max-width: 992px) {
+  .mid {
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+    border-left: 2px solid gainsboro;
+    border-right: 2px solid gainsboro;
+  }
+}
+
 </style>
