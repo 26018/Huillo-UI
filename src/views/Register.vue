@@ -1,22 +1,22 @@
 <template>
-  <div>
-    <div class="register">
-      Register
+    <div>
+        <div class="register">
+            Register
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {}
-  },
+    data() {
+        return {}
+    },
 
-  components: {},
+    components: {},
 
-  computed: {},
+    computed: {},
 
-  methods: {},
+    methods: {},
 }
 </script>
 <style lang='css' scoped>

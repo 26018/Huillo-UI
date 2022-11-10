@@ -44,3 +44,7 @@ export function getFeature(num) {
     return newDay;
 }
 
+export function isMobile(){
+    return document.body.clientWidth < 992;
+}
+
