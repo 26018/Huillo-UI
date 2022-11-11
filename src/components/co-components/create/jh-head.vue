@@ -3,32 +3,56 @@
         <div>
             <co-card class="head">
                 <template v-slot:header class="header">
-                   <div class="km">
-                       <el-input class="create-title" v-model="params.title"/>
-                       <el-date-picker class="date-end" v-model="params.dueDate" placeholder="截止日期"/>
-                   </div>
+                    <div class="km">
+                        <el-input class="create-title" v-model="params.title"/>
+                        <el-date-picker class="date-end" v-model="params.dueDate" placeholder="截止日期"/>
+                    </div>
                 </template>
                 <template v-slot:content>
-                    <el-input v-model="params.author" class="author" placeholder="请填写">
-                        <template slot="prepend">收集人:</template>
-                    </el-input>
-                    <div
-                        style="width: 100%;height: fit-content;display: flex;border: 0px solid red;align-items: center">
-                        <co-tip>详细说明</co-tip>
-                        <el-select v-model="params.editorValue"
-                                   v-show="bigDevice"
-                                   class="create-select"
-                                   placeholder="切换编辑器">
-                            <el-option v-for="editorOption in editorOptions"
-                                       :key="editorOption.value"
-                                       :label="editorOption.value"
-                                       :value="editorOption.value"></el-option>
-                        </el-select>
+                    <div class="mobile">
+                        <el-input class="self" v-model="params.author">
+                            <template slot="prepend">
+                                <co-tip>收集人:</co-tip>
+                            </template>
+                        </el-input>
+
+                        <div style="display: flex;align-items: center;">
+                            <co-tip style="border-bottom: 2px solid rgb(234, 241, 253);">结束时间:</co-tip>
+                            <el-date-picker class="self" v-model="params.dueDate">
+                            </el-date-picker>
+                        </div>
+
+                        <co-tip>简要说明:</co-tip>
+                        <el-input class="self" type="textarea" v-show="params.editorValue != 'MD编辑器'"
+                                  v-model="params.description" :autosize="{ minRows: 2}"/>
+                        <mavon-editor
+                            :boxShadow="false" v-model="params.description"
+                            v-show="params.editorValue == 'MD编辑器'">
+                        </mavon-editor>
                     </div>
-                    <el-input type="textarea" v-show="params.editorValue != 'MD编辑器' || !bigDevice"
-                              v-model="params.description" :autosize="{ minRows: 2}"/>
-                    <mavon-editor :boxShadow="false" v-model="params.description"
-                                  v-show="params.editorValue == 'MD编辑器' && bigDevice"></mavon-editor>
+
+                    <div class="pc">
+                        <el-input v-model="params.author" class="author" placeholder="请填写">
+                            <template slot="prepend">收集人:</template>
+                        </el-input>
+                        <div style="width: 100%;height: fit-content;display: flex;border: 0px solid red;align-items: center">
+                            <co-tip>详细说明</co-tip>
+                            <el-select v-model="params.editorValue"
+                                       class="create-select"
+                                       placeholder="切换编辑器">
+                                <el-option v-for="editorOption in editorOptions"
+                                           :key="editorOption.value"
+                                           :label="editorOption.value"
+                                           :value="editorOption.value"></el-option>
+                            </el-select>
+                        </div>
+                        <el-input type="textarea" v-show="params.editorValue != 'MD编辑器'"
+                                  v-model="params.description" :autosize="{ minRows: 2}"/>
+                        <mavon-editor :boxShadow="false" v-model="params.description"
+                                      v-show="params.editorValue == 'MD编辑器'"></mavon-editor>
+
+                    </div>
+
                 </template>
             </co-card>
         </div>
@@ -38,8 +62,8 @@
 <script>
 import CoCard from '../co-card.vue'
 import {getFeature} from '@/api/util'
-import {JhHead} from '@/common/data/ComponentProps'
 import CoTip from "@/components/co-components/co-tip";
+import CoIcon from "@/components/co-components/co-icon";
 
 export default {
     props: {
@@ -49,7 +73,7 @@ export default {
     },
     data() {
         return {
-            // data: {
+
             editorOptions: [{
                 value: "MD编辑器",
                 label: "MD编辑器"
@@ -57,19 +81,12 @@ export default {
                 value: "纯文本编辑器",
                 label: "纯文本编辑器"
             }],
-            // },
-            bigDevice: Boolean
         }
     },
-    methods: {
-        getFeature,
-    },
-    components: {CoTip, CoCard},
+    methods: {},
+    components: {CoIcon, CoTip, CoCard},
     created() {
         this.params.dueDate = getFeature(7)
-        if (document.body.clientWidth < 1000) {
-            this.bigDevice = false;
-        }
     },
 }
 </script>
@@ -84,35 +101,38 @@ export default {
     background-color: transparent;
 }
 
-.header {
-    font-size: 2px;
+>>> .el-textarea__inner {
+    padding: 4px;
 }
 
-.input {
-    border: 0px solid red;
-    min-width: 150px;
-    height: 60px;
-    font-size: 32px;
-    outline: none;
-}
-
-.input >>> * {
-    font-size: 32px;
-    border: 0px;
-    outline: none;
-    padding-left: 0;
+.self >>> .el-input__inner {
+    border: 0;
+    padding: 0;
+    border-bottom: 2px solid rgb(234, 241, 253);
     border-radius: 0;
+}
+
+.self >>> .el-input-group__prepend {
+    padding: 0;
+    border: 0;
+    border-bottom: 2px solid rgb(234, 241, 253);
     background-color: transparent;
 }
 
+.self >>> .el-input__prefix {
+    display: none;
+}
+
+.self {
+    width: 100%;
+}
+
 .el-select >>> .el-input__inner {
-    border: 0px solid red;
+    border: 0px;
     max-width: 130px;
     min-width: 130px;
 }
 
-.date-end {
-}
 
 /*设定字体大小，以免被co-card统一限定*/
 .date-end >>> .el-input__inner {
@@ -124,9 +144,6 @@ export default {
     background-color: #f7fcfe;
 }
 
-.author {
-    /*border: 1px solid red;*/
-}
 
 .author >>> .el-input__inner {
     outline: none;
@@ -143,17 +160,42 @@ export default {
     font-size: 16px;
 }
 
-.km{
+.km {
     display: flex;
     width: 100%;
 }
 
+.mobile {
+    display: none;
+}
 
 
 @media screen and (max-width: 992px) {
-    .km{
+    .km {
         display: flex;
         flex-direction: column;
+    }
+
+    .km > .date-end >>> .el-input__icon {
+        padding-left: 0;
+        width: auto;
+        margin-left: 0;
+    }
+
+    .km > .date-end >>> .el-input__inner {
+        padding: 0 30px;
+    }
+
+    .date-end {
+        display: none;
+    }
+
+    .mobile {
+        display: unset;
+    }
+
+    .pc {
+        display: none;
     }
 }
 

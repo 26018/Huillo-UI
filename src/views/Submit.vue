@@ -22,6 +22,7 @@ import jhInput from '@/components/co-components/submit/jh-submit-input.vue'
 import jhRadio from '@/components/co-components/submit/jh-submit-radio.vue'
 import jhMulti from '@/components/co-components/submit/jh-submit-multi.vue'
 import {pullData, QuestionList} from '@/api/request'
+import {goto} from "@/api/util";
 
 export default {
     data() {
@@ -57,6 +58,7 @@ export default {
             console.log(this.templateData)
             console.log("Test here!")
         })
+
 
         // QuestionList().then(res=>{
         //     console.log("List:")

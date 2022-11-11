@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="record">
-      <el-table :data="tableData" :cell-style="center" :header-cell-style="center" height="650" style="width: 100%"
+      <el-table :data="tableData" :cell-style="center" :header-cell-style="center"  style="width: 100%"
                 @cell-click="choose">
         <el-table-column prop="title" label="收集标题" :width="tableWidth"></el-table-column>
         <el-table-column prop="author" label="收集者" :width="tableWidth"></el-table-column>
@@ -55,7 +55,6 @@ export default {
     },
 
     choose(value, column, cell, event) {
-      // console.log("value", value)
       if (column.label != '收集标题')
         return
       let id = value.id
@@ -102,7 +101,15 @@ export default {
 </script>
 <style lang="css" scoped>
 .record {
-  height: calc(100vh - 100px);
-  overflow: auto;
+    /*height: calc(100vh - 100px);*/
+    width: 100%;
+    /*border: 1px solid red;*/
+    overflow: auto;
 }
+
+@media screen and (max-width: 992px){
+
+
+}
+
 </style>

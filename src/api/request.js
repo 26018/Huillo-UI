@@ -3,7 +3,7 @@ import axios from "axios";
 export function publish(dataList) {
     axios({
         method: "post",
-        url: "http://localhost/question/push",
+        url: "/api/question/push",
         data: dataList,
     });
 }
@@ -11,7 +11,7 @@ export function publish(dataList) {
 export function pullData(questionId) {
     return axios({
         method: "get",
-        url: "http://localhost/question/pull/" + questionId,
+        url: "/api/question/pull/" + questionId,
     });
 }
 
@@ -25,7 +25,7 @@ export function pushFile(fileList, autoUpload) {
         formDatas.append("files", autoUpload ? file : file.raw);
     });
     return axios({
-        url: "http://localhost/user/file/push",
+        url: "/api/user/file/push",
         method: "post",
         headers: {
             "Content-Type": "multipart/form-data",
@@ -36,7 +36,7 @@ export function pushFile(fileList, autoUpload) {
 
 export function QuestionList() {
     return axios({
-        url: "http://localhost/question/list",
+        url: "/api/question/list",
         method: "get",
     });
 }
@@ -44,9 +44,9 @@ export function QuestionList() {
 
 export function getList(pageNumber) {
     return axios({
-        url: "http://localhost/question/list",
+        url: "/api/question/list",
         method: "get",
-        params:{
+        params: {
             "pageNumber": pageNumber,
         }
     })

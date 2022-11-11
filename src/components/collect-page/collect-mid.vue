@@ -22,7 +22,7 @@
                    append-to-body
                    :visible.sync="dialogVisible"
                    :before-close="handleClose">
-            <div>
+            <div class="context">
                 <h3>基础组件</h3>
                 <div class="items">
                     <div class="item-choice"
@@ -97,7 +97,6 @@ export default {
         },
     },
     methods: {
-
         change(data) {
             console.log(data)
             let idx = this.$store.state.template.length
@@ -198,7 +197,7 @@ export default {
                     },
                 },
                 {
-                    name: '清空所有缓存',
+                    name: '清空缓存',
                     execute: this.clearCache,
                     param: this,
                     colorStyle: {
@@ -221,11 +220,8 @@ export default {
 </script>
 <style lang="css" scoped>
 
-.create-mid {
-    /*height: calc(100% - 60px);*/
-    /*height: 100%;*/
-    /*overflow: auto;*/
-    /*border: 1px solid red;*/
+.item{
+    border-bottom: 2px dashed rgb(238, 238, 238);
 }
 
 img {
@@ -233,7 +229,6 @@ img {
 }
 
 /*-----------------------------*/
-
 
 h3 {
     height: 50px;
@@ -245,16 +240,15 @@ h3 {
     color: rgb(36, 37, 37);
 }
 
-.items-container {
-    width: 100%;
-    max-height: 600px;
-    overflow: auto;
-    /*position: sticky;*/
-}
+/*.items-container {*/
+/*    width: 100%;*/
+/*    max-height: 600px;*/
+/*    overflow: auto;*/
+/*}*/
 
 .items {
     display: flex;
-    justify-content: left;
+    justify-content: space-between;
     flex-wrap: wrap;
 }
 
@@ -309,9 +303,14 @@ h3 {
     .addComponent {
         display: flex;
         justify-content: center;
+        align-items: center;
         width: 100%;
-        padding-bottom: 20px;
-        border: 0px solid red
+        height: 60px;
+    }
+    .items {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
     }
 }
 

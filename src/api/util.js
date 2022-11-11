@@ -1,6 +1,10 @@
 import router from '@/router';
 import store from '@/store';
 
+// const os = require('os');
+// resolve.fallback: { "os": false }
+
+
 // 路由跳转
 export function goto(path) {
     let currentPath = router.history.current.fullPath;
@@ -44,7 +48,4 @@ export function getFeature(num) {
     return newDay;
 }
 
-export function isMobile(){
-    return document.body.clientWidth < 992;
-}
 

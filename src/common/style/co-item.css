@@ -4,6 +4,8 @@
     padding: 20px 30px 20px 30px;
 }
 
+
+
 .move {
     user-select: none;
     cursor: pointer;
@@ -105,6 +107,7 @@
 @media screen and (max-width: 992px) {
     .item-main {
         width: 100%;
+        padding: 12px;
     }
 
     .item-container {

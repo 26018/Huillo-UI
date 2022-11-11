@@ -1,22 +1,25 @@
 <template>
-   <div>
-      <img class="co-icon" :src="imgSrc" />
-   </div>
+    <div>
+        <div style="display: flex;justify-content: center;align-items: center">
+            <img class="co-icon" :src="imgSrc"/>
+            <slot ></slot>
+        </div>
+    </div>
 </template>
 
 <script>
 export default {
-   props: ['imgSrc'],
-   data () {
-      return {
-
-      };
-   },
+    props: ['imgSrc'],
+    data() {
+        return {};
+    },
 }
 </script>
 <style lang='css' scoped>
 .co-icon {
-   width: 15px;
-   aspect-ratio: 1/1;
+    width: 15px;
+    aspect-ratio: 1/1;
 }
+
+
 </style>

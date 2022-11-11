@@ -58,6 +58,7 @@ export default {
   background-color: transparent;
 }
 
+
 .input >>> .el-input__inner {
   padding-left: 0;
   border-radius: 0;

@@ -15,7 +15,7 @@
                 </pre>
         <div @click="goto('/create')"
              class="to">现在就去</div>
-        <div @click="goto('/submit')"
+        <div @click="goto('/submit/3620')"
              class="to">发布测试页</div>
       </div>
     </div>
