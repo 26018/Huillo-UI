@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="record">
-      <el-table :data="tableData" :cell-style="center" :header-cell-style="center"  style="width: 100%"
+      <el-table :data="tableData" size="mini" :cell-style="center" :header-cell-style="center"
                 @cell-click="choose">
         <el-table-column prop="title" label="收集标题" :width="tableWidth"></el-table-column>
         <el-table-column prop="author" label="收集者" :width="tableWidth"></el-table-column>
@@ -23,8 +23,9 @@
       </el-table>
     </div>
     <el-pagination
-        style="margin-top: 8px"
+        class="page"
         background
+        :pager-count="5"
         @current-change="pageChange"
         layout="prev, pager, next"
         :total="total">
@@ -101,14 +102,22 @@ export default {
 </script>
 <style lang="css" scoped>
 .record {
-    /*height: calc(100vh - 100px);*/
+    height: calc(100% - 800px);
     width: 100%;
     /*border: 1px solid red;*/
-    overflow: auto;
+    /*overflow: auto;*/
+    display: flex;
+    /*display: none;*/
 }
 
 @media screen and (max-width: 992px){
 
+    .page{
+        /*display: none;*/
+        /*position: fixed;*/
+        /*bottom: 10px;*/
+        /*justify-content: flex-end;*/
+    }
 
 }
 

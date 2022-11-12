@@ -220,7 +220,7 @@ export default {
 </script>
 <style lang="css" scoped>
 
-.item{
+.item {
     border-bottom: 2px dashed rgb(238, 238, 238);
 }
 
@@ -307,6 +307,12 @@ h3 {
         width: 100%;
         height: 60px;
     }
+
+    .addComponent >>> .el-button {
+        background-color: #409EFF;
+        color: white;
+    }
+
     .items {
         display: flex;
         justify-content: space-evenly;

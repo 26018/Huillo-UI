@@ -1,28 +1,16 @@
 <template>
     <div>
         <div class="user">
-
             <div class="mobileHeader">
-                <el-dropdown>
-                    <span class="el-dropdown-link">
-                    菜单<i class="el-icon-arrow-down el-icon--right"></i>
-                    </span>
-                    <el-dropdown-menu slot="dropdown">
-                        <el-dropdown-item>黄金糕</el-dropdown-item>
-                        <el-dropdown-item>狮子头</el-dropdown-item>
-                        <el-dropdown-item>螺蛳粉</el-dropdown-item>
-                        <el-dropdown-item disabled>双皮奶</el-dropdown-item>
-                        <el-dropdown-item divided>蚵仔煎</el-dropdown-item>
-                    </el-dropdown-menu>
-                </el-dropdown>
-                <div style="display: flex;align-items: center;justify-content: center;width: 100%;border: 0px solid red;">当前菜单项</div>
-                <div style="margin-left: auto;
-                display: flex;
-                align-items: center;
-                margin-right: 10px;" @click="goto('/create')">Huillo
-                </div>
+                <ul>
+                    <li class="dropdown">
+                        <div @click="navClick()" class="dropbtn">我的</div>
+                        <div class="dropdown-content" v-show="showList">
+                            <div v-for="menu in menus" @click="gotoXX(menu.path)">{{menu.name}}</div>
+                        </div>
+                    </li>
+                </ul>
             </div>
-
             <div class="left-bar">
                 <div @click="goto('/create')"
                      class="index">Huillo
@@ -45,8 +33,10 @@
 
 <script>
 import {goto} from '@/api/util'
+import CoIcon from "@/components/co-components/co-icon";
 
 export default {
+    components: {CoIcon},
     data() {
         return {
             menus: [
@@ -67,23 +57,9 @@ export default {
                     path: '/user/recycle',
                 },
             ],
-            options: [{
-                value: '选项1',
-                label: '黄金糕'
-            }, {
-                value: '选项2',
-                label: '双皮奶'
-            }, {
-                value: '选项3',
-                label: '蚵仔煎'
-            }, {
-                value: '选项4',
-                label: '龙须面'
-            }, {
-                value: '选项5',
-                label: '北京烤鸭'
-            }],
-            value: ''
+
+            showList: false,
+
         }
     },
     computed: {},
@@ -91,9 +67,19 @@ export default {
         let page = '/user/record'
         // document.getElementById('nav' + index).style.backgroundColor = 'rgb(225,226,231)'
         goto(page)
+        // this.showList = true
+        console.log(this.showList)
     },
     methods: {
+        navClick(){
+            this.showList = !this.showList;
+            console.log(this.showList)
+        },
         goto,
+        gotoXX(path) {
+            this.showList = false;
+            goto(path);
+        },
         chooseItem(val, index) {
             let length = this.menus.length
             // for (let idx = 0; idx < length; idx++) {
@@ -118,6 +104,59 @@ export default {
 }
 </script>
 <style lang="css" scoped>
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li div, .dropbtn {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+
+li.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+}
+
+.dropdown-content div {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    /*z-index: 999;*/
+}
+
+.dropdown-content div:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
 .index {
     background-color: rgb(29, 99, 255);
     color: white;
@@ -134,8 +173,10 @@ export default {
 
 .user {
     display: flex;
-    height: 100%;
-
+    /*height: 100%;*/
+    /*border: 1px solid red;*/
+    /*position: relative;*/
+    /*overflow: hidden;*/
 }
 
 .left-bar {
@@ -201,8 +242,8 @@ export default {
 
 .user-content {
     width: 100%;
-    overflow: auto;
-    /*box-sizing: border-box;*/
+    height: 80%;
+    /*border: 1px solid red;*/
 }
 
 .mobileHeader {
@@ -211,35 +252,25 @@ export default {
 
 @media screen and (max-width: 992px) {
     .left-bar {
-        width: 20%;
-        height: 100%;
-        font-size: 0.8rem;
-        user-select: none;
-        background-color: rgb(238, 239, 241);
-        position: relative;
         display: none;
     }
 
     .mobileHeader {
         display: flex;
-        /*border: 1px solid red;*/
         width: 100%;
         height: 50px;
-    }
-
-    .mobileHeader >>> .el-dropdown {
-        /*border: 1px solid red;*/
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 10px;
-        box-sizing: border-box;
+        /*position: sticky;*/
+        top: 0;
+        z-index: 999;
     }
 
     .user {
         display: flex;
-        height: 100%;
+        /*height: 100%;*/
+        width: 100%;
+        /*overflow: hidden;*/
         flex-direction: column;
+        /*border: 1px brown solid;*/
     }
 }
 </style>

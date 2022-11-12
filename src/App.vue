@@ -10,28 +10,23 @@
 body {
     padding: 0px;
     margin: 0px;
-    width: 100%;
-    height: 100%;
 }
 
 #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    width: 100vw;
-    height: 100vh;
-    /*border: 2px solid firebrick;*/
 }
 
 .main-view {
     width: 100%;
     height: 100%;
-    /*border: 2px solid palevioletred;*/
 }
 
 ::-webkit-scrollbar {
     width: 0px;
     height: 10px;
+    display: none;
 }
 
 
