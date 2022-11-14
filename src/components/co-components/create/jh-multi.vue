@@ -1,33 +1,35 @@
 <template>
-  <div>
-    <div class="multi">
-      <co-card>
-        <template v-slot:header>
-          <el-input v-model="params.title"></el-input>
-          <div class="operation-frame">
-            <el-checkbox v-model="params.required">选填</el-checkbox>
-            <i class="el-icon-sort move" title="点击拖动排序"></i>
-            <i class="el-icon-circle-close" @click="closeComponent(params)"></i>
-          </div>
-        </template>
+    <div>
+        <div class="multi">
+            <co-card>
+                <template v-slot:header>
+                    <el-input v-model="params.title"></el-input>
+                    <div class="operation-frame">
+                        <el-checkbox v-model="params.required">选填</el-checkbox>
+                        <i class="el-icon-sort move" title="点击拖动排序"></i>
+                        <i class="el-icon-circle-close" @click="closeComponent(params)"></i>
+                    </div>
+                </template>
 
-        <template v-slot:content>
-          <el-input v-model="params.description" placeholder="添加选项描述"></el-input>
-          <el-checkbox-group v-model="params.answer">
-            <div v-for="(option,index) in params.options">
-              <el-checkbox @change="changeM" :key="index" :label="option.value">
-                <el-input :key="index" v-model="option.value"></el-input>
-                <el-button type="text" @click="removeOption(params.options,params.answer,option.value)">
-                  <i class="el-icon-close remove"></i>
-                </el-button>
-              </el-checkbox>
-            </div>
-          </el-checkbox-group>
-          <el-button @click="addOption" size="small">新增选项</el-button>
-        </template>
-      </co-card>
+                <template v-slot:content>
+<!--                    <el-input class="description" type="textarea" v-model="params.description" placeholder="添加选项描述"></el-input>-->
+                    <el-input type="textarea" :autosize="{minRows: 1}" class="description" v-model="params.description" placeholder="添加选项描述"></el-input>
+
+                    <el-checkbox-group v-model="params.answer">
+                        <div v-for="(option,index) in params.options">
+                            <el-checkbox @change="changeM" :key="index" :label="option.value">
+                                <el-input :key="index" v-model="option.value"></el-input>
+                                <el-button type="text" @click="removeOption(params.options,params.answer,option.value)">
+                                    <i class="el-icon-close remove"></i>
+                                </el-button>
+                            </el-checkbox>
+                        </div>
+                    </el-checkbox-group>
+                    <el-button @click="addOption" size="small">新增选项</el-button>
+                </template>
+            </co-card>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -35,102 +37,109 @@ import CoCard from '../co-card.vue'
 import {closeComponent, updateTemplate} from '@/api/util'
 
 export default {
-  data() {
-    return {}
-  },
-  props: {
-    params: {
-      title: String,
-      need: Boolean,
-      options: Array,
-      selected: Array,
-      answer: Array,
-      details: String,
-      deleted: false,
-      required: Boolean,// 选填
+    data() {
+        return {}
     },
-  },
-  components: {CoCard},
-
-  computed: {
-    getAtt() {
-      return JSON.stringify(this.params)
+    props: {
+        params: {
+            title: String,
+            need: Boolean,
+            options: Array,
+            selected: Array,
+            answer: Array,
+            details: String,
+            deleted: false,
+            required: Boolean,// 选填
+        },
     },
-  },
-  watch: {
-    getAtt(n, o) {
-      console.log(JSON.parse(n).answer, JSON.parse(o).answer)
+    components: {CoCard},
+
+    computed: {
+        getAtt() {
+            return JSON.stringify(this.params)
+        },
     },
-  },
-  methods: {
-    closeComponent,
-    changeM(value) {
-
-      console.log(value);
+    watch: {
+        getAtt(n, o) {
+            console.log(JSON.parse(n).answer, JSON.parse(o).answer)
+        },
     },
-    addOption() {
-      // todo id根据length来确定有bug
-      let options = this.params.options
-      if (options === undefined || options == null) {
-        this.params.options = []
-      }
-      this.params.options.push({
-        id: Date.now(),
-        value: '新选项',
-      })
-      // console.log("options:", this.params.options)
-    },
+    methods: {
+        closeComponent,
+        changeM(value) {
 
-    removeOption(options, answers, targetName) {
-      // 根据下标删除有bug
-      // option的id是options数组的下标
-      // splice删除后，options下表变化，但option的id却没有变
-      // @old options.splice(targetId-1, 1);
-
-      if (answers == undefined) {
-        answers = [];
-      }
-
-      let length = options.length;
-      for (let index = 0; index < length; index++) {
-        if (options[index].value == targetName) {
-          // Tip 删除在answer列表中废弃的答案
-          let ansLength = answers.length;
-          for (let ansIndex = 0; ansIndex < ansLength; ansIndex++) {
-            if (answers[ansIndex] == options[index].id) {
-              answers.splice(ansIndex, 1);
-              break;
+            console.log(value);
+        },
+        addOption() {
+            // todo id根据length来确定有bug
+            let options = this.params.options
+            if (options === undefined || options == null) {
+                this.params.options = []
             }
-          }
-          options.splice(index, 1);
-          break;
+            this.params.options.push({
+                id: Date.now(),
+                value: '新选项',
+            })
+            // console.log("options:", this.params.options)
+        },
+
+        removeOption(options, answers, targetName) {
+            // 根据下标删除有bug
+            // option的id是options数组的下标
+            // splice删除后，options下表变化，但option的id却没有变
+            // @old options.splice(targetId-1, 1);
+
+            if (answers == undefined) {
+                answers = [];
+            }
+
+            let length = options.length;
+            for (let index = 0; index < length; index++) {
+                if (options[index].value == targetName) {
+                    // Tip 删除在answer列表中废弃的答案
+                    let ansLength = answers.length;
+                    for (let ansIndex = 0; ansIndex < ansLength; ansIndex++) {
+                        if (answers[ansIndex] == options[index].id) {
+                            answers.splice(ansIndex, 1);
+                            break;
+                        }
+                    }
+                    options.splice(index, 1);
+                    break;
+                }
+            }
         }
-      }
+    },
+    created() {
+        this.params.answer = []
     }
-  },
-  created() {
-    this.params.answer = []
-  }
 }
 </script>
 <style lang="css" scoped>
+@import "@/common/style/co-item.css";
 
 >>> .el-checkbox {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 >>> .el-input {
-  border: 0px;
+    border: 0px;
 }
 
 >>> .el-input__inner {
-  border: 0px;
-  padding-left: 0;
-  background-color: transparent;
+    border: 0px;
+    padding-left: 0;
+    background-color: transparent;
 }
 
 .remove {
+}
+
+.description >>> .el-textarea__inner {
+    background-color: transparent;
+    border: 0;
+    padding: 0;
 }
 
 </style>

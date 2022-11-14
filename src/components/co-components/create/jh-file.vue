@@ -12,8 +12,10 @@
         </template>
 
         <template v-slot:content>
-          <el-input v-model="params.description" placeholder="添加选项描述"></el-input>
-          <el-upload drag action="fakeURL" :auto-upload="params.autoUpload" :on-change="getList"
+<!--          <el-input v-model="params.description" placeholder="添加选项描述"></el-input>-->
+            <el-input type="textarea" :autosize="{minRows: 1}" class="description" v-model="params.description" placeholder="添加选项描述"></el-input>
+
+            <el-upload drag action="fakeURL" :auto-upload="params.autoUpload" :on-change="getList"
                      :file-list="params.fileList" name="files" :http-request="uploadWithParams" multiple>
             <div class="abc"><i class="el-icon-upload uploadIcon"></i></div>
             <div class="el-upload__text uploadIcon">将文件拖到此处，或<em>点击上传</em></div>

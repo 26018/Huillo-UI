@@ -12,7 +12,7 @@
         </template>
 
         <template v-slot:content>
-          <el-input v-model="params.description" placeholder="添加选项描述"></el-input>
+          <el-input type="textarea" :autosize="{minRows: 1}" class="description" v-model="params.description" placeholder="添加选项描述"></el-input>
           <el-radio v-for="(option,index) in params.options" v-model="params.answer" :key="index" :label="option.id">
             <el-input class="option" v-model="option.value"></el-input>
             <el-button type="text" @click="removeOption(params.options,params.answer,option.value)">
@@ -131,6 +131,13 @@ export default {
   border: 0px;
   padding-left: 0;
   background-color: transparent;
+}
+
+
+.description >>> .el-textarea__inner {
+    background-color: transparent;
+    border: 0;
+    padding: 0;
 }
 
 .option >>> .el-input__inner {

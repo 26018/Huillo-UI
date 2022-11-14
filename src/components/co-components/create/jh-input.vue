@@ -11,9 +11,10 @@
           </div>
         </template>
         <template v-slot:content>
+<!--          <el-input class="description" v-model="params.description" placeholder="添加选项描述"></el-input>-->
+            <el-input type="textarea" :autosize="{minRows: 1}" class="description" v-model="params.description" placeholder="添加选项描述"></el-input>
 
-          <el-input class="description" v-model="params.description" placeholder="添加选项描述"></el-input>
-          <el-input disabled placeholder="此处由提交者填写"></el-input>
+            <el-input disabled placeholder="此处由提交者填写"></el-input>
         </template>
       </co-card>
     </div>

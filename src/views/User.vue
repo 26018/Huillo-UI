@@ -6,10 +6,14 @@
                     <li class="dropdown">
                         <div @click="navClick()" class="dropbtn">我的</div>
                         <div class="dropdown-content" v-show="showList">
-                            <div v-for="menu in menus" @click="gotoXX(menu.path)">{{menu.name}}</div>
+                            <div v-for="menu in menus" @click="gotoXX(menu.path)">{{ menu.name }}</div>
                         </div>
                     </li>
                 </ul>
+                <div @click="goto('/create')"
+                     style="display: flex;align-items: center;
+                     margin-left: auto;padding-right: 20px">Huillo
+                </div>
             </div>
             <div class="left-bar">
                 <div @click="goto('/create')"
@@ -71,7 +75,7 @@ export default {
         console.log(this.showList)
     },
     methods: {
-        navClick(){
+        navClick() {
             this.showList = !this.showList;
             console.log(this.showList)
         },

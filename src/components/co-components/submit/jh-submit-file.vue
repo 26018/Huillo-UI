@@ -11,10 +11,10 @@
           </div>
         </template>
 
-        <el-input v-model="params.desc"
-                  placeholder="添加选项描述"></el-input>
+          <el-input type="textarea" :autosize="{minRows: 1}" class="description" v-model="params.description" placeholder="添加选项描述"></el-input>
 
-        <template v-slot:content>
+
+          <template v-slot:content>
           <el-upload drag
                      action="fakeURL"
                      :auto-upload="params.autoUpload"

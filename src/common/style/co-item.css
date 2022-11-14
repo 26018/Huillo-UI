@@ -5,7 +5,6 @@
 }
 
 
-
 .move {
     user-select: none;
     cursor: pointer;
@@ -103,6 +102,20 @@
     font-family: "sans-serif";
 }
 
+.description {
+    word-break: break-all;
+}
+
+.description >>> * {
+    padding-left: 0;
+
+}
+
+.description >>> .el-textarea__inner {
+    background-color: transparent;
+    border: 0;
+    padding: 2px;
+}
 
 @media screen and (max-width: 992px) {
     .item-main {
