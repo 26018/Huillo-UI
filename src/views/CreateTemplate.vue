@@ -49,8 +49,7 @@ export default {
     height: 100%;
 }
 
-.left,
-.right {
+.left, .right {
     flex: 2;
     height: auto;
     background-color: transparent;

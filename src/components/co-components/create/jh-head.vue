@@ -35,7 +35,8 @@
                         <el-input v-model="params.author" class="author" placeholder="请填写">
                             <template slot="prepend">收集人:</template>
                         </el-input>
-                        <div style="width: 100%;height: fit-content;display: flex;border: 0px solid red;align-items: center">
+                        <div
+                            style="width: 100%;height: fit-content;display: flex;border: 0px solid red;align-items: center">
                             <co-tip>详细说明</co-tip>
                             <el-select v-model="params.editorValue"
                                        class="create-select"
@@ -165,6 +166,11 @@ export default {
     width: 100%;
 }
 
+.km .el-date-editor {
+    display: flex;
+    align-items: center;
+}
+
 .mobile {
     display: none;
 }
@@ -175,6 +181,12 @@ export default {
         display: flex;
         flex-direction: column;
     }
+
+    .km .el-date-editor {
+        display: flex;
+        align-items: center;
+    }
+
 
     .km > .date-end >>> .el-input__icon {
         padding-left: 0;

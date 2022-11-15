@@ -77,4 +77,10 @@ export default {
 >>> .el-input__inner {
   border: 0px;
 }
+
+>>> .el-textarea__inner{
+    border: 0px;
+    background-color: transparent;
+}
+
 </style>

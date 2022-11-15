@@ -44,7 +44,7 @@ export function QuestionList() {
 
 export function getList(pageNumber) {
     return axios({
-        url: "/api/question/list",
+        url: "/api/question/queryPage",
         method: "get",
         params: {
             "pageNumber": pageNumber,

@@ -61,9 +61,7 @@ export default {
                     path: '/user/recycle',
                 },
             ],
-
             showList: false,
-
         }
     },
     computed: {},
@@ -85,19 +83,6 @@ export default {
             goto(path);
         },
         chooseItem(val, index) {
-            let length = this.menus.length
-            // for (let idx = 0; idx < length; idx++) {
-            //   if (idx == index) {
-            //     localStorage.setItem('currentNavIndex', index)
-            //     localStorage.setItem('currentNavPath', val)
-            //     document.getElementById('nav' + idx).style.backgroundColor =
-            //       'rgb(225,226,231)';
-            //     document.getElementById("nav" + idx).style.color = "rgb(29,99,255)";
-            //   } else {
-            //     document.getElementById('nav' + idx).style.backgroundColor = 'rgb(238,239,241)';
-            //     document.getElementById("nav" + idx).style.color = "black";
-            //   }
-            // }
             goto(val)
         },
         exit() {
@@ -114,7 +99,7 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    /*background-color: #333;*/
 }
 
 li {
@@ -123,15 +108,15 @@ li {
 
 li div, .dropbtn {
     display: inline-block;
-    color: white;
+    color: black;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
 
-
 li.dropdown {
     display: inline-block;
+    background-color: transparent;
 }
 
 .dropdown-content {
@@ -177,10 +162,6 @@ li.dropdown {
 
 .user {
     display: flex;
-    /*height: 100%;*/
-    /*border: 1px solid red;*/
-    /*position: relative;*/
-    /*overflow: hidden;*/
 }
 
 .left-bar {
@@ -263,9 +244,11 @@ li.dropdown {
         display: flex;
         width: 100%;
         height: 50px;
-        /*position: sticky;*/
+        position: sticky;
         top: 0;
+        /*border: 1px solid red;*/
         z-index: 999;
+        background-color: white;
     }
 
     .user {

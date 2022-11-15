@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="40390b2f-f50b-4e7e-aa7f-c80652c2deba" name="Changes" comment="cc" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+        <option value="Vue Single File Component" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2GyWwoxsSmqdgCOtoyFb8ZKaVkM" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Desktop/working/HUILLO/vue2-elm&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\software\\WebStorm 2022.2.3\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Desktop\working\HUILLO\Huillo-UI\src\components\co-components\submit" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Desktop\working\HUILLO\Huillo-UI\src\assets" />
+      <recent name="D:\Desktop\working\HUILLO\Huillo-UI\src\components\co-components\create" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="serve" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="serve" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.serve" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="40390b2f-f50b-4e7e-aa7f-c80652c2deba" name="Changes" comment="" />
+      <created>1667361546057</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1667361546057</updated>
+      <workItem from="1667361547785" duration="130000" />
+      <workItem from="1667363160330" duration="9113000" />
+      <workItem from="1667393381227" duration="4697000" />
+      <workItem from="1667398471593" duration="43000" />
+      <workItem from="1667433534062" duration="15617000" />
+      <workItem from="1667478186201" duration="5447000" />
+      <workItem from="1667519947683" duration="1274000" />
+      <workItem from="1667525899732" duration="12637000" />
+      <workItem from="1667779398397" duration="10395000" />
+      <workItem from="1667826796643" duration="4095000" />
+      <workItem from="1667866315284" duration="31808000" />
+      <workItem from="1667915512140" duration="1266000" />
+      <workItem from="1667953471208" duration="10000" />
+      <workItem from="1667967986515" duration="9783000" />
+      <workItem from="1668038660742" duration="17965000" />
+      <workItem from="1668085656247" duration="4578000" />
+      <workItem from="1668125216393" duration="4218000" />
+      <workItem from="1668146876659" duration="9703000" />
+      <workItem from="1668173312856" duration="10395000" />
+      <workItem from="1668385626185" duration="8694000" />
+      <workItem from="1668428660028" duration="636000" />
+      <workItem from="1668473932817" duration="2939000" />
+      <workItem from="1668502734065" duration="1384000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="cc" />
+    <option name="LAST_COMMIT_MESSAGE" value="cc" />
+  </component>
+</project>
