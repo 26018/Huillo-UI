@@ -2,17 +2,7 @@
   <div>
     <div class="test">
       <div style="width: 80%">
-        <pre class="code">
-还在为收集文件发愁？
-还在打开QQ,微信
-点开聊天窗口
-一个一个手动下载？
 
-现在开始
-你有了Huillo
-一键收集任何信息,文件
-一站式解决问题
-                </pre>
         <div @click="goto('/create')"
              class="to">现在就去</div>
         <div @click="goto('/submit/3620')"

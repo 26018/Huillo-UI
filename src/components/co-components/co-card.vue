@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div class="item-main ">
-      <div class="item-container ">
+    <div class="component-main">
+      <div class="component-container ">
 
-        <div class="header">
+        <div class="component-header">
           <slot name="header"></slot>
         </div>
 
-        <div class="content font-text">
+        <div class="component-content">
           <slot name="content"></slot>
         </div>
 
@@ -34,22 +34,5 @@ export default {
 };
 </script>
 <style lang="css" scoped>
-@import url("@/common/style/co-item.css");
-@import url("@/common/style/font.css");
-
-.header {
-  display: flex;
-  align-items: center;
-  margin-left: auto;
-  /*border: 1px solid red;*/
-}
-
-/*统一设置标题的文字大小*/
-.header > * {
-  font-size: 18px;
-}
-
-.content {
-
-}
+@import "@/common/style/co-card.css";
 </style>

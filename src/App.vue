@@ -5,8 +5,6 @@
 </template>
 
 <style>
-@import url('@/common/style/font.css');
-@import "@/common/style/co-item.css";
 body {
     padding: 0px;
     margin: 0px;

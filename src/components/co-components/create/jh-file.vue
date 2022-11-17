@@ -1,9 +1,9 @@
 <template>
     <div>
-        <div>
+        <div class="jh-file">
             <co-card v-if="!params.required">
                 <template v-slot:header>
-                    <el-input v-model="params.title"></el-input>
+                    <el-input class="title" v-model="params.title"></el-input>
                     <div class="operation-frame">
                         <el-checkbox v-model="params.required">选填</el-checkbox>
                         <i class="el-icon-sort move" title="点击拖动排序"></i>
@@ -12,7 +12,8 @@
                 </template>
 
                 <template v-slot:content>
-                    <el-input type="textarea" :autosize="{minRows: 1}" class="description" v-model="params.description"
+                    <el-input type="textarea" :autosize="{minRows: 1}" class="description"
+                              v-model="params.description"
                               placeholder="添加选项描述"></el-input>
 
                     <el-upload drag action="fakeURL" :auto-upload="params.autoUpload" :on-change="getList"
@@ -25,7 +26,7 @@
                         <el-button style="margin-right: 20px" v-if="!params.autoUpload" size="small" type="primary"
                                    @click="uploadFile()">上传
                         </el-button>
-                        <el-select style="margin-top: 8px" class="name-rule" v-model="params.selected" multiple
+                        <el-select size="small" style="margin-top: 8px" class="name-rule" v-model="params.selected" multiple
                                    placeholder="请选择文件命名规则">
                             <el-option v-for="item in params.list" :key="item.value" :label="item"
                                        :value="item"></el-option>
@@ -100,52 +101,5 @@ export default {
 }
 </script>
 <style lang="css" scoped>
-@import url('@/common/style/font.css');
-
-.abc {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.uploadIcon {
-    margin: 0px;
-    padding: 0px;
-    /* border: 1px solid red; */
-}
-
-.name-rule >>> .el-input__inner {
-    background-color: rgb(245, 247, 250);
-}
-
->>>
-.el-upload {
-    margin-top: 10px;
-    width: 100%;
-    margin-bottom: 10px;
-    /* background-color: rgb(245, 247, 250); */
-}
-
->>>
-.el-upload-dragger {
-    height: 100px;
-    /* border: 1px solid red; */
-    width: 100%;
-    overflow: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(245, 247, 250);
-}
-
->>>
-.el-input__inner {
-    border: 0px;
-    padding-left: 0;
-}
-
-.noselect {
-    user-select: none;
-}
+@import "@/common/style/create/create-file.css";
 </style>

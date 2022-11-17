@@ -1,0 +1,29 @@
+@import "@/common/style/components.css";
+.component-main{
+    /*border: 1px solid red;*/
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.component-container{
+    width: 90%;
+    /*border: 1px solid red;*/
+}
+
+.component-header{
+    /*border: 1px solid red;*/
+    display: flex;
+}
+
+.component-content {
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*border: 1px solid red;*/
+    /*display: flex;*/
+    /*border: 1px solid firebrick;*/
+}
+
+.component-content *{
+    /*border: 1px sienna solid;*/
+}

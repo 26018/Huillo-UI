@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="record">
-      <el-table :data="tableData" size="mini" :cell-style="center" :header-cell-style="center"
+      <el-table class="table" :data="tableData" :cell-style="center" :header-cell-style="center"
                 @cell-click="choose">
         <el-table-column prop="title" label="收集标题" :width="tableWidth"></el-table-column>
         <el-table-column prop="author" label="收集者" :width="tableWidth"></el-table-column>
@@ -21,15 +21,16 @@
           </template>
         </el-table-column>
       </el-table>
+        <el-pagination
+            class="page"
+            background
+            :pager-count="5"
+            @current-change="pageChange"
+            layout="prev, pager, next"
+            :total="total">
+        </el-pagination>
     </div>
-    <el-pagination
-        class="page"
-        background
-        :pager-count="5"
-        @current-change="pageChange"
-        layout="prev, pager, next"
-        :total="total">
-    </el-pagination>
+
   </div>
 </template>
 
@@ -42,7 +43,7 @@ export default {
     return {
       tableData: [],
       total: 0,
-      tableWidth: "200%"
+      tableWidth: "100%"
     }
   },
 
@@ -62,7 +63,12 @@ export default {
       if (id == null) {
         id = 0
       }
-      goto('/user/' + id + '/details')
+      this.$router.push({
+            path: '/user/details',
+            query: {
+                id: id
+            }
+        })
     },
     center() {
       return 'text-align:center'
@@ -97,27 +103,32 @@ export default {
         t.count = index++;
       })
     });
+    console.log(this.tableData)
   }
 }
 </script>
 <style lang="css" scoped>
-.record {
-    height: calc(100% - 800px);
+
+.record{
+    height: 100%;
     width: 100%;
+    overflow: scroll;
+}
+.table{
+    height: calc(100% - 50px);
+    overflow: scroll;
     /*border: 1px solid red;*/
-    /*overflow: auto;*/
-    display: flex;
-    /*display: none;*/
 }
 
-@media screen and (max-width: 992px){
+.page{
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
 
-    .page{
-        /*display: none;*/
-        /*position: fixed;*/
-        /*bottom: 10px;*/
-        /*justify-content: flex-end;*/
-    }
+
+@media screen and (max-width: 500px){
+
 
 }
 

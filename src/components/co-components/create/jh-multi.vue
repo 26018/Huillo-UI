@@ -3,7 +3,7 @@
         <div class="multi">
             <co-card>
                 <template v-slot:header>
-                    <el-input v-model="params.title"></el-input>
+                    <el-input class="title" v-model="params.title"></el-input>
                     <div class="operation-frame">
                         <el-checkbox v-model="params.required">选填</el-checkbox>
                         <i class="el-icon-sort move" title="点击拖动排序"></i>
@@ -12,17 +12,15 @@
                 </template>
 
                 <template v-slot:content>
-<!--                    <el-input class="description" type="textarea" v-model="params.description" placeholder="添加选项描述"></el-input>-->
                     <el-input type="textarea" :autosize="{minRows: 1}" class="description" v-model="params.description" placeholder="添加选项描述"></el-input>
-
                     <el-checkbox-group v-model="params.answer">
-                        <div v-for="(option,index) in params.options">
-                            <el-checkbox @change="changeM" :key="index" :label="option.value">
-                                <el-input :key="index" v-model="option.value"></el-input>
-                                <el-button type="text" @click="removeOption(params.options,params.answer,option.value)">
-                                    <i class="el-icon-close remove"></i>
-                                </el-button>
+                        <div class="checkbox-container" v-for="(option,index) in params.options">
+                            <el-checkbox :key="index" :label="option.id">
+                                <el-input v-model="option.value"></el-input>
                             </el-checkbox>
+                            <el-button @click="removeOption(params.options,params.answer,option.value)" type="text">
+                                <i class="el-icon-close"></i>
+                            </el-button>
                         </div>
                     </el-checkbox-group>
                     <el-button @click="addOption" size="small">新增选项</el-button>
@@ -46,30 +44,15 @@ export default {
             need: Boolean,
             options: Array,
             selected: Array,
-            answer: Array,
+            answer: [],
             details: String,
             deleted: false,
             required: Boolean,// 选填
         },
     },
     components: {CoCard},
-
-    computed: {
-        getAtt() {
-            return JSON.stringify(this.params)
-        },
-    },
-    watch: {
-        getAtt(n, o) {
-            console.log(JSON.parse(n).answer, JSON.parse(o).answer)
-        },
-    },
     methods: {
         closeComponent,
-        changeM(value) {
-
-            console.log(value);
-        },
         addOption() {
             // todo id根据length来确定有bug
             let options = this.params.options
@@ -82,7 +65,6 @@ export default {
             })
             // console.log("options:", this.params.options)
         },
-
         removeOption(options, answers, targetName) {
             // 根据下标删除有bug
             // option的id是options数组的下标
@@ -111,35 +93,11 @@ export default {
         }
     },
     created() {
-        this.params.answer = []
+        // this.params.answer = []
     }
 }
 </script>
 <style lang="css" scoped>
 @import "@/common/style/co-item.css";
-
->>> .el-checkbox {
-    display: flex;
-    align-items: center;
-}
-
->>> .el-input {
-    border: 0px;
-}
-
->>> .el-input__inner {
-    border: 0px;
-    padding-left: 0;
-    background-color: transparent;
-}
-
-.remove {
-}
-
-.description >>> .el-textarea__inner {
-    background-color: transparent;
-    border: 0;
-    padding: 0;
-}
-
+@import "@/common/style/create/create-multi.css";
 </style>

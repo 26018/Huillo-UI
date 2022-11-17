@@ -1,24 +1,23 @@
 <template>
-  <div>
     <div>
-      <co-card v-if="!params.deleted">
-        <template v-slot:header>
-          <el-input class="input line" v-model="params.title"></el-input>
-          <div class="operation-frame">
-            <el-checkbox v-model="params.required">选填</el-checkbox>
-            <i class="el-icon-sort move" title="点击拖动排序"></i>
-            <i class="el-icon-circle-close" @click="closeComponent(params)"></i>
-          </div>
-        </template>
-        <template v-slot:content>
-<!--          <el-input class="description" v-model="params.description" placeholder="添加选项描述"></el-input>-->
-            <el-input type="textarea" :autosize="{minRows: 1}" class="description" v-model="params.description" placeholder="添加选项描述"></el-input>
-
-            <el-input disabled placeholder="此处由提交者填写"></el-input>
-        </template>
-      </co-card>
+        <div>
+            <co-card v-if="!params.deleted">
+                <template v-slot:header>
+                    <el-input class="title" v-model="params.title"></el-input>
+                    <div class="operation-frame">
+                        <el-checkbox v-model="params.required">选填</el-checkbox>
+                        <i class="el-icon-sort move" title="点击拖动排序"></i>
+                        <i class="el-icon-circle-close" @click="closeComponent(params)"></i>
+                    </div>
+                </template>
+                <template v-slot:content>
+                    <el-input type="textarea" :autosize="{minRows: 1}" class="description" v-model="params.description"
+                              placeholder="添加选项描述"></el-input>
+                    <el-input style="margin-top: 4px" disabled placeholder="此处由提交者填写"></el-input>
+                </template>
+            </co-card>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -27,60 +26,28 @@ import CoCard from '../co-card.vue'
 import CoTip from "@/components/co-components/co-tip";
 
 export default {
-  props: {
-    params: {
-      title: String,
-      need: Boolean,
-      options: Array,
-      description: String,
-      selected: Array,
-      required: Boolean // 选填
+    props: {
+        params: {
+            title: String,
+            need: Boolean,
+            options: Array,
+            description: String,
+            selected: Array,
+            required: Boolean // 选填
+        },
     },
-  },
-  data() {
-    return {}
-  },
+    data() {
+        return {}
+    },
 
-  components: {CoTip, CoCard},
+    components: {CoTip, CoCard},
 
-  methods: {
-    closeComponent,
-  },
+    methods: {
+        closeComponent,
+    },
 }
 </script>
 <style lang="css" scoped>
-@import url('@/common/style/co-item.css');
-@import url('@/common/style/font.css');
 
-.input {
-}
-
->>> .el-input__inner {
-  background-color: transparent;
-}
-
-
-.input >>> .el-input__inner {
-  padding-left: 0;
-  border-radius: 0;
-  background-color: transparent;
-}
-
-.description >>> * {
-  padding-left: 0;
-}
-
->>> .el-input {
-  border: 0px;
-}
-
->>> .el-input__inner {
-  border: 0px;
-}
-
->>> .el-textarea__inner{
-    border: 0px;
-    background-color: transparent;
-}
 
 </style>

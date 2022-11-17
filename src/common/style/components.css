@@ -1,0 +1,35 @@
+
+.title > .el-input__inner {
+    border: 0;
+    padding: 0;
+    font-size: 18px;
+    background-color: transparent;
+}
+
+.operation-frame {
+    display: flex;
+    align-items: center;
+    /*border: 1px solid red;*/
+}
+
+.operation-frame > * {
+    margin-left: 20px;
+    /*border: 1px solid red;*/
+}
+
+.description {
+    /*border: 1px solid darkblue;*/
+    border: 0;
+    background-color: transparent;
+}
+
+.description .el-textarea__inner {
+    border: 0;
+    padding: 0;
+    color: gray;
+    border-radius: 0;
+    background-color: transparent;
+    /*border: 2px solid firebrick;*/
+}
+
+

@@ -11,7 +11,7 @@ export function publish(dataList) {
 export function pullData(questionId) {
     return axios({
         method: "get",
-        url: "/api/question/pull/" + questionId,
+        url: "/api/question/query/" + questionId,
     });
 }
 

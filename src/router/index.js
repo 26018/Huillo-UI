@@ -44,11 +44,17 @@ const routes = [
             },
 
             {
-                path: ':id/details',
+                path: 'details',
                 components: {
                     user_view: () => import('@/components/user-management/template-details'),
                 },
             },
+            {
+                path: 'mail',
+                components: {
+                    user_view: () => import('@/components/user-management/mail')
+                }
+            }
         ],
     },
     {
