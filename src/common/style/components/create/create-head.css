@@ -1,0 +1,125 @@
+.mobile {
+    display: none;
+}
+ .el-textarea__inner{
+    background-color: transparent;
+}
+
+.create-header {
+    /*border: 1px solid darkblue;*/
+    width: 100%;
+    display: flex;
+}
+
+/*标题*/
+.create-title .el-input__inner {
+    padding: 0;
+    border: 0;
+    font-size: 26px;
+    background-color: transparent;
+}
+
+/*时间*/
+.date-end .el-input__inner {
+    border: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    background-color: rgb(95, 161, 52);
+}
+
+/*收集人*/
+.author .el-input__inner {
+    border: 0;
+}
+
+.author .el-input-group__prepend {
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+}
+
+.row-container {
+    display: flex;
+    /*border: 1px solid red;*/
+}
+
+/*编辑器选择*/
+.create-editor-select {
+    margin-left: auto;
+    /*border: 1px solid forestgreen;*/
+    padding: 0;
+}
+
+
+.create-editor-select .el-input__inner {
+    border: 0;
+    padding: 0;
+    /*border: 1px solid darkcyan;*/
+    max-width: 120px;
+    min-width: 120px;
+    background-color: transparent;
+}
+
+.create-editor-select .el-input__suffix{
+    right: 0;
+}
+
+
+@media screen and (max-width: 600px) {
+    .mobile {
+        display: unset;
+    }
+
+    .pc {
+        display: none;
+    }
+
+    .date-end {
+        display: none;
+    }
+
+    .create-header {
+        /*border: 1px solid red;*/
+        width: 100%;
+        display: unset;
+    }
+
+    .create-header .create-title .el-input__inner {
+        /*border: 1px solid forestgreen;*/
+        border: 0;
+        padding: 0;
+        margin: 0;
+        font-size: 26px;
+    }
+
+    /*文字前缀后面的输入框*/
+    .mobile .el-input__inner {
+        border-radius: 0;
+        width: 100%;
+        border: 0;
+        border-bottom: 2px solid #409EFF;
+        outline: none;
+        background-color: transparent;
+    }
+
+    .mobile .el-date-editor {
+        width: 100%;
+    }
+
+    .row-container {
+        display: flex;
+        align-items: center;
+    }
+
+    /*文字前缀*/
+    .mobile .row-container .tip {
+        padding: 0;
+        border: 0;
+        height: 38px;
+        border-radius: 0;
+        border-bottom: 2px solid #409EFF;
+        /*background-color: sienna;*/
+    }
+
+}

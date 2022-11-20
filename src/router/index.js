@@ -6,53 +6,59 @@ Vue.use(VueRouter);
 const routes = [
     {
         path: '/',
-        components: {main_view: () => import('@/views/Home')},
+        components: {main_view: () => import('@/components/templates/Home')},
         redirect: 'index',
         children: [
-            {path: 'index', components: {content: () => import('@/views/Test')}},
-            {path: 'create', components: {content: () => import('@/views/CreateTemplate')}},
+            {path: 'index', components: {content: () => import('@/views')}},
+            {path: 'create', components: {content: () => import('@/views/pages/create/create')}},
         ],
     },
     {
-        path: '/user',
-        components: {main_view: () => import('@/views/User')},
-        redirect: '/user/record',
+        path: '/manager',
+        components: {main_view: () => import('@/components/templates/User')},
+        redirect: '/manager/record',
         children: [
             {
                 path: 'record',
                 components: {
-                    user_view: () => import('@/components/user-management/record'),
+                    user_view: () => import('@/views/pages/manager/record'),
                 },
             },
             {
                 path: 'templates',
                 components: {
-                    user_view: () => import('@/components/user-management/templates'),
+                    user_view: () => import('@/views/pages/manager/templates'),
                 },
             },
             {
                 path: 'mytemplates',
                 components: {
-                    user_view: () => import('@/components/user-management/my-template'),
+                    user_view: () => import('@/views/pages/manager/my-template'),
                 },
             },
             {
                 path: 'recycle',
                 components: {
-                    user_view: () => import('@/components/user-management/recycle'),
+                    user_view: () => import('@/views/pages/manager/recycle'),
                 },
             },
 
             {
                 path: 'details',
                 components: {
-                    user_view: () => import('@/components/user-management/template-details'),
+                    user_view: () => import('@/views/pages/manager/template-details'),
+                },
+            },
+            {
+                path: 'group',
+                components: {
+                    user_view: () => import('@/views/pages/manager/group'),
                 },
             },
             {
                 path: 'mail',
                 components: {
-                    user_view: () => import('@/components/user-management/mail')
+                    user_view: () => import('@/views/pages/manager/mail')
                 }
             }
         ],
@@ -60,19 +66,19 @@ const routes = [
     {
         path: '/submit/:id',
         components: {
-            main_view: () => import('@/views/Submit'),
+            main_view: () => import('@/views/pages/submit/Submit'),
         },
     },
     {
         path: '/login',
         components: {
-            main_view: () => import('@/views/Login'),
+            main_view: () => import('@/views/user/Login'),
         },
     },
     {
         path: '/register',
         components: {
-            main_view: () => import('@/views/Register'),
+            main_view: () => import('@/views/user/Register'),
         },
     },
 ];

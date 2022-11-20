@@ -3,7 +3,7 @@ import axios from "axios";
 export function publish(dataList) {
     axios({
         method: "post",
-        url: "/api/question/push",
+        url: "/api/question/create",
         data: dataList,
     });
 }

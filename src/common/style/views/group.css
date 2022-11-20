@@ -1,0 +1,64 @@
+
+.group {
+    padding: 16px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.groups, .group-create {
+    font-size: 1.2rem;
+}
+
+.group-create {
+    margin-top: 8px;
+}
+
+.group-card {
+    border-radius: 8px;
+    padding: 8px;
+    min-width: 120px;
+    background-color: #409EFF;
+    width: 150px;
+    margin: 8px 8px 0 0;
+    display: inline-block;
+}
+
+.group-card .group-title {
+    font-size: 1.2rem;
+
+}
+
+.group-card .group-member {
+    font-size: 2rem;
+}
+
+.group-card * {
+    margin: 8px 0;
+    color: white;
+}
+
+.group-title {
+    font-size: 1.6rem;
+}
+
+.con {
+    /*border: 1px solid red;*/
+    display: flex;
+    /*width: 100%;*/
+}
+
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    /*border: 1px solid firebrick;*/
+}
+
+.row * {
+    display: flex;
+    /*border: 1px solid black;*/
+    align-items: flex-end;
+    vertical-align: bottom;
+    padding: 0;
+    width: fit-content;
+}
