@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export function publish(dataList) {
-    axios({
+    return axios({
         method: "post",
         url: "/api/question/create",
         data: dataList,

@@ -1,7 +1,8 @@
 .mobile {
     display: none;
 }
- .el-textarea__inner{
+
+.el-textarea__inner {
     background-color: transparent;
 }
 
@@ -23,9 +24,10 @@
 .date-end .el-input__inner {
     border: 0;
     width: 100%;
-    color: white;
+    color: rgb(0,0,0, 0.8);
     text-align: center;
-    background-color: rgb(95, 161, 52);
+    background-color: rgb(245,247,250);
+    /*background-color: black;*/
 }
 
 /*收集人*/
@@ -61,7 +63,7 @@
     background-color: transparent;
 }
 
-.create-editor-select .el-input__suffix{
+.create-editor-select .el-input__suffix {
     right: 0;
 }
 
@@ -98,7 +100,7 @@
         border-radius: 0;
         width: 100%;
         border: 0;
-        border-bottom: 2px solid #409EFF;
+        border-bottom: 1px solid rgb(220,223,230);
         outline: none;
         background-color: transparent;
     }
@@ -118,8 +120,7 @@
         border: 0;
         height: 38px;
         border-radius: 0;
-        border-bottom: 2px solid #409EFF;
-        /*background-color: sienna;*/
+        border-bottom: 1px solid rgb(220,223,230);
     }
 
 }

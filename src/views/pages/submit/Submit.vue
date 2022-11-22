@@ -1,7 +1,7 @@
 <template>
     <div style="background-color: rgb(243,246,249)">
         <div class="submit">
-            <div v-for="(component, index) in templateData" class="gg"
+            <div v-for="(component, index) in templateData"
                  :key="index">
                 <components :ref="'jh' + index" :is="component.componentName" :idx="index" :params="component"
                             :key="index"></components>
@@ -66,73 +66,101 @@ export default {
 }
 </script>
 <style lang="css" scoped>
+.item {
+    border-bottom: 2px dashed rgb(238, 238, 238);
+}
 
-/*.gg {*/
-/*    border-bottom: 2px dashed rgb(238, 238, 238);*/
+img {
+    width: 100px;
+}
+
+/*-----------------------------*/
+
+h3 {
+    height: 50px;
+    margin-top: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    color: rgb(36, 37, 37);
+}
+
+
+/*.items {*/
+/*    display: grid;*/
+/*    grid-gap: 10px;*/
+/*    grid-template-columns: repeat(auto-fill, 100px);*/
+/*    justify-content: space-around;*/
 /*}*/
 
-/*.submit {*/
-/*    width: 60%;*/
-/*    height: 100vh;*/
-/*    margin: 0 auto;*/
-/*    height: calc(100% - 59px);*/
-/*    overflow: auto;*/
-/*    background-color: white;*/
-/*}*/
+.item-choice {
+    background-color: #e8ecef;
+    color: black;
+    /*width: 100px;*/
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    user-select: none;
+    cursor: pointer;
+}
 
-/*.submitBtn {*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    position: sticky;*/
-/*    width: 60%;*/
-/*    margin: 0 auto;*/
-/*    height: 60px;*/
-/*    background-color: white;*/
-/*    display: flex;*/
-/*    border-top: 1px solid gainsboro;*/
-/*    align-items: center;*/
-/*}*/
+.item-choice > * {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-/*.urlString {*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    font-size: 16px;*/
-/*    font-weight: 500;*/
-/*}*/
+.item-choice:hover {
+    color: dodgerblue;
+    transition-duration: 200ms;
+}
 
-/*.urlString > * {*/
-/*    !* border: 1px solid red; *!*/
-/*    margin-right: 20px;*/
-/*}*/
+.addComponent {
+    display: none;
+}
 
-/*.urlImg {*/
-/*    width: 200px;*/
-/*    !* border: 1px solid red; *!*/
-/*    margin-top: 8px;*/
-/*    box-shadow: 0px 2px 5px #888888;*/
-/*}*/
+>>> .el-dialog {
+    width: 100%;
+    height: 80%;
+    margin: 0;
+    position: absolute;
+    bottom: 0px;
+}
 
-/*@media screen and (max-width: 992px) {*/
-/*    .submit {*/
-/*        width: 100%;*/
-/*        height: 100vh;*/
-/*        margin: 0 auto;*/
-/*        height: calc(100% - 59px);*/
-/*        overflow: auto;*/
-/*        background-color: white;*/
-/*    }*/
+>>> .el-dialog__body {
+    position: absolute;
+    left: 0;
+    top: 54px;
+    bottom: 0;
+    right: 0;
+    padding: 0;
+    overflow: auto;
+}
 
-/*    .submitBtn {*/
-/*        display: flex;*/
-/*        justify-content: center;*/
-/*        position: sticky;*/
-/*        margin: 0 auto;*/
-/*        height: 60px;*/
-/*        background-color: white;*/
-/*        display: flex;*/
-/*        border-top: 1px solid gainsboro;*/
-/*        align-items: center;*/
-/*        width: 100%;*/
-/*    }*/
-/*}*/
+@media screen and (max-width: 992px) {
+    .addComponent {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 60px;
+    }
+
+    .addComponent >>> .el-button {
+        background-color: #409EFF;
+        color: white;
+    }
+
+    .items {
+        display: grid;
+        gap: 16px;
+        padding: 0 8px;
+        grid-template-columns: repeat(auto-fit,minmax(100px,2fr));
+        justify-content: space-between;
+    }
+}
+
 </style>

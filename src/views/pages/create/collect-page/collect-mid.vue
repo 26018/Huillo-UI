@@ -17,10 +17,7 @@
         </div>
 
 
-        <el-dialog title="选择组件"
-                   append-to-body
-                   :visible.sync="dialogVisible"
-                   :before-close="handleClose">
+        <el-dialog title="选择组件" append-to-body :visible.sync="dialogVisible" :before-close="handleClose">
             <div class="context">
                 <h3>基础组件</h3>
                 <div class="items">
@@ -37,8 +34,6 @@
                          class="item-choice"
                          :key="index"
                          @click="change(item)">
-
-                        <span v-html="'\u00a0'"></span>
                         {{ item.title }}
                     </div>
                 </div>
@@ -171,12 +166,14 @@ export default {
                 idx++
             })
 
+
             // TODO 上传数据，接收二维码和链接地址
             publish(ret).then(ret=>{
                 Message({
                     message:'发布成功',
                     type:"success",
                     showClose: true,
+                    duration: 1000000000
                 })
             });
 
@@ -219,7 +216,7 @@ export default {
     },
     created() {
         this.initMenus()
-        console.log(this.templateData)
+        // console.log(this.templateData)
     },
 }
 </script>
@@ -245,24 +242,19 @@ h3 {
     color: rgb(36, 37, 37);
 }
 
-/*.items-container {*/
-/*    width: 100%;*/
-/*    max-height: 600px;*/
-/*    overflow: auto;*/
-/*}*/
 
-.items {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
+/*.items {*/
+/*    display: grid;*/
+/*    grid-gap: 10px;*/
+/*    grid-template-columns: repeat(auto-fill, 100px);*/
+/*    justify-content: space-around;*/
+/*}*/
 
 .item-choice {
     background-color: #e8ecef;
     color: black;
-    width: 100px;
+    /*width: 100px;*/
     height: 40px;
-    margin: 16px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -288,7 +280,7 @@ h3 {
 
 >>> .el-dialog {
     width: 100%;
-    height: 70%;
+    height: 80%;
     margin: 0;
     position: absolute;
     bottom: 0px;
@@ -319,9 +311,11 @@ h3 {
     }
 
     .items {
-        display: flex;
-        justify-content: space-evenly;
-        flex-wrap: wrap;
+        display: grid;
+        gap: 16px;
+        padding: 0 8px;
+        grid-template-columns: repeat(auto-fit,minmax(100px,2fr));
+        justify-content: space-between;
     }
 }
 

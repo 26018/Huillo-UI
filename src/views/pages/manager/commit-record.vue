@@ -4,28 +4,17 @@
             <el-table :height="tableHeight"
                       :data="tableData"
                       size="tableSize"
-
                       :cell-style="cellStyle"
                       show-overflow-tooltip="true"
                       :header-cell-style="{'text-align': 'center'}"
                       @cell-click="choose">
-                <el-table-column prop="title" :width="tableCellSpace" fixed label="收集标题"></el-table-column>
+                <el-table-column prop="title" :width="tableCellSpace" fixed label="问卷标题"></el-table-column>
                 <el-table-column prop="author" :width="tableCellSpace" label="收集人"></el-table-column>
-                <el-table-column prop="status" :width="tableCellSpace" label="收集状态">
-                    <template slot-scope="scope"><i :class="getStatus(scope.row.dueDate)"></i>
-                        <span v-html="'\u00a0'"></span>
-                        {{ scope.row.status }}
-                    </template>
-                </el-table-column>
-                <el-table-column prop="count" :width="tableCellSpace" label="提交次数"></el-table-column>
-                <el-table-column prop="dueDate" :width="tableCellSpace" label="截止时间"></el-table-column>
 
                 <el-table-column prop="opt" :width="tableCellSpace" label="操作">
                     <template slot-scope="scope">
-                        <el-button @click="shareQuestionnaire(scope.row.id)" size="medium" type="text">分享</el-button>
-                        <el-button style="color: red" size="medium" type="text"
-                                   @click="closeQuestionnaire(scope.row.id)">结束收集
-                        </el-button>
+                        <el-button @click="shareQuestionnaire(scope.row.id)" size="medium" type="text">详细信息</el-button>
+
                     </template>
                 </el-table-column>
             </el-table>

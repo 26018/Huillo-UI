@@ -24,8 +24,8 @@ export default {
         return {
             menus: [
                 {name: "返回创建", path: "/create", style: {'color':'gray'}, dontChange: true},
-                {name: '收集记录', path: '/manager/record', style: {'color': '#409EFF'}},
-                // {name: '我的模板', path: '/manager/mytemplates'},
+                {name: '收集记录', path: '/manager/record'},
+                {name: '提交记录', path: '/manager/commit-record'},
                 {name: '我的群组', path: '/manager/group'},
                 {name: "我的邮箱", path: "/manager/mail"},
                 {name: '回收空间', path: '/manager/recycle'},
@@ -48,8 +48,23 @@ export default {
                 }
             })
             goto(clickMenu.path)
+        },
+
+        // 加载当前路由导航的颜色
+        currentNav(){
+            let path = this.$route.path
+            this.menus.forEach(menu =>{
+                if (menu.path == path) {
+                    menu.style = {
+                        'color':'#409EFF'
+                    }
+                }
+            })
         }
     },
+    created() {
+        this.currentNav();
+    }
 }
 </script>
 <style lang="css" scoped>

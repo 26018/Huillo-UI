@@ -1,35 +1,48 @@
 <template>
     <div>
         <div class="group">
-            <div class="group-title">群组信息</div>
-            <div style="
-                    padding: 8px;
-                    background-color: gray;
-                    border-radius: 8px;">
+            <div class="group-row-title">群组信息
+                <el-popconfirm title="创建群组有利于集中管理和发布信息">
+                    <span slot="reference"><el-icon class="el-icon-question"></el-icon></span>
+                </el-popconfirm>
+                <span @click="open"></span>
+            </div>
+
+
+
+            <div style="padding: 8px; border-radius: 8px;">
                 <div class="groups">我的群组</div>
-                <div style="display: flex;justify-content: space-between;border: 1px solid red">
-                    <div v-for="it in 16" class="group-card">
-                        <div class="group-title">测试群组</div>
-                        <div class="row">
-                            <div>成员</div>
-                            <div class="group-member">{{ it }}</div>
-                        </div>
-                    </div>
+                <div class="group-card-container">
+                    <group-card v-for="i in 15" :data="{title:'测试群组',member:i}"/>
                 </div>
             </div>
-            <div class="group-title">新建群组</div>
-            <div class="group-create">群组名称</div>
+            <div class="group-row-title">新建群组</div>
+            <div class="group-create">群组名称:</div>
             <el-input placeholder="群组名称"></el-input>
-            <div class="group-create">人数上限</div>
+            <div class="group-create">人数上限:</div>
             <el-input placeholder="上限"></el-input>
-            <el-button type="primary" size="medium" style="margin-top: 8px">创建</el-button>
+            <el-button type="primary" size="medium"
+                       style="margin-top: 8px;
+                        margin-bottom: 4px;">创建
+            </el-button>
         </div>
     </div>
 </template>
 
 <script>
+import GroupCard from "@/components/group-card";
+
 export default {
-    name: "group"
+    name: "group",
+    components: {GroupCard},
+    data() {
+        return {
+            showTip: false,
+        }
+    },
+    methods: {
+
+    }
 }
 </script>
 

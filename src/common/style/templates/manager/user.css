@@ -8,10 +8,11 @@
     width: calc(100% - 180px);
     margin: 0;
     padding: 0;
-    border: 1px solid red;
+    /*border: 1px solid red;*/
 }
 
 .user-header {
+    font-family: pingfang;
     display: flex;
     flex-direction: column;
     min-width: 180px;

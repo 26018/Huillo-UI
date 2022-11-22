@@ -1,112 +1,102 @@
 <template>
-  <div>
-    <div class="multi">
-      <co-card>
+    <div>
+        <div class="multi">
+            <co-card>
+                <template v-slot:header>
+                    <el-input class="title" v-model="params.title"></el-input>
+                    <div class="operation-frame">
+                        <el-checkbox v-model="params.required">选填</el-checkbox>
+                        <i class="el-icon-sort move" title="点击拖动排序"></i>
+                        <i class="el-icon-circle-close" @click="closeComponent(params)"></i>
+                    </div>
+                </template>
 
-        <template v-slot:header>
-          <div class="submit-title">{{ params.title }}</div>
-          <div class="operation-frame">
-            <div style="float: right;color: red;user-select: none" v-if="!params.required">
-              *
-            </div>
-          </div>
-        </template>
-
-        <template v-slot:content>
-          <div class="submit-description-title">{{ params.description }}</div>
-          <el-checkbox-group v-model="params.answer">
-            <div v-for="(option,index) in params.options" :key="index">
-              <el-checkbox :label="option.value"></el-checkbox>
-            </div>
-          </el-checkbox-group>
-        </template>
-
-      </co-card>
+                <template v-slot:content>
+                    <el-input type="textarea" :autosize="{minRows: 1}" class="description" v-model="params.description" placeholder="添加选项描述"></el-input>
+                    <el-checkbox-group v-model="params.answer">
+                        <div class="checkbox-container" v-for="(option,index) in params.options">
+                            <el-checkbox :key="index" :label="option.id">
+                                <el-input v-model="option.value"></el-input>
+                            </el-checkbox>
+                            <el-button @click="removeOption(params.options,params.answer,option.value)" type="text">
+                                <i class="el-icon-close"></i>
+                            </el-button>
+                        </div>
+                    </el-checkbox-group>
+                    <el-button @click="addOption" size="small">新增选项</el-button>
+                </template>
+            </co-card>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
 import CoCard from '../co-card.vue'
-import {closeComponent} from '@/api/util'
+import {closeComponent, updateTemplate} from '@/api/util'
 
 export default {
-  data() {
-    return {}
-  },
-  props: {
-    params: {
-      title: String,
-      need: Boolean,
-      options: Array,
-      selected: Array,
-      answer: Array,
-      details: String,
-      deleted: false,
-      optional: Boolean, // 选填
-      mode: String // 模式 [ 创建模式(create) | 提交模式(submit) ]
+    data() {
+        return {}
     },
-  },
-  components: {CoCard},
+    props: {
+        params: {
+            title: String,
+            need: Boolean,
+            options: Array,
+            selected: Array,
+            answer: [],
+            details: String,
+            deleted: false,
+            required: Boolean,// 选填
+        },
+    },
+    components: {CoCard},
+    methods: {
+        closeComponent,
+        addOption() {
+            // todo id根据length来确定有bug
+            let options = this.params.options
+            if (options === undefined || options == null) {
+                this.params.options = []
+            }
+            this.params.options.push({
+                id: Date.now(),
+                value: '新选项',
+            })
+            // console.log("options:", this.params.options)
+        },
+        removeOption(options, answers, targetName) {
+            // 根据下标删除有bug
+            // option的id是options数组的下标
+            // splice删除后，options下表变化，但option的id却没有变
+            // @old options.splice(targetId-1, 1);
 
-  computed: {
-    getAtt() {
-      return JSON.stringify(this.params)
-    },
-  },
-  watch: {
-    getAtt(n, o) {
-      console.log(JSON.parse(n).answer, JSON.parse(o).answer)
-    },
-  },
-  methods: {
-    getMode() {
-      return this.params.mode == 'create';
-    },
-    closeComponent,
-    addOption() {
-      let options = this.params.options
-      let length = 1
-      console.log("MMMM")
-      console.log(options)
-      if (options == undefined || options == null) {
-        this.params.options = []
-      }
+            if (answers == undefined) {
+                answers = [];
+            }
 
-      length = this.params.options.length + 1
-      this.params.options.push({
-        id: length,
-        title: '新选项' + length,
-      })
+            let length = options.length;
+            for (let index = 0; index < length; index++) {
+                if (options[index].value == targetName) {
+                    // Tip 删除在answer列表中废弃的答案
+                    let ansLength = answers.length;
+                    for (let ansIndex = 0; ansIndex < ansLength; ansIndex++) {
+                        if (answers[ansIndex] == options[index].id) {
+                            answers.splice(ansIndex, 1);
+                            break;
+                        }
+                    }
+                    options.splice(index, 1);
+                    break;
+                }
+            }
+        }
     },
-
-  },
-  created() {
-    console.log("VVVV")
-    console.log(this.params)
-    this.params.answer = ""
-    this.params.answer = []
-  }
+    created() {
+        // this.params.answer = []
+    }
 }
 </script>
 <style lang="css" scoped>
->>> .el-input {
-  border: 0px;
-}
-
->>> .el-checkbox {
-  margin-top: 10px;
-}
-
-
-.submit-description-content {
-  background-color: #e8ecef;
-  padding: 10px;
-  border-radius: 4px;
-}
-
->>> .el-input__inner {
-  border: 0px;
-  padding-left: 0;
-}
+@import "@/common/style/components/create/create-multi.css";
 </style>

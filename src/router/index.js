@@ -31,9 +31,9 @@ const routes = [
                 },
             },
             {
-                path: 'mytemplates',
+                path: 'commit-record',
                 components: {
-                    user_view: () => import('@/views/pages/manager/my-template'),
+                    user_view: () => import('@/views/pages/manager/commit-record'),
                 },
             },
             {

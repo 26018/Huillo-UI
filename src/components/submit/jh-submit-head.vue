@@ -1,111 +1,97 @@
 <template>
-  <div>
     <div>
-      <co-card>
-        <template v-slot:header>
-          <div class="row">
-            <div class="submit-title">{{ params.title }}</div>
-            <div class="submit-dueDate">截止时间: {{ new Date(params.dueDate).toLocaleDateString() }}</div>
-          </div>
-        </template>
+        <div class="head">
+            <co-card>
+                <template v-slot:header>
+                    <div class="create-header">
+                        <el-input class="create-title" v-model="params.title" />
+                        <el-date-picker class="date-end" v-model="params.dueDate" placeholder="截止日期"/>
+                    </div>
+                </template>
+                <template v-slot:content>
+                    <div class="mobile">
+                        <div class="row-container">
+                            <co-tip>收集人:</co-tip>
+                            <el-input v-model="params.author" placeholder="默认为问卷发布人">
+                            </el-input>
+                        </div>
 
-        <template v-slot:content>
-          <div class="content">
-            <div class="submit-collector">收集人:{{ params.author }}</div>
-            <div v-if="params.description != null">
-              <div class="submit-description-title">详细说明</div>
-              <pre class="submit-description-content">{{ params.description }}</pre>
-            </div>
-          </div>
-        </template>
-      </co-card>
+                        <div class="row-container">
+                            <co-tip>结束时间:</co-tip>
+                            <el-date-picker class="self" v-model="params.dueDate">
+                            </el-date-picker>
+                        </div>
+
+                        <co-tip>简要说明:</co-tip>
+                        <el-input type="textarea" v-show="params.editorValue != 'MD编辑器'"
+                                  v-model="params.description" :autosize="{ minRows: 2}"/>
+                        <mavon-editor
+                            :boxShadow="false" v-model="params.description"
+                            v-show="params.editorValue == 'MD编辑器'">
+                        </mavon-editor>
+                    </div>
+                    <div class="pc">
+                        <el-input v-model="params.author" class="author" placeholder="请填写">
+                            <template slot="prepend">收集人:</template>
+                        </el-input>
+                        <div class="row-container">
+                            <co-tip>详细说明:</co-tip>
+                            <el-select v-model="params.editorValue"
+                                       class="create-editor-select"
+                                       placeholder="切换编辑器">
+                                <el-option v-for="editorOption in editorOptions"
+                                           :key="editorOption.value"
+                                           :label="editorOption.value"
+                                           :value="editorOption.value"></el-option>
+                            </el-select>
+                        </div>
+                        <el-input type="textarea"
+                                  v-show="params.editorValue != 'MD编辑器'"
+                                  v-model="params.description" :autosize="{ minRows: 2}"/>
+                        <mavon-editor :boxShadow="false"
+                                      v-model="params.description"
+                                      v-show="params.editorValue == 'MD编辑器'">
+                        </mavon-editor>
+
+                    </div>
+                </template>
+            </co-card>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
 import CoCard from '../co-card.vue'
 import {getFeature} from '@/api/util'
-import {JhHead} from '@/common/data/ComponentProps'
+import CoTip from "@/components/co-tip";
+import CoIcon from "@/components/co-icon";
 
 export default {
-  props: {
-    params: JhHead(),
-  },
-  data() {
-    return {
-      data: {},
-    }
-  },
-  methods: {
-    getFeature,
-  },
-  components: {CoCard},
-  created() {
-    this.params.dueDate = getFeature(7)
-    this.params.author = "周杰伦";
-    // this.params.description = null;
-  },
+    props: {
+        params: {
+            editorValue: "",
+        }
+    },
+    data() {
+        return {
+
+            editorOptions: [{
+                value: "MD编辑器",
+                label: "MD编辑器"
+            }, {
+                value: "纯文本编辑器",
+                label: "纯文本编辑器"
+            }],
+        }
+    },
+    methods: {},
+    components: {CoIcon, CoTip, CoCard},
+    created() {
+        this.params.dueDate = getFeature(7)
+    },
 }
 </script>
 <style lang="css" scoped>
-
-.header {
-  font-size: 2px;
-}
-
-pre {
-  margin: 0;
-}
-
-.input >>> * {
-  font-size: 32px;
-  border: 0px;
-  outline: none;
-  padding-left: 0;
-  border-radius: 0;
-  background-color: transparent;
-}
-
-.row {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-
-.content >>> * {
-  margin-top: 8px;
-  /*border: 1px solid red;*/
-}
-
-.submit-description-title {
-  color: gray;
-}
-
-.submit-description-content {
-  background-color: #e8ecef;
-  padding: 10px;
-  border-radius: 4px;
-  white-space: pre-wrap; /*css-3*/
-  white-space: -moz-pre-wrap; /*Mozilla,since1999*/
-  white-space: -pre-wrap; /*Opera4-6*/
-  white-space: -o-pre-wrap; /*Opera7*/
-  word-wrap: break-word; /*InternetExplorer5.5+*/
-}
-
-.submit-collector {
-
-}
-
-.submit-dueDate {
-  font-size: 14px;
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  background-color: #e8ecef;
-  padding: 10px;
-  border-radius: 4px;
-}
-
+@import "@/common/style/components/create/create-head.css";
 
 </style>

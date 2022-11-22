@@ -1,40 +1,65 @@
 .template-details {
     width: 50%;
     margin: 0 auto;
-    /*border: 1px solid red;*/
 }
 
 .main-container {
-    /*display: flex;*/
     padding: 8px;
     justify-content: space-between;
 }
 
 .main-container > * {
-    /*border: 1px solid red;*/
     border-radius: 8px;
     padding: 8px;
+    margin-top: 16px;
+    color: dimgray;
+    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, .2);
+
+}
+
+.lowText {
     margin-top: 8px;
-    background-color: #409EFF;
-    color: white;
 }
 
-.commit-detail {
-    /*display: flex;*/
-    /*justify-content: space-between;*/
+.lowText .el-textarea__inner {
+    background-color: transparent;
+    padding: 4px 2px;
 }
 
-.commit-detail > div {
-    padding: 8px;
-    margin: 0;
-    padding: 0;
-    /*border: 1px solid red;*/
+.tip-card-title {
+    font-size: 22px;
 }
 
-h3, h1, h5 {
-    margin: 8px;
+.submit-member {
+    color: #888888;
 }
 
+.submit-member :first-child {
+    font-size: 18px;
+}
+
+.submit-member :last-child {
+    margin-top: 4px;
+    font-size: 22px;
+}
+
+
+.el-divider--horizontal {
+    margin: 16px 0;
+}
+
+.row {
+    display: flex;
+    align-items: baseline;
+}
+
+.row :last-child {
+    margin-left: auto;
+}
+
+.opt-button {
+    margin-top: 8px;
+}
 
 @media screen and (max-width: 600px) {
     .template-details {
