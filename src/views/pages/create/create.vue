@@ -64,13 +64,7 @@ export default {
     border-right: 2px solid gainsboro;
 }
 
-@media screen and (max-width: 992px) {
-    .mid {
-        overflow: auto;
-        height: 100%;
-        width: 100%;
-    }
-
+@media screen and (max-width: 600px) {
     .left, .right {
         display: none;
     }

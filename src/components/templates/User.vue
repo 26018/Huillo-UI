@@ -7,7 +7,7 @@
                     {{ menu.name }}
                 </div>
             </div>
-            <div class="user_view">
+            <div class="user_view" :style="{height:userViewHeight.vh-userViewHeight.offset-50+'px'}">
                 <router-view name="user_view"></router-view>
             </div>
         </div>
@@ -17,6 +17,7 @@
 <script>
 import {goto} from '@/api/util'
 import CoIcon from "@/components/co-icon";
+import vhCheck from "vh-check";
 
 export default {
     components: {CoIcon},
@@ -30,6 +31,11 @@ export default {
                 {name: "我的邮箱", path: "/manager/mail"},
                 {name: '回收空间', path: '/manager/recycle'},
             ],
+        }
+    },
+    computed:{
+        userViewHeight(){
+            return vhCheck()
         }
     },
     methods: {

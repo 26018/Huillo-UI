@@ -1,53 +1,53 @@
 <template>
     <div>
         <div class="record">
-            <el-table :height="tableHeight"
-                      :data="tableData"
-                      size="tableSize"
+            <div v-if="tableData.length > 0">
+                <el-table :height="tableHeight"
+                          :data="tableData"
+                          size="tableSize"
+                          :cell-style="cellStyle"
+                          show-overflow-tooltip="true"
+                          :header-cell-style="{'text-align': 'center'}"
+                          @cell-click="choose">
+                    <el-table-column prop="title" :width="tableCellSpace" fixed label="收集标题"></el-table-column>
+                    <el-table-column prop="author" :width="tableCellSpace" label="收集人"></el-table-column>
+                    <el-table-column prop="status" :width="tableCellSpace" label="收集状态">
+                        <template slot-scope="scope"><i :class="getStatus(scope.row.dueDate)"></i>
+                            <span v-html="'\u00a0'"></span>
+                            {{ scope.row.status }}
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="count" :width="tableCellSpace" label="提交次数"></el-table-column>
+                    <el-table-column prop="dueDate" :width="tableCellSpace" label="截止时间"></el-table-column>
 
-                      :cell-style="cellStyle"
-                      show-overflow-tooltip="true"
-                      :header-cell-style="{'text-align': 'center'}"
-                      @cell-click="choose">
-                <el-table-column prop="title" :width="tableCellSpace" fixed label="收集标题"></el-table-column>
-                <el-table-column prop="author" :width="tableCellSpace" label="收集人"></el-table-column>
-                <el-table-column prop="status" :width="tableCellSpace" label="收集状态">
-                    <template slot-scope="scope"><i :class="getStatus(scope.row.dueDate)"></i>
-                        <span v-html="'\u00a0'"></span>
-                        {{ scope.row.status }}
-                    </template>
-                </el-table-column>
-                <el-table-column prop="count" :width="tableCellSpace" label="提交次数"></el-table-column>
-                <el-table-column prop="dueDate" :width="tableCellSpace" label="截止时间"></el-table-column>
-
-                <el-table-column prop="opt" :width="tableCellSpace" label="操作">
-                    <template slot-scope="scope">
-                        <el-button @click="shareQuestionnaire(scope.row.id)" size="medium" type="text">分享</el-button>
-                        <el-button style="color: red" size="medium" type="text"
-                                   @click="closeQuestionnaire(scope.row.id)">结束收集
-                        </el-button>
-                    </template>
-                </el-table-column>
-            </el-table>
-            <el-pagination
-                class="page"
-                background
-                :pager-count="pageCount"
-                :small="smallPage"
-                @current-change="pageChange"
-                :current-page.sync="Number.parseInt(currentPage)"
-                layout="prev, pager, next, jumper"
-                :total="total">
-            </el-pagination>
+                    <el-table-column prop="opt" :width="tableCellSpace" label="操作">
+                        <template slot-scope="scope">
+                            <el-button @click="shareQuestionnaire(scope.row.id)" size="medium" type="text">分享</el-button>
+                            <el-button style="color: red" size="medium" type="text"
+                                       @click="closeQuestionnaire(scope.row.id)">结束收集
+                            </el-button>
+                        </template>
+                    </el-table-column>
+                </el-table>
+                <el-pagination
+                    class="page"
+                    background
+                    :pager-count="pageCount"
+                    :small="smallPage"
+                    @current-change="pageChange"
+                    :current-page.sync="Number.parseInt(currentPage)"
+                    layout="prev, pager, next, jumper"
+                    :total="total">
+                </el-pagination>
+            </div>
+            <el-empty v-if="tableData.length == 0" description="暂无记录"></el-empty>
         </div>
-
     </div>
 </template>
 
 <script>
 import {isMobile} from '@/api/util'
 import {getList} from '@/api/request'
-import {Message} from "element-ui";
 
 export default {
     data() {
@@ -58,7 +58,9 @@ export default {
             currentPage: 1,
             // 分页页码个数
             pageCount: 5,
+            //列宽度
             tableCellSpace: '160',
+            // 表格大小 mini | medium
             tableSize: ''
         }
     },
@@ -129,7 +131,6 @@ export default {
     },
 
     created: function () {
-
         // 加载上次停留的页面(pageNumber)
         this.currentPage = localStorage.getItem("currentPage");
         if (this.currentPage == null) {
@@ -164,15 +165,16 @@ export default {
 .record {
     width: 100%;
     box-sizing: border-box;
-    /*padding-left: 8px;*/
 }
-
 
 .page {
     height: 50px;
     display: flex;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
     align-items: center;
-    /*border: 1px solid red;*/
+    background-color: white;
 }
 
 

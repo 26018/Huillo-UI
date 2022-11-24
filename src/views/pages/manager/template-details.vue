@@ -1,7 +1,6 @@
 <template>
     <div>
         <div class="template-details">
-
             <div class="main-container">
                 <div>
                     <div class="row">
@@ -16,9 +15,7 @@
                         <div>收集用时</div>
                         <div>12天5小时</div>
                     </div>
-
                     <el-divider></el-divider>
-
                     <div class="row">
                         <div>开始时间:2022-09-28</div>
                         <div>结束时间:2022-10-22</div>
@@ -30,9 +27,7 @@
                         <div>提交总数</div>
                         <div>47</div>
                     </div>
-
                     <el-divider></el-divider>
-
                     <div class="row">
                         <div class="submit-member">
                             <div>实名提交</div>
@@ -48,7 +43,7 @@
                 <div>
                     <div class="row">
                         <div>提交者名单</div>
-                        <el-button type="text">一键通知未提交</el-button>
+                        <el-button type="text">通知未提交</el-button>
                     </div>
                     <el-select clearable style="width: 100%;" v-model="filterRuleValue" placeholder="筛选规则">
                         <el-option
@@ -59,7 +54,7 @@
                         </el-option>
                     </el-select>
 
-                    <el-table :data="tableData" size="mini" style="margin-top: 4px;width: 100%">
+                    <el-table id="commitTable" :data="tableData" size="mini" style="margin-top: 4px;width: 100%">
                         <el-table-column fixed type="selection"></el-table-column>
                         <el-table-column
                             fixed
@@ -73,18 +68,24 @@
                             label="提交日期"
                             width="100">
                         </el-table-column>
-                        <el-table-column
-                            prop="address"
-                            label="地址">
-                        </el-table-column>
                     </el-table>
 
                     <div class="row opt-button">
                         <el-button type="text">导出为Excel</el-button>
-                        <el-button type="text">一键下载表中文件</el-button>
+                        <el-button type="text">下载表中文件</el-button>
+                        <el-button type="text" @click="changeTableStyle">展开更多</el-button>
                     </div>
 
                 </div>
+
+                <div>
+                    <div class="row tip-card-title">问卷数据</div>
+                    <div>
+                        <!--todo 展示问卷的统计数据-->
+
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -121,7 +122,10 @@ export default {
         }
     },
 
-    methods: {},
+    methods: {
+
+
+    },
     created() {
         let id = this.$route.query.id
         pullData(id).then(res => {
@@ -134,4 +138,7 @@ export default {
 <style lang="css" scoped>
 @import "@/common/style/views/template-details.css";
 
+span {
+    color: #409EFF;
+}
 </style>

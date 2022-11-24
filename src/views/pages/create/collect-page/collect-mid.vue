@@ -1,45 +1,48 @@
 <template>
     <div>
-        <draggable class="create-mid" v-model="templateData" :move="onMove" handle=".move" animation="500">
-            <transition-group>
-                <div class="item" v-for="(element, index) in templateData" :key="index">
-                    <div>
-                        <components :ref="'jh' + index" :is="element.componentName"
-                                    :idx="index"
-                                    :params="element" :key="index"></components>
+        <div class="collect-mid">
+            <!--减100 是因为 co-header：50px , el-button：50px -->
+            <draggable class="create-mid" :style="{height: createHeight}"
+                       v-model="templateData" :move="onMove" handle=".move"
+                       animation="500">
+                <transition-group>
+                    <div class="item" v-for="(element, index) in templateData" :key="index">
+                        <div>
+                            <components :ref="'jh' + index" :is="element.componentName"
+                                        :idx="index"
+                                        :params="element" :key="index"></components>
+                        </div>
                     </div>
-                </div>
-            </transition-group>
-        </draggable>
+                </transition-group>
+            </draggable>
 
-        <div class="addComponent">
-            <el-button size="small" @click="addComponent">添加组件</el-button>
-        </div>
-
-
-        <el-dialog title="选择组件" append-to-body :visible.sync="dialogVisible" :before-close="handleClose">
-            <div class="context">
-                <h3>基础组件</h3>
-                <div class="items">
-                    <div class="item-choice"
-                         v-for="(item,index) in componentList"
-                         :key="index"
-                         @click="change(item)">{{ item.title }}
-                    </div>
-                </div>
-
-                <h3>常用组件</h3>
-                <div class="items">
-                    <div v-for="(item, index) in mostUse"
-                         class="item-choice"
-                         :key="index"
-                         @click="change(item)">
-                        {{ item.title }}
-                    </div>
-                </div>
+            <div class="addComponent">
+                <el-button size="small" @click="addComponent">添加组件</el-button>
             </div>
-        </el-dialog>
 
+            <el-dialog title="选择组件" append-to-body :visible.sync="dialogVisible" :before-close="handleClose">
+                <div class="context">
+                    <h3>基础组件</h3>
+                    <div class="items">
+                        <div class="item-choice"
+                             v-for="(item,index) in componentList"
+                             :key="index"
+                             @click="change(item)">{{ item.title }}
+                        </div>
+                    </div>
+
+                    <h3>常用组件</h3>
+                    <div class="items">
+                        <div v-for="(item, index) in mostUse"
+                             class="item-choice"
+                             :key="index"
+                             @click="change(item)">
+                            {{ item.title }}
+                        </div>
+                    </div>
+                </div>
+            </el-dialog>
+        </div>
     </div>
 </template>
 
@@ -54,6 +57,7 @@ import jhMulti from '@/components/create/jh-multi.vue'
 import {Message} from 'element-ui'
 import {goto} from '@/api/util'
 import {publish} from '@/api/request'
+import vhCheck from "vh-check";
 
 export default {
     data() {
@@ -70,6 +74,11 @@ export default {
         draggable, jhHead, jhFile, coCard, jhInput, jhRadio, jhMulti,
     },
     computed: {
+
+        createHeight() {
+            return vhCheck().vh - vhCheck().offset - 100 + 'px';
+        },
+
         templateData: {
             get() {
                 return this.templates
@@ -86,7 +95,6 @@ export default {
     },
     watch: {
         templateDataString(n, o) {
-            // console.log("实时更新")
             localStorage.setItem('template', n)
         },
     },
@@ -168,10 +176,10 @@ export default {
 
 
             // TODO 上传数据，接收二维码和链接地址
-            publish(ret).then(ret=>{
+            publish(ret).then(ret => {
                 Message({
-                    message:'发布成功',
-                    type:"success",
+                    message: '发布成功',
+                    type: "success",
                     showClose: true,
                     duration: 1000000000
                 })
@@ -214,9 +222,8 @@ export default {
             })
         },
     },
-    created() {
+    mounted() {
         this.initMenus()
-        // console.log(this.templateData)
     },
 }
 </script>
@@ -296,13 +303,21 @@ h3 {
     overflow: auto;
 }
 
-@media screen and (max-width: 992px) {
+.collect-mid {
+
+}
+
+@media screen and (max-width: 600px) {
     .addComponent {
         display: flex;
         justify-content: center;
         align-items: center;
         width: 100%;
-        height: 60px;
+        height: 50px;
+        bottom: 0;
+        position: absolute;
+        overflow: hidden;
+        box-shadow: 0 0 2px 0 rgb(0, 0, 0, .2);
     }
 
     .addComponent >>> .el-button {
@@ -310,13 +325,21 @@ h3 {
         color: white;
     }
 
+    .create-mid {
+        /*co-header: 50px, button: 50px*/
+        /* TODO */
+        /*height: calc(100vh - var(--vh-offset, 100px));*/
+        overflow: auto;
+        /*border: 1px solid red;*/
+        z-index: 999;
+    }
+
     .items {
         display: grid;
         gap: 16px;
         padding: 0 8px;
-        grid-template-columns: repeat(auto-fit,minmax(100px,2fr));
+        grid-template-columns: repeat(auto-fit, minmax(100px, 2fr));
         justify-content: space-between;
     }
 }
-
 </style>

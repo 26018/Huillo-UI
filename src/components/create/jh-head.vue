@@ -4,7 +4,7 @@
             <co-card>
                 <template v-slot:header>
                     <div class="create-header">
-                        <el-input class="create-title" v-model="params.title" />
+                        <el-input class="create-title" clearable v-model="params.title" />
                         <el-date-picker class="date-end" v-model="params.dueDate" placeholder="截止日期"/>
                     </div>
                 </template>
@@ -12,7 +12,7 @@
                     <div class="mobile">
                         <div class="row-container">
                             <co-tip>收集人:</co-tip>
-                            <el-input v-model="params.author" placeholder="默认为问卷发布人">
+                            <el-input v-model="params.author" clearable placeholder="默认为问卷发布人">
                             </el-input>
                         </div>
 
@@ -31,7 +31,7 @@
                         </mavon-editor>
                     </div>
                     <div class="pc">
-                        <el-input v-model="params.author" class="author" placeholder="请填写">
+                        <el-input v-model="params.author" clearable class="author" placeholder="请填写">
                             <template slot="prepend">收集人:</template>
                         </el-input>
                         <div class="row-container">

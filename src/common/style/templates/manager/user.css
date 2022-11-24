@@ -1,18 +1,16 @@
 
 .user {
     display: flex;
-    /*flex-direction: row;*/
 }
 
 .user_view {
     width: calc(100% - 180px);
     margin: 0;
     padding: 0;
-    /*border: 1px solid red;*/
+    background-color: white;
 }
 
 .user-header {
-    font-family: pingfang;
     display: flex;
     flex-direction: column;
     min-width: 180px;
@@ -22,6 +20,8 @@
     position: sticky;
     background-color: white;;
     box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, .2);
+    z-index: 999;
+    user-select: none;
 }
 
 .user-header > * {
@@ -31,7 +31,6 @@
     cursor: pointer;
     align-items: center;
     justify-content: center;
-    /*border: 1px solid firebrick;*/
     border-radius: 8px;
     width: 60%;
     margin-top: 8px;
@@ -44,6 +43,7 @@
 @media screen and (max-width: 600px) {
     .user {
         display: flex;
+        width: 100%;
         flex-direction: column;
     }
 
@@ -52,6 +52,8 @@
         width: 100%;
         overflow: scroll;
         display: flex;
+        position: sticky;
+        top: 0;
         flex-direction: row;
         align-items: center;
         box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, .2);
@@ -64,5 +66,7 @@
 
     .user_view{
         width: 100%;
+        /*border: 1px solid red;*/
+        overflow: auto;
     }
 }

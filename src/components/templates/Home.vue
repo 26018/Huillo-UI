@@ -36,7 +36,8 @@ export default {
 
 .content {
     /* 设置剩余的部分全部填充 */
-    flex: auto;
+    /*border: 1px solid red;*/
+    height: calc(100% - 50px);
     overflow: auto;
 }
 </style>

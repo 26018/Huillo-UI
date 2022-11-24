@@ -2,7 +2,10 @@
     <div>
         <div class="group">
             <div class="group-row-title">群组信息
-                <el-popconfirm title="创建群组有利于集中管理和发布信息">
+                <el-popconfirm
+                    confirm-button-text='关闭'
+                    cancel-button-text='已了解'
+                    :title="'创建群组可以在群组内发布收集，通知群友,有利于集中管理和发布信息'">
                     <span slot="reference"><el-icon class="el-icon-question"></el-icon></span>
                 </el-popconfirm>
                 <span @click="open"></span>

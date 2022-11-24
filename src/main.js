@@ -8,6 +8,8 @@ import mavonEditor from "mavon-editor"
 import 'mavon-editor/dist/css/index.css'
 import ElementUI, {Message} from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import vhCheck from "vh-check"; //移动端浏览器100vh高度不一致
+
 
 Vue.use(ElementUI);
 Vue.use(mavonEditor)

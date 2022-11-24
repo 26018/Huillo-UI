@@ -1,33 +1,37 @@
 <template>
     <div>
         <div class="record">
-            <el-table :height="tableHeight"
-                      :data="tableData"
-                      size="tableSize"
-                      :cell-style="cellStyle"
-                      show-overflow-tooltip="true"
-                      :header-cell-style="{'text-align': 'center'}"
-                      @cell-click="choose">
-                <el-table-column prop="title" :width="tableCellSpace" fixed label="问卷标题"></el-table-column>
-                <el-table-column prop="author" :width="tableCellSpace" label="收集人"></el-table-column>
+            <div v-if="tableData.length > 0">
+                <el-table :height="tableHeight"
+                          :style="{height:tableHeight}"
+                          :data="tableData"
+                          size="tableSize"
+                          :cell-style="cellStyle"
+                          show-overflow-tooltip="true"
+                          :header-cell-style="{'text-align': 'center'}"
+                          @cell-click="choose">
+                    <el-table-column prop="title" :width="tableCellSpace" fixed label="问卷标题"></el-table-column>
+                    <el-table-column prop="author" :width="tableCellSpace" label="收集人"></el-table-column>
 
-                <el-table-column prop="opt" :width="tableCellSpace" label="操作">
-                    <template slot-scope="scope">
-                        <el-button @click="shareQuestionnaire(scope.row.id)" size="medium" type="text">详细信息</el-button>
+                    <el-table-column prop="opt" :width="tableCellSpace" label="操作">
+                        <template slot-scope="scope">
+                            <el-button @click="shareQuestionnaire(scope.row.id)" size="medium" type="text">详细信息
+                            </el-button>
 
-                    </template>
-                </el-table-column>
-            </el-table>
-            <el-pagination
-                class="page"
-                background
-                :pager-count="pageCount"
-                :small="smallPage"
-                @current-change="pageChange"
-                :current-page.sync="Number.parseInt(currentPage)"
-                layout="prev, pager, next, jumper"
-                :total="total">
-            </el-pagination>
+                        </template>
+                    </el-table-column>
+                </el-table>
+                <el-pagination
+                    class="page" background
+                    :pager-count="pageCount" :small="smallPage"
+                    @current-change="pageChange"
+                    :current-page.sync="Number.parseInt(currentPage)"
+                    layout="prev, pager, next, jumper" :total="total">
+                </el-pagination>
+            </div>
+
+            <el-empty v-if="tableData.length == 0" description="暂无记录"></el-empty>
+
         </div>
 
     </div>
@@ -37,6 +41,7 @@
 import {isMobile} from '@/api/util'
 import {getList} from '@/api/request'
 import {Message} from "element-ui";
+import vhCheck from "vh-check";
 
 export default {
     data() {
@@ -55,9 +60,13 @@ export default {
     computed: {
         tableHeight: function () {
             // 根据设备宽度计算不同的高度
-            let width = window.innerWidth
-            let height = window.innerHeight
-            return width < 600 ? (height - 100) + 'px' : (height - 50) + 'px';
+            // let width = window.innerWidth
+            // let height = window.innerHeight
+            // console.log(height)
+            // return width < 600 ? (height - 100) + 'px' : (height - 50) + 'px';
+            // console.log("change")
+            return vhCheck().vh - vhCheck().offset - 100 + 'px'
+
         },
         smallPage: function () {
             let width = window.innerWidth
@@ -153,15 +162,17 @@ export default {
 .record {
     width: 100%;
     box-sizing: border-box;
-    /*padding-left: 8px;*/
 }
 
 
 .page {
     height: 50px;
     display: flex;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
     align-items: center;
-    /*border: 1px solid red;*/
+    background-color: white;
 }
 
 
