@@ -24,14 +24,14 @@ export default {
 .group-card {
     border-radius: 8px;
     box-sizing: border-box;
-    color: gray;
+    cursor: pointer;
     padding: 8px;
     margin: 0 8px 8px 0px;
     box-shadow: 0 0 2px 0 rgb(0, 0, 0, .2);
 }
 
 .group-title {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .group-member {
@@ -42,7 +42,15 @@ export default {
 .row {
     display: flex;
     align-items: baseline;
+    user-select: none;
     margin-top: 16px;
+}
+
+.row :first-child{
+    font-size: 14px;
+}
+.row :last-child{
+    color: slateblue;
 }
 
 @media screen and (max-width: 600px) {

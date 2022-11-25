@@ -48,6 +48,7 @@
 <script>
 import {isMobile} from '@/api/util'
 import {getList} from '@/api/request'
+import {Loading} from "element-ui";
 
 export default {
     data() {
@@ -146,6 +147,9 @@ export default {
             this.tableSize = 'medium'
         }
 
+        let loadService = Loading.service({
+            text:'加载中...',
+        })
         getList(this.currentPage).then(res => {
             res = res.data.data
             this.tableData = res.components
@@ -157,6 +161,7 @@ export default {
             })
         });
         console.log(this.tableData)
+        loadService.close()
     }
 }
 </script>

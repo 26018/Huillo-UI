@@ -5,7 +5,7 @@
     display: grid;
     grid-gap: 10px;
     justify-content: space-between;
-    grid-template-columns: repeat(auto-fill, 100px);
+    grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
 }
 
 .group-create{
@@ -22,8 +22,42 @@
     font-size: 24px;
 }
 
+.el-popconfirm__main {
+    white-space: pre-line;
+    margin: -14px 0 4px;
+}
+.el-popconfirm__main > i {
+    margin-top: 22px;
+    margin-bottom: auto;
+}
+.el-dialog{
+    width: 600px;
+}
+
+.el-image{
+    width: 200px;
+    box-shadow: 0 0 4px 0 rgb(0,0,0,.2);
+}
+
+.dialog-operation .el-button{
+    display: block;
+    margin: 0;
+}
+.el-dialog__body{
+    padding: 0 16px;
+}
+
 @media screen and  (max-width: 600px){
     .group{
         padding: 0 8px 0 8px;
+    }
+    .el-dialog{
+        width: 300px;
+    }
+
+    .el-image {
+        width: 150px;
+        margin: 0;
+        padding: 0;
     }
 }

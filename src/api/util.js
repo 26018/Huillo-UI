@@ -1,5 +1,6 @@
 import router from '@/router';
 import store from '@/store';
+import vhCheck from "vh-check";
 
 // const os = require('os');
 // resolve.fallback: { "os": false }
@@ -50,4 +51,9 @@ export function getFeature(num) {
 
 export function isMobile(){
     return window.innerWidth < 600;
+}
+
+export function viewHeight(headerHeight){
+    let object = vhCheck();
+    return object.vh-object.offset - headerHeight+'px';
 }

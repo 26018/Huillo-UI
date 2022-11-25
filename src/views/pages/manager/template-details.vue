@@ -54,7 +54,7 @@
                         </el-option>
                     </el-select>
 
-                    <el-table id="commitTable" :data="tableData" size="mini" style="margin-top: 4px;width: 100%">
+                    <el-table id="commitTable" :data="currentTableData" size="mini" style="margin-top: 4px;width: 100%">
                         <el-table-column fixed type="selection"></el-table-column>
                         <el-table-column
                             fixed
@@ -73,7 +73,7 @@
                     <div class="row opt-button">
                         <el-button type="text">导出为Excel</el-button>
                         <el-button type="text">下载表中文件</el-button>
-                        <el-button type="text" @click="changeTableStyle">展开更多</el-button>
+                        <el-button type="text" @click="showTotalInfo">{{ currentTableStatus }}</el-button>
                     </div>
 
                 </div>
@@ -82,6 +82,14 @@
                     <div class="row tip-card-title">问卷数据</div>
                     <div>
                         <!--todo 展示问卷的统计数据-->
+                        <!--todo 问答区--->
+                        <div class="question-title">3个问答题目</div>
+                        <!--todo 单选区--->
+                        <div class="question-title">1个单选题目</DIV>
+                        <!--todo 多选区--->
+                        <div class="question-title">7个多选题目</DIV>
+                        <!--todo 附件区--->
+                        <div class="question-title">1个附件题目</DIV>
 
                     </div>
                 </div>
@@ -99,31 +107,83 @@ export default {
         return {
             params: {},
             checkList: [],
-            tableData: [{
-                name: '王小虎',
-                date: '2016-05-02',
-                address: '上海市普陀区金沙江路 1518 弄'
-            }, {
-                date: '2016-05-04',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1517 弄'
-            }, {
-                date: '2016-05-01',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1519 弄'
-            }, {
-                date: '2016-05-03',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1516 弄'
-            }],
+            tableData: [
+                {
+                    name: '王小虎',
+                    date: '2016-05-02',
+                    address: '上海市普陀区金沙江路 1518 弄'
+                }, {
+                    date: '2016-05-04',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1517 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }],
+            currentTableData: [],
             filterRule: [{label: '已提交', value: '1'}, {label: '未提交', value: '2'}],
             filterRuleValue: '',
-            desc: "这是一些详细描述"
+            desc: "这是一些详细描述",
+            tableStatus: ['展开更多', '收起'],
+            currentTableStatus: '',
         }
     },
 
-    methods: {
+    computed: {},
 
+    methods: {
+        showLimitInfo() {
+            this.currentTableData = []
+            for (let index = 0; index < this.tableData.length && index < 5; index++) {
+                this.currentTableData.push(this.tableData[index]);
+            }
+            this.currentTableStatus = this.tableStatus[0];
+        },
+        showTotalInfo() {
+            if (this.currentTableData.length < this.tableData.length) {
+                this.currentTableData = this.tableData;
+                this.currentTableStatus = this.tableStatus[1];
+            } else {
+                this.showLimitInfo();
+            }
+        }
 
     },
     created() {
@@ -131,6 +191,7 @@ export default {
         pullData(id).then(res => {
             this.params = res.data.data
         })
+        this.showLimitInfo();
     }
 }
 </script>
@@ -138,7 +199,4 @@ export default {
 <style lang="css" scoped>
 @import "@/common/style/views/template-details.css";
 
-span {
-    color: #409EFF;
-}
 </style>

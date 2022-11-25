@@ -2,7 +2,6 @@
   <div>
     <div class="test">
       <div style="width: 80%">
-
         <div @click="goto('/create')"
              class="to">现在就去</div>
         <div @click="goto('/submit/3620')"
@@ -75,7 +74,6 @@ export default {
 }
 .to:hover {
   transform: scale(1.1);
-  /* box-shadow: 0 1px 4px rgba(104,105,155,0.3),0 0 40px rgba(104,105,155,0.1) inset; */
   transition-duration: 200ms;
 }
 </style>

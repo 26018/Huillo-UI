@@ -7,7 +7,7 @@
                     {{ menu.name }}
                 </div>
             </div>
-            <div class="user_view" :style="{height:userViewHeight.vh-userViewHeight.offset-50+'px'}">
+            <div class="user_view" :style="{height:userViewHeight}">
                 <router-view name="user_view"></router-view>
             </div>
         </div>
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import {goto} from '@/api/util'
+import {goto, isMobile} from '@/api/util'
 import CoIcon from "@/components/co-icon";
 import vhCheck from "vh-check";
 
@@ -24,7 +24,7 @@ export default {
     data() {
         return {
             menus: [
-                {name: "返回创建", path: "/create", style: {'color':'gray'}, dontChange: true},
+                {name: "返回创建", path: "/create", style: {'color': 'gray'}, dontChange: true},
                 {name: '收集记录', path: '/manager/record'},
                 {name: '提交记录', path: '/manager/commit-record'},
                 {name: '我的群组', path: '/manager/group'},
@@ -33,9 +33,9 @@ export default {
             ],
         }
     },
-    computed:{
-        userViewHeight(){
-            return vhCheck()
+    computed: {
+        userViewHeight() {
+            return vhCheck().vh - vhCheck().offset - (isMobile() ? 50 : 0) + 'px'
         }
     },
     methods: {
@@ -57,12 +57,12 @@ export default {
         },
 
         // 加载当前路由导航的颜色
-        currentNav(){
+        currentNav() {
             let path = this.$route.path
-            this.menus.forEach(menu =>{
+            this.menus.forEach(menu => {
                 if (menu.path == path) {
                     menu.style = {
-                        'color':'#409EFF'
+                        'color': '#409EFF'
                     }
                 }
             })
