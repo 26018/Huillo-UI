@@ -7,7 +7,7 @@
                     {{ menu.name }}
                 </div>
             </div>
-            <div class="user_view" :style="{height:userViewHeight}">
+            <div class="user_view" :style="{height:viewHeight(isMobile() ? 50:0)}">
                 <router-view name="user_view"></router-view>
             </div>
         </div>
@@ -15,9 +15,8 @@
 </template>
 
 <script>
-import {goto, isMobile} from '@/api/util'
+import {goto, isMobile, viewHeight} from '@/api/util'
 import CoIcon from "@/components/co-icon";
-import vhCheck from "vh-check";
 
 export default {
     components: {CoIcon},
@@ -33,12 +32,10 @@ export default {
             ],
         }
     },
-    computed: {
-        userViewHeight() {
-            return vhCheck().vh - vhCheck().offset - (isMobile() ? 50 : 0) + 'px'
-        }
-    },
+
     methods: {
+        isMobile,
+        viewHeight,
         exit() {
             localStorage.removeItem('token')
             goto('/')

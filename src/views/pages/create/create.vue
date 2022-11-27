@@ -57,7 +57,7 @@ export default {
 }
 
 .mid {
-    flex: 6;
+    flex: 5;
     overflow: auto;
     height: 100%;
     border-left: 2px solid gainsboro;

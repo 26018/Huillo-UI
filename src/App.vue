@@ -4,13 +4,7 @@
     </div>
 </template>
 
-
 <style>
-
-@font-face {
-    font-family: "pingfang";
-    src: url("@/common/font/pingfang.woff2")
-}
 
 body {
     padding: 0px;
@@ -21,6 +15,7 @@ body {
     font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: rgb(243, 246, 249);
 }
 
 .main-view {
@@ -37,7 +32,7 @@ body {
 
 ::-webkit-scrollbar-track {
     width: 6px;
-    background: rgba(#101f1c, 0.1);
+    background-color: rgb(#101f1c, 0.1);
     -webkit-border-radius: 2em;
     -moz-border-radius: 2em;
     border-radius: 2em;

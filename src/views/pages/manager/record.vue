@@ -1,14 +1,15 @@
 <template>
     <div>
-        <div class="record">
+        <div class="record" :style="{height:viewHeight(isMobile()?50:0)}">
             <div v-if="tableData.length > 0">
-                <el-table :height="tableHeight"
-                          :data="tableData"
-                          size="tableSize"
-                          :cell-style="cellStyle"
-                          show-overflow-tooltip="true"
-                          :header-cell-style="{'text-align': 'center'}"
-                          @cell-click="choose">
+                <el-table
+                    :height="viewHeight(isMobile()?100:50)"
+                    :data="tableData"
+                    size="tableSize"
+                    :cell-style="cellStyle"
+                    show-overflow-tooltip="true"
+                    :header-cell-style="{'text-align': 'center'}"
+                    @cell-click="choose">
                     <el-table-column prop="title" :width="tableCellSpace" fixed label="收集标题"></el-table-column>
                     <el-table-column prop="author" :width="tableCellSpace" label="收集人"></el-table-column>
                     <el-table-column prop="status" :width="tableCellSpace" label="收集状态">
@@ -22,7 +23,8 @@
 
                     <el-table-column prop="opt" :width="tableCellSpace" label="操作">
                         <template slot-scope="scope">
-                            <el-button @click="shareQuestionnaire(scope.row.id)" size="medium" type="text">分享</el-button>
+                            <el-button @click="shareQuestionnaire(scope.row.id)" size="medium" type="text">分享
+                            </el-button>
                             <el-button style="color: red" size="medium" type="text"
                                        @click="closeQuestionnaire(scope.row.id)">结束收集
                             </el-button>
@@ -33,7 +35,7 @@
                     class="page"
                     background
                     :pager-count="pageCount"
-                    :small="smallPage"
+                    :small="isMobile()"
                     @current-change="pageChange"
                     :current-page.sync="Number.parseInt(currentPage)"
                     layout="prev, pager, next, jumper"
@@ -46,7 +48,7 @@
 </template>
 
 <script>
-import {isMobile} from '@/api/util'
+import {isMobile, viewHeight} from '@/api/util'
 import {getList} from '@/api/request'
 import {Loading} from "element-ui";
 
@@ -66,20 +68,10 @@ export default {
         }
     },
 
-    computed: {
-        tableHeight: function () {
-            // 根据设备宽度计算不同的高度
-            let width = window.innerWidth
-            let height = window.innerHeight
-            return width < 600 ? (height - 100) + 'px' : (height - 50) + 'px';
-        },
-        smallPage: function () {
-            let width = window.innerWidth
-            return width < 600
-        }
-    },
-
     methods: {
+
+        isMobile,
+        viewHeight,
 
         // TODO 计算各列宽度
 
@@ -146,9 +138,8 @@ export default {
             this.pageCount = 9;
             this.tableSize = 'medium'
         }
-
         let loadService = Loading.service({
-            text:'加载中...',
+            text: '加载中...',
         })
         getList(this.currentPage).then(res => {
             res = res.data.data
@@ -170,14 +161,16 @@ export default {
 .record {
     width: 100%;
     box-sizing: border-box;
+    position: relative;
 }
 
 .page {
     height: 50px;
-    display: flex;
     position: absolute;
     bottom: 0;
     width: 100%;
+    box-sizing: border-box;
+    display: flex;
     align-items: center;
     background-color: white;
 }

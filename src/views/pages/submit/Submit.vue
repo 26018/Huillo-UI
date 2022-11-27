@@ -1,15 +1,13 @@
 <template>
-    <div style="background-color: rgb(243,246,249)">
-        <div class="submit">
-            <div v-for="(component, index) in templateData"
-                 :key="index">
+    <div>
+        <div class="submit" :style="{height:viewHeight(0)}">
+            <div v-for="(component, index) in templateData" :key="index">
                 <components :ref="'jh' + index" :is="component.componentName" :idx="index" :params="component"
                             :key="index"></components>
             </div>
-
-        </div>
-        <div class="submitBtn">
-            <el-button @click="submitCollect" style="width: 30%;height: 40px" type="primary">提交</el-button>
+            <div class="submitBtn">
+                <el-button @click="submitCollect" size="medium" type="primary">提交</el-button>
+            </div>
         </div>
     </div>
 </template>
@@ -22,6 +20,7 @@ import jhInput from '@/components/submit/jh-submit-input.vue'
 import jhRadio from '@/components/submit/jh-submit-radio.vue'
 import jhMulti from '@/components/submit/jh-submit-multi.vue'
 import {pullData, QuestionList} from '@/api/request'
+import {viewHeight} from "@/api/util";
 
 export default {
     data() {
@@ -37,6 +36,7 @@ export default {
     computed: {},
 
     methods: {
+        viewHeight,
         submitCollect() {
             alert('截止了')
         },
@@ -66,100 +66,38 @@ export default {
 }
 </script>
 <style lang="css" scoped>
-.item {
-    border-bottom: 2px dashed rgb(238, 238, 238);
-}
 
-img {
-    width: 100px;
-}
-
-/*-----------------------------*/
-
-h3 {
-    height: 50px;
-    margin-top: 0px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    user-select: none;
-    color: rgb(36, 37, 37);
-}
-
-
-/*.items {*/
-/*    display: grid;*/
-/*    grid-gap: 10px;*/
-/*    grid-template-columns: repeat(auto-fill, 100px);*/
-/*    justify-content: space-around;*/
-/*}*/
-
-.item-choice {
-    background-color: #e8ecef;
-    color: black;
-    /*width: 100px;*/
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 4px;
-    user-select: none;
-    cursor: pointer;
-}
-
-.item-choice > * {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.item-choice:hover {
-    color: dodgerblue;
-    transition-duration: 200ms;
-}
-
-.addComponent {
-    display: none;
-}
-
->>> .el-dialog {
-    width: 100%;
-    height: 80%;
-    margin: 0;
-    position: absolute;
-    bottom: 0px;
-}
-
->>> .el-dialog__body {
-    position: absolute;
-    left: 0;
-    top: 54px;
-    bottom: 0;
-    right: 0;
-    padding: 0;
+.submit {
+    width: 60%;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: white;
     overflow: auto;
 }
 
-@media screen and (max-width: 992px) {
-    .addComponent {
+.submitBtn {
+    /*border: 1px solid rebeccapurple;*/
+    margin: 0 auto;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 600px) {
+    .submit {
+        width: 100%;
+        background-color: white;
+        overflow: auto;
+    }
+
+    .submitBtn {
+        /*border: 1px solid rebeccapurple;*/
+        margin: 0 auto;
+        height: 50px;
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 100%;
-        height: 60px;
-    }
-
-    .addComponent >>> .el-button {
-        background-color: #409EFF;
-        color: white;
-    }
-
-    .items {
-        display: grid;
-        gap: 16px;
-        padding: 0 8px;
-        grid-template-columns: repeat(auto-fit,minmax(100px,2fr));
-        justify-content: space-between;
     }
 }
 

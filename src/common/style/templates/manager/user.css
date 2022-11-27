@@ -4,12 +4,10 @@
 }
 
 .user_view {
-    width: calc(100% - 180px);
+    width: calc(100% - 200px);
     margin: 0;
-    padding: 0;
-    background-color: white;
+    padding: 0  32px;
     overflow: auto;
-    /*border: 1px solid red;*/
 }
 
 .user-header {
@@ -56,6 +54,7 @@
         display: flex;
         position: sticky;
         top: 0;
+        /*border: 1px solid red;*/
         flex-direction: row;
         align-items: center;
         box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, .2);
@@ -68,6 +67,8 @@
 
     .user_view{
         width: 100%;
+        padding: 0;
+        overflow: auto;
         /*border: 1px solid red;*/
     }
 }

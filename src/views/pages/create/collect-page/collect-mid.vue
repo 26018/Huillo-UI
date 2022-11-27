@@ -1,16 +1,13 @@
 <template>
     <div>
         <div class="collect-mid">
-            <!--减100 是因为 co-header：50px , el-button：50px -->
-            <draggable class="create-mid" :style="{height: createHeight}"
-                       v-model="templateData" :move="onMove" handle=".move"
-                       animation="500">
+            <draggable class="create-mid" :style="{height: viewHeight(100)}" handle=".move"
+                       v-model="templateData" :move="onMove" animation="500">
                 <transition-group>
                     <div class="item" v-for="(element, index) in templateData" :key="index">
                         <div>
-                            <components :ref="'jh' + index" :is="element.componentName"
-                                        :idx="index"
-                                        :params="element" :key="index"></components>
+                            <components :ref="'jh' + index" :is="element.componentName" :idx="index" :params="element"
+                                        :key="index"></components>
                         </div>
                     </div>
                 </transition-group>
@@ -25,18 +22,13 @@
                     <h3>基础组件</h3>
                     <div class="items">
                         <div class="item-choice"
-                             v-for="(item,index) in componentList"
-                             :key="index"
-                             @click="change(item)">{{ item.title }}
+                             v-for="(item,index) in componentList" :key="index" @click="change(item)">{{ item.title }}
                         </div>
                     </div>
 
                     <h3>常用组件</h3>
                     <div class="items">
-                        <div v-for="(item, index) in mostUse"
-                             class="item-choice"
-                             :key="index"
-                             @click="change(item)">
+                        <div v-for="(item, index) in mostUse" class="item-choice" :key="index" @click="change(item)">
                             {{ item.title }}
                         </div>
                     </div>
@@ -55,7 +47,7 @@ import jhInput from '@/components/create/jh-input.vue'
 import jhRadio from '@/components/create/jh-radio.vue'
 import jhMulti from '@/components/create/jh-multi.vue'
 import {Message} from 'element-ui'
-import {goto} from '@/api/util'
+import {goto, viewHeight} from '@/api/util'
 import {publish} from '@/api/request'
 import vhCheck from "vh-check";
 
@@ -74,11 +66,6 @@ export default {
         draggable, jhHead, jhFile, coCard, jhInput, jhRadio, jhMulti,
     },
     computed: {
-
-        createHeight() {
-            return vhCheck().vh - vhCheck().offset - 100 + 'px';
-        },
-
         templateData: {
             get() {
                 return this.templates
@@ -88,7 +75,6 @@ export default {
                 this.$store.commit('templatePush', val)
             },
         },
-
         templateDataString() {
             return JSON.stringify(this.templates)
         },
@@ -99,6 +85,7 @@ export default {
         },
     },
     methods: {
+        viewHeight,
         change(data) {
             console.log(data)
             let idx = this.$store.state.template.length
@@ -181,7 +168,6 @@ export default {
                     message: '发布成功',
                     type: "success",
                     showClose: true,
-                    duration: 1000000000
                 })
             });
 

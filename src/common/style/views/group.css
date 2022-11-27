@@ -1,5 +1,8 @@
 .group{
-    padding: 8px;
+    padding:8px 16px;
+    background-color: white;
+    box-sizing: border-box;
+    overflow: auto;
 }
 .group-card-container {
     display: grid;
@@ -35,24 +38,41 @@
 }
 
 .el-image{
-    width: 200px;
+    margin: 0 auto;
     box-shadow: 0 0 4px 0 rgb(0,0,0,.2);
 }
 
+.dialog-operation {
+    display: flex;
+    margin: 0 auto;
+}
+.dialog-operation > :last-child{
+    margin-left: auto;
+}
+
 .dialog-operation .el-button{
-    display: block;
-    margin: 0;
+    /*display: block;*/
+    /*margin: 0;*/
 }
 .el-dialog__body{
     padding: 0 16px;
+    width: 60%;
+    margin: 0 auto;
+    /*border: 1px solid red;*/
 }
 
 @media screen and  (max-width: 600px){
     .group{
-        padding: 0 8px 0 8px;
+        padding: 0px 8px 0 8px;
     }
     .el-dialog{
         width: 300px;
+    }
+    .el-dialog__body {
+        /*border: 1px solid red;*/
+        width: 100%;
+        padding: 0 32px;
+        box-sizing: border-box;
     }
 
     .el-image {

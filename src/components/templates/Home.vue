@@ -19,7 +19,7 @@ export default {
     },
 
     methods: {
-        goto,
+
     },
 
     components: {CoHeader},

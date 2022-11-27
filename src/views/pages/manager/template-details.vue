@@ -54,7 +54,7 @@
                         </el-option>
                     </el-select>
 
-                    <el-table id="commitTable" :data="currentTableData" size="mini" style="margin-top: 4px;width: 100%">
+                    <el-table id="commitTable" :data="currentTableData" size="medium" style="margin-top: 4px;width: 100%">
                         <el-table-column fixed type="selection"></el-table-column>
                         <el-table-column
                             fixed

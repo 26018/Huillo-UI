@@ -67,7 +67,7 @@
     color: dodgerblue;
 }
 
-@media screen and (max-width: 992px){
+@media screen and (max-width: 600px){
     .poem{
         display: none;
     }

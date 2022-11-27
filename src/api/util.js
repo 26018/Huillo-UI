@@ -49,11 +49,11 @@ export function getFeature(num) {
     return newDay;
 }
 
-export function isMobile(){
+export function isMobile() {
     return window.innerWidth < 600;
 }
 
-export function viewHeight(headerHeight){
+export function viewHeight(headerHeight) {
     let object = vhCheck();
-    return object.vh-object.offset - headerHeight+'px';
+    return object.vh - object.offset - headerHeight + 'px';
 }

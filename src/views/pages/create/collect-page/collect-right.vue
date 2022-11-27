@@ -40,8 +40,6 @@ h3 {
   align-items: center;
   background-color: rgb(255, 255, 255);
   overflow: hidden !important;
-  /*position: sticky;*/
-  /*top: 0px;*/
   width: 100%;
 }
 .card {
