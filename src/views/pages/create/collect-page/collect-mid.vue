@@ -1,13 +1,13 @@
 <template>
     <div>
         <div class="collect-mid">
-            <draggable class="create-mid" :style="{height: viewHeight(100)}" handle=".move"
-                       v-model="templateData" :move="onMove" animation="500">
+            <draggable class="create-mid" :style="{height: viewHeight(100)}" handle=".move" v-model="templateData"
+                       :move="onMove" animation="500">
                 <transition-group>
                     <div class="item" v-for="(element, index) in templateData" :key="index">
                         <div>
-                            <components :ref="'jh' + index" :is="element.componentName" :idx="index" :params="element"
-                                        :key="index"></components>
+                            <components :ref="'component:' + index" :is="getComponentName(element,index)" :idx="index"
+                                        :params="element" :key="index"></components>
                         </div>
                     </div>
                 </transition-group>
@@ -34,6 +34,7 @@
                     </div>
                 </div>
             </el-dialog>
+
         </div>
     </div>
 </template>
@@ -49,7 +50,6 @@ import jhMulti from '@/components/create/jh-multi.vue'
 import {Message} from 'element-ui'
 import {goto, viewHeight} from '@/api/util'
 import {publish} from '@/api/request'
-import vhCheck from "vh-check";
 
 export default {
     data() {
@@ -86,6 +86,11 @@ export default {
     },
     methods: {
         viewHeight,
+        // 为了给每个组件添加number，后端返回的元素是没有number的。
+        getComponentName(element, index) {
+            element.number = index;
+            return element.componentName;
+        },
         change(data) {
             console.log(data)
             let idx = this.$store.state.template.length
@@ -94,28 +99,18 @@ export default {
             // 例如：点击左边组件，修改中间刚刚添加的组件值，会发现左边的组件值也同步发生了变化
             // 旧的写法： this.$store.commit('templatePush',data);
             this.$store.commit('templatePush', JSON.parse(JSON.stringify(data)));
-            Message({
-                message: "添加成功",
-                type: 'success',
-                showClose: true
-            })
+            this.$message.success("添加成功")
         },
         addComponent() {
             this.dialogVisible = !this.dialogVisible
         },
         copyUrl(url) {
             if (navigator.clipboard === undefined) {
-                Message({
-                    message: '浏览器不支持',
-                    type: 'error',
-                })
+                this.$message.error("浏览器不支持")
                 return
             }
             navigator.clipboard.writeText(url)
-            Message({
-                message: '复制成功',
-                type: 'success',
-            })
+            this.$message.success("复制成功")
         },
         goto,
         handleClose(done) {
@@ -128,10 +123,7 @@ export default {
         // 清空模板（除head之外）
         clearTemplate(that) {
             that.$store.commit('clearTemplate')
-            Message({
-                message: '已清除模板',
-                type: 'success',
-            })
+            this.$message.success("已清除模板")
         },
         clearCache() {
             localStorage.clear()
@@ -141,21 +133,18 @@ export default {
         publish(that) {
             let ret = []
             for (let i = 0; i < that.templates.length; i++) {
-                let dom = that.$refs['jh' + i][0]
+                let dom = that.$refs['component:' + i][0]
                 dom._props.params.componentName = dom.$options._componentTag
                 let data = dom._props.params
-                if (
-                    data.deleted == null ||
-                    data.deleted == false
-                )
-                    ret.push(data)
+                ret.push(data)
             }
+
             // 测试代码
             let idx = 1
             ret.forEach((ele) => {
                 let str = '\n'
                 for (let each in ele) {
-                    str = str + each + ':' + ele[each] + ',\n'
+                    str = str + each + ': ' + ele[each] + '\n'
                 }
                 console.log(idx + ':' + str)
                 idx++
@@ -164,14 +153,9 @@ export default {
 
             // TODO 上传数据，接收二维码和链接地址
             publish(ret).then(ret => {
-                Message({
-                    message: '发布成功',
-                    type: "success",
-                    showClose: true,
-                })
+                this.$message.success("发布成功")
             });
 
-            //   that.dialogVisible = true
         },
         initMenus() {
             let menus = this.$parent.$parent.$children[0].menus
@@ -303,6 +287,7 @@ h3 {
         bottom: 0;
         position: absolute;
         overflow: hidden;
+        background-color: white;
         box-shadow: 0 0 2px 0 rgb(0, 0, 0, .2);
     }
 
@@ -312,10 +297,10 @@ h3 {
     }
 
     .create-mid {
-        /*co-header: 50px, button: 50px*/
-        /* TODO */
-        /*height: calc(100vh - var(--vh-offset, 100px));*/
+        /*width: 90%;*/
+        margin: 0 auto;
         overflow: auto;
+        /*box-shadow: 0 0 4px 0 rgb(0,0,0,.2);*/
         /*border: 1px solid red;*/
         z-index: 999;
     }

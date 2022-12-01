@@ -51,3 +51,32 @@ export function getList(pageNumber) {
         }
     })
 }
+
+export function getImage(id, size) {
+    return axios({
+        url: '/api/question/qrcode/' + id + "/" + size,
+        method: 'get',
+        responseType: 'blob'
+    })
+}
+
+export function questionnaireDetail(id) {
+    return axios({
+        url: "/api/question/queryDetailInfo/" + id,
+        method: 'get'
+    })
+}
+
+export function shareQuestionnairePath(quesId) {
+    return axios({
+        url: "/api/question/shareQuestionPath/" + quesId,
+        method: "get"
+    })
+}
+
+export function closeQuestionnaire(quesId) {
+    return axios({
+        url: "/api/question/close/" + quesId,
+        method:"get"
+    })
+}

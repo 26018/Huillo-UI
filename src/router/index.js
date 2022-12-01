@@ -44,7 +44,7 @@ const routes = [
             },
 
             {
-                path: 'details',
+                path: 'record/details/:id',
                 components: {
                     user_view: () => import('@/views/pages/manager/template-details'),
                 },

@@ -4,9 +4,10 @@
 }
 
 .user_view {
-    width: calc(100% - 200px);
+    /*width: calc(100% - 200px);*/
+    width: 100%;
     margin: 0;
-    padding: 0  32px;
+    /*padding: 0  32px;*/
     overflow: auto;
 }
 
@@ -54,6 +55,7 @@
         display: flex;
         position: sticky;
         top: 0;
+        user-select: none;
         /*border: 1px solid red;*/
         flex-direction: row;
         align-items: center;
@@ -63,6 +65,8 @@
     .user-header > * {
         white-space: nowrap;
         margin-left: 8px;
+        margin-top: 0;
+        user-select: none;
     }
 
     .user_view{

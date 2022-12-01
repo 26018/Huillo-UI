@@ -7,10 +7,10 @@
                 </template>
 
                 <template v-slot:content>
-                    <co-text simple>{{ params.description + params.description }}</co-text>
+                    <co-text simple>{{ params.description }}</co-text>
                     <el-radio-group v-model="params.answer">
                         <div class="radio-container" v-for="option in params.options">
-                            <el-radio :label="option.value"></el-radio>
+                            <el-radio :label="option"></el-radio>
                         </div>
                     </el-radio-group>
                 </template>
@@ -28,33 +28,36 @@ export default {
     components: {CoText, coCard},
     props: {
         params: {
-            required: Boolean,// 选填
-            description: String,
-            answer: "",
+
         }
     },
     data() {
         return {}
     },
-
     computed: {},
     watch: {},
-
     methods: {},
-
-
+    created() {
+        this.params.answer = "";
+    }
 }
 </script>
 <style lang="css" scoped>
 .el-radio-group {
-    box-sizing: border-box;
+    /*box-sizing: border-box;*/
     padding: 4px 0;
+    width: 100%;
 }
 
 .radio-container {
     margin: 0 0 8px 0;
 }
-.el-radio-group{
+
+.el-radio {
+    width: 100%;
+}
+
+.el-radio-group {
     margin-top: 4px;
 }
 

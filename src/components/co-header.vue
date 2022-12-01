@@ -109,7 +109,7 @@ export default {
 
     created() {
         let count = localStorage.getItem('idx')
-        if (typeof count != Number) {
+        if (typeof count !== Number) {
             count = 0
         }
         this.current = this.poem[count]

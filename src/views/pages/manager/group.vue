@@ -24,8 +24,11 @@
             <el-button type="primary" size="medium" style="margin-top: 8px; margin-bottom: 4px;">创建</el-button>
 
             <el-dialog title="群组信息" :visible.sync="dialogVisible">
-                <div style="font-size: 16px;margin: 8px 0 8px 0;color: rebeccapurple">新项目测试，共{{ dialogGroupInfo }}人</div>
-                <el-image :src="require('@/assets/fixyou.png')" :style="{width: '100%'}"></el-image>
+                <div style="font-size: 16px;margin: 8px 0 8px 0;color: rebeccapurple">新项目测试，共{{
+                        dialogGroupInfo
+                    }}人
+                </div>
+                <el-image :src="imageUrl" :style="{width: '100%'}"></el-image>
                 <div class="dialog-operation">
                     <el-button type="text">下载二维码</el-button>
                     <el-button type="text">复制分享链接</el-button>
@@ -42,6 +45,7 @@
 <script>
 import GroupCard from "@/components/group-card";
 import {isMobile, viewHeight} from "@/api/util";
+import {getImage} from "@/api/request";
 
 export default {
     name: "group",
@@ -50,15 +54,23 @@ export default {
         return {
             showTip: false,
             dialogVisible: false,
-            dialogGroupInfo: {}
+            dialogGroupInfo: {},
+            imageUrl:""
         }
     },
     methods: {
         isMobile,
         viewHeight,
+        getUrl(id, size) {
+            getImage(id, size).then(res => {
+                let blob = new Blob([res.data], {type: "image/Png"});
+                this.imageUrl = window.URL.createObjectURL(blob);
+            });
+        },
         detailGroupInfo(clickInfo) {
             this.dialogVisible = true;
             this.dialogGroupInfo = clickInfo;
+            this.getUrl(3620,150)
         }
     }
 }

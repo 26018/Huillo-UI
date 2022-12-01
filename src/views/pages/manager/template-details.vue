@@ -4,38 +4,39 @@
             <div class="main-container">
                 <div>
                     <div class="row">
-                        <div style="font-size: 24px">文件收集</div>
-                        <div>状态：收集中</div>
+                        <div style="font-size: 24px">{{ detailInfo.title }}</div>
+                        <div>状态：{{ detailInfo.status }}</div>
                     </div>
-                    <el-input class="lowText" type="textarea" disabled v-model="desc"></el-input>
+                    <co-text simple v-show="detailInfo.author">{{'收集人：'+detailInfo.author}}</co-text>
+                    <co-text simple v-show="detailInfo.description">{{ detailInfo.description }}</co-text>
                 </div>
 
                 <div>
                     <div class="row tip-card-title">
                         <div>收集用时</div>
-                        <div>12天5小时</div>
+                        <div>{{ TimeBetween(params.startTime, params.endTime) }}</div>
                     </div>
                     <el-divider></el-divider>
                     <div class="row">
-                        <div>开始时间:2022-09-28</div>
-                        <div>结束时间:2022-10-22</div>
+                        <div>开始时间:{{ DateFormatter(detailInfo.startTime, '/') }}</div>
+                        <div>结束时间:{{ DateFormatter(detailInfo.endTime, '/') }}</div>
                     </div>
                 </div>
 
                 <div>
                     <div class="row tip-card-title">
                         <div>提交总数</div>
-                        <div>47</div>
+                        <div>{{ getSubmitTotal }}</div>
                     </div>
                     <el-divider></el-divider>
                     <div class="row">
                         <div class="submit-member">
                             <div>实名提交</div>
-                            <div>5</div>
+                            <div>{{ detailInfo.realName.length }}</div>
                         </div>
                         <div class="submit-member">
                             <div>匿名提交</div>
-                            <div>42</div>
+                            <div>{{ detailInfo.anonymous.length }}</div>
                         </div>
                     </div>
                 </div>
@@ -54,7 +55,8 @@
                         </el-option>
                     </el-select>
 
-                    <el-table id="commitTable" :data="currentTableData" size="medium" style="margin-top: 4px;width: 100%">
+                    <el-table id="commitTable" :data="currentTableData" size="medium"
+                              style="margin-top: 4px;width: 100%">
                         <el-table-column fixed type="selection"></el-table-column>
                         <el-table-column
                             fixed
@@ -100,11 +102,15 @@
 </template>
 
 <script>
-import {pullData} from "@/api/request";
+import {pullData, questionnaireDetail} from "@/api/request";
+import CoText from "@/components/co-text";
+import {DateFormatter, TimeBetween} from "@/api/util";
 
 export default {
+    components: {CoText},
     data() {
         return {
+            detailInfo: {},
             params: {},
             checkList: [],
             tableData: [
@@ -166,9 +172,15 @@ export default {
         }
     },
 
-    computed: {},
+    computed: {
+        getSubmitTotal() {
+            return this.detailInfo.anonymous.length + this.detailInfo.realName.length
+        },
+    },
 
     methods: {
+        DateFormatter,
+        TimeBetween,
         showLimitInfo() {
             this.currentTableData = []
             for (let index = 0; index < this.tableData.length && index < 5; index++) {
@@ -187,11 +199,19 @@ export default {
 
     },
     created() {
-        let id = this.$route.query.id
+        let id = this.$route.params.id
+        console.log("id:" + id);
         pullData(id).then(res => {
             this.params = res.data.data
         })
         this.showLimitInfo();
+
+        // 请求问卷详细信息
+        questionnaireDetail(id).then(res => {
+            this.detailInfo = res.data.data
+            console.log(this.detailInfo)
+        })
+
     }
 }
 </script>

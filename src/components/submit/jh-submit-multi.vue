@@ -3,13 +3,13 @@
         <div class="multi">
             <co-card>
                 <template v-slot:header>
-                    <co-text simple size="medium">{{params.title}}</co-text>
+                    <co-text simple size="medium">{{ params.title }}</co-text>
                 </template>
                 <template v-slot:content>
-                    <co-text simple>{{params.description}}</co-text>
+                    <co-text simple>{{ params.description }}</co-text>
                     <el-checkbox-group v-model="params.answer">
                         <div class="checkbox-container" v-for="(option,index) in params.options">
-                            <el-checkbox :key="index" :label="option.value"></el-checkbox>
+                            <el-checkbox :key="index" :label="option"></el-checkbox>
                         </div>
                     </el-checkbox-group>
                 </template>
@@ -20,7 +20,6 @@
 
 <script>
 import CoCard from '../co-card.vue'
-import {closeComponent, updateTemplate} from '@/api/util'
 import CoText from "@/components/co-text";
 
 export default {
@@ -28,33 +27,29 @@ export default {
         return {}
     },
     props: {
-        params: {
-            title: String,
-            need: Boolean,
-            options: Array,
-            selected: Array,
-            answer: [],
-            details: String,
-            deleted: false,
-            required: Boolean,// 选填
-        },
+        params: {},
     },
     components: {CoText, CoCard},
-    methods: {
-
-    },
+    methods: {},
     created() {
-
+        // 初始化为数组
+        this.params.answer = [];
+        // this.params.options = JSON.parse(this.params.options)
     }
 }
 </script>
 <style lang="css" scoped>
+
 .el-checkbox-group {
     box-sizing: border-box;
     padding: 4px 0;
 }
 
-.checkbox-container{
+.el-checkbox {
+    width: 100%;
+}
+
+.checkbox-container {
     margin: 0 0 8px 0;
 }
 </style>

@@ -12,15 +12,13 @@
     "componentName": "jh-radio",
     "title": "单选",
     "options": [],
-    "answer": [],
-    "mode": "create"
+    "answer": []
   },
   {
     "componentName": "jh-multi",
     "title": "多选",
     "options": [],
     "selected": [],
-    "answer": [],
-    "mode": "create"
+    "answer": []
   }
 ]

@@ -1,5 +1,6 @@
 <template>
     <div>
+       <co-header></co-header>
         <div class="submit" :style="{height:viewHeight(0)}">
             <div v-for="(component, index) in templateData" :key="index">
                 <components :ref="'jh' + index" :is="component.componentName" :idx="index" :params="component"
@@ -21,6 +22,7 @@ import jhRadio from '@/components/submit/jh-submit-radio.vue'
 import jhMulti from '@/components/submit/jh-submit-multi.vue'
 import {pullData, QuestionList} from '@/api/request'
 import {viewHeight} from "@/api/util";
+import CoHeader from "@/components/co-header";
 
 export default {
     data() {
@@ -30,6 +32,7 @@ export default {
     },
 
     components: {
+        CoHeader,
         jhHead, jhFile, coCard, jhInput, jhRadio, jhMulti,
     },
 
@@ -38,7 +41,7 @@ export default {
     methods: {
         viewHeight,
         submitCollect() {
-            alert('截止了')
+            this.$message.info("问卷已截止收集")
         },
     },
     created() {
@@ -55,13 +58,7 @@ export default {
             })
             this.templateData = result
             console.log(this.templateData)
-            console.log("Test here!")
         })
-
-        // QuestionList().then(res=>{
-        //     console.log("List:")
-        //     console.log(res.data)
-        // });
     },
 }
 </script>

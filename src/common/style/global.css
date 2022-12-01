@@ -1,0 +1,42 @@
+/*全局通用样式*/
+
+/*Message相关样式*/
+.el-message {
+    min-width: fit-content;
+    border-radius: 200px;
+    padding: 13px 15px;
+    box-shadow: 0 0 30px 0 rgb(0, 0, 0, .2);
+}
+
+.el-message__closeBtn {
+    right: 8px;
+}
+
+/*------------------------------*/
+
+/*dialog 相关*/
+.el-dialog {
+    width: 30%;
+    min-width: 300px;
+    border-radius: 8px;
+    /*border: 1px solid red;*/
+}
+
+.el-dialog__body {
+    padding: 0 20px;
+    /*border: 1px solid rebeccapurple;*/
+}
+
+.el-dialog__body > * {
+    text-align: center;
+}
+
+.el-image {
+    margin: 0 auto;
+    box-shadow: 0 0 4px 0 rgb(0, 0, 0, .2);
+}
+/*-------------------------------*/
+
+.el-message-box{
+    max-width: 300px;
+}

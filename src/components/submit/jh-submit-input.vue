@@ -23,12 +23,7 @@ import CoText from "@/components/co-text";
 export default {
     props: {
         params: {
-            title: String,
-            need: Boolean,
-            options: Array,
-            description: String,
-            selected: Array,
-            required: Boolean // 选填
+
         },
     },
     data() {

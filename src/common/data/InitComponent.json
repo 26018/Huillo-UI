@@ -1,51 +1,36 @@
 [
+  {
+    "componentName": "jh-head",
+    "title": "收集"
+  },
+  {
+    "componentName": "jh-input",
+    "title": "姓名",
+    "description": "姓名是指人在出生后用于被别人识别的一种代号",
+    "optional": "false"
+  },
+  {
+    "componentName": "jh-radio",
+    "title": "性别",
+    "description": "性别用于区分人的类型，主要有[男],[女]两种类型",
+    "options": [
+      "男",
+      "女"
+    ],
+    "answer": "",
+    "optional": "false"
 
-    {
-        "componentName":"jh-head",
-        "title":"收集",
-        "start":"2022",
-        "end":"2028"
-    },
-    {
-        "componentName": "jh-input",
-        "title": "姓名",
-        "description": "姓名是指人在出生后用于被别人识别的一种代号"
-    },
-    {
-        "componentName": "jh-radio",
-        "title": "性别",
-        "description": "性别用于区分人的类型，主要有[男],[女]两种类型",
-        "options": [
-            {
-                "id": 1,
-                "value": "男"
-            },
-            {
-                "id": 2,
-                "value": "女"
-            }
-        ],
-        "answer": ""
-    },
-    {
-        "componentName": "jh-multi",
-        "title": "工作经历",
-        "description": "工作经历是指毕业后(通常是指大学毕业)至今的工作履历",
-        "number": 1,
-        "options": [
-            {
-                "id": 1,
-                "value": "Tencent"
-            },
-            {
-                "id": 2,
-                "value": "Alibaba"
-            },
-            {
-                "id": 3,
-                "value": "Bytedance"
-            }
-        ],
-        "answer": []
-    }
+  },
+  {
+    "componentName": "jh-multi",
+    "title": "工作经历",
+    "description": "工作经历是指毕业后(通常是指大学毕业)至今的工作履历",
+    "options": [
+      "Tencent",
+      "Alibaba",
+      "Bytedance"
+    ],
+    "answer": [],
+    "optional": "false"
+  }
 ]

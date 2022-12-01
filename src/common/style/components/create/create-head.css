@@ -1,3 +1,12 @@
+
+.head {
+    /*background-color: #507ea4;*/
+}
+
+.head >>>  {
+    color: white;
+}
+
 .mobile {
     display: none;
 }
@@ -12,7 +21,7 @@
     display: flex;
 }
 
-.el-input__inner{
+.el-input__inner {
     background-color: transparent;
 }
 
@@ -28,9 +37,9 @@
 .date-end .el-input__inner {
     border: 0;
     width: 100%;
-    color: rgb(0,0,0, 0.8);
+    color: rgb(0, 0, 0, 0.8);
     text-align: center;
-    background-color: rgb(245,247,250);
+    background-color: rgb(245, 247, 250);
     /*background-color: black;*/
 }
 
@@ -47,7 +56,7 @@
 
 .row-container {
     display: flex;
-    /*border: 1px solid red;*/
+    margin: 0;
 }
 
 /*编辑器选择*/
@@ -104,7 +113,8 @@
         border-radius: 0;
         width: 100%;
         border: 0;
-        border-bottom: 1px solid rgb(220,223,230);
+        /*border-bottom: 1px solid rgb(220, 223, 230);*/
+        letter-spacing: 1px;
         outline: none;
         background-color: transparent;
     }
@@ -116,15 +126,22 @@
     .row-container {
         display: flex;
         align-items: center;
+        margin: 4px 0;
+        /*background-color: rgb(236, 248, 255);*/
+        box-shadow: 0 0 2px 0 rgb(0,0,0,.2);
+        padding-left: 4px;
+        border-radius: 8px;
     }
 
     /*文字前缀*/
     .mobile .row-container .tip {
         padding: 0;
         border: 0;
-        height: 38px;
+        height: 40px;
         border-radius: 0;
-        border-bottom: 1px solid rgb(220,223,230);
+        /*border-bottom: 1px solid rgb(220, 223, 230);*/
     }
 
+
 }
+

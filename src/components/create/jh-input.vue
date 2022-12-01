@@ -5,7 +5,7 @@
                 <template v-slot:header>
                     <el-input class="title" v-model="params.title"></el-input>
                     <div class="operation-frame">
-                        <el-checkbox v-model="params.required">选填</el-checkbox>
+                        <el-checkbox v-model="params.optional">选填</el-checkbox>
                         <i class="el-icon-sort move" title="点击拖动排序"></i>
                         <i class="el-icon-circle-close" @click="closeComponent(params)"></i>
                     </div>
@@ -28,12 +28,7 @@ import CoTip from "@/components/co-tip";
 export default {
     props: {
         params: {
-            title: String,
-            need: Boolean,
-            options: Array,
-            description: String,
-            selected: Array,
-            required: Boolean // 选填
+
         },
     },
     data() {

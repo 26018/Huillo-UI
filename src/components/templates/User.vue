@@ -57,7 +57,7 @@ export default {
         currentNav() {
             let path = this.$route.path
             this.menus.forEach(menu => {
-                if (menu.path == path) {
+                if (path.startsWith(menu.path)){
                     menu.style = {
                         'color': '#409EFF'
                     }

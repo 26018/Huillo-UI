@@ -33,14 +33,7 @@
     margin-top: 22px;
     margin-bottom: auto;
 }
-.el-dialog{
-    width: 600px;
-}
 
-.el-image{
-    margin: 0 auto;
-    box-shadow: 0 0 4px 0 rgb(0,0,0,.2);
-}
 
 .dialog-operation {
     display: flex;
@@ -64,20 +57,5 @@
 @media screen and  (max-width: 600px){
     .group{
         padding: 0px 8px 0 8px;
-    }
-    .el-dialog{
-        width: 300px;
-    }
-    .el-dialog__body {
-        /*border: 1px solid red;*/
-        width: 100%;
-        padding: 0 32px;
-        box-sizing: border-box;
-    }
-
-    .el-image {
-        width: 150px;
-        margin: 0;
-        padding: 0;
     }
 }

@@ -16,11 +16,11 @@ export default {
 .tip {
     color: gray;
     font-size: 14px;
-    margin: 4px 0;
-    height: 30px;
+    /*margin: 4px 0;*/
+    height: 40px;
     display: flex;
     align-items: center;
-    padding-right: 15px;
+    /*padding-right: 15px;*/
     white-space: nowrap;
     user-select: none;
 }
