@@ -1,5 +1,8 @@
 /*全局通用样式*/
 
+@import "@/common/style/font.css";
+
+
 /*Message相关样式*/
 .el-message {
     min-width: fit-content;
@@ -35,8 +38,53 @@
     margin: 0 auto;
     box-shadow: 0 0 4px 0 rgb(0, 0, 0, .2);
 }
+
 /*-------------------------------*/
 
-.el-message-box{
+.el-message-box {
     max-width: 300px;
 }
+
+/*--------------------------------------*/
+
+.mobileDisplay {
+    display: none;
+}
+
+
+.pcDisplay {
+    display: unset;
+}
+
+
+@media screen and (max-width: 600px) {
+
+    .mobileDisplay {
+        display: unset;
+    }
+
+    .pcDisplay {
+        display: none;
+    }
+}
+
+/*----------------------------------*/
+
+.flex {
+    display: flex;
+}
+
+.row-start-end {
+    display: flex;
+    margin: 8px 0;
+    width: 100%;
+    /*padding: 0 4px;*/
+    box-sizing: border-box;
+    /*border: 1px solid rebeccapurple;*/
+    align-items: center;
+}
+
+.row-start-end > :last-child {
+    margin-left: auto;
+}
+

@@ -22,11 +22,11 @@
                         <div class="el-upload__text uploadIcon">将文件拖到此处，或<em>点击上传</em></div>
                     </el-upload>
 
-                    <div>
+                    <div style="width: 100% ;height: 40px;display: flex;align-items: center">
                         <el-button style="margin-right: 20px" v-if="!params.autoUpload" size="small" type="primary"
                                    @click="uploadFile()">上传
                         </el-button>
-                        <el-select size="small" style="margin-top: 8px" class="name-rule" v-model="params.selected" multiple
+                        <el-select size="small" class="name-rule" v-model="params.selected" multiple
                                    placeholder="请选择文件命名规则">
                             <el-option v-for="item in params.list" :key="item.value" :label="item"
                                        :value="item"></el-option>

@@ -11,8 +11,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="Vue Single File Component" />
         <option value="JavaScript File" />
+        <option value="Vue Single File Component" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -39,6 +40,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/Desktop/working/HUILLO/Huillo-UI/src/components/submit&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -143,7 +145,11 @@
       <workItem from="1669773700529" duration="5233000" />
       <workItem from="1669788528268" duration="1576000" />
       <workItem from="1669795497999" duration="8280000" />
-      <workItem from="1669852919940" duration="20447000" />
+      <workItem from="1669852919940" duration="21686000" />
+      <workItem from="1669899696695" duration="4180000" />
+      <workItem from="1669939371742" duration="23107000" />
+      <workItem from="1670043388742" duration="13813000" />
+      <workItem from="1670121462042" duration="909000" />
     </task>
     <servers />
   </component>

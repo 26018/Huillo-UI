@@ -10,18 +10,18 @@
 export default {
     name: "co-text",
     props: {
-        simple:Boolean,
-        size:""
+        simple: Boolean,
+        size: ""
     },
     computed: {
         text_style() {
             let retStyle = "";
-            if(this.size){
+            if (this.size) {
                 retStyle += this.size + " ";
             }
-            if (this.simple){
+            if (this.simple) {
                 retStyle += 'co-text-origin '
-            }else {
+            } else {
                 retStyle += 'co-text';
             }
             return retStyle;
@@ -31,15 +31,21 @@ export default {
 </script>
 
 <style scoped>
-*{
+* {
     font-size: 14px;
     color: gray;
+    height: 40px;
+    /*width: 100%;*/
+    display: flex;
+    align-items: center;
     box-sizing: border-box;
     padding: 0;
 }
+
 .co-text {
     box-shadow: 0 0 2px 0 rgb(0, 0, 0, .2);
     padding: 8px;
+    margin-top: 4px;
     border-radius: 4px;
 }
 
@@ -49,10 +55,10 @@ export default {
 
 .medium {
     font-size: 20px;
-    color: black;
+    color: gray;
 }
 
-.large{
+.large {
     font-size: 26px;
     color: black;
 }

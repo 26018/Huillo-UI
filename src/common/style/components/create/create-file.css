@@ -8,6 +8,13 @@
     width: 100%;
 }
 
+.name-rule {
+    flex: 1;
+}
 .el-upload-dragger {
+    width: 100%;
+}
+
+.name-rule .el-input__inner {
     width: 100%;
 }

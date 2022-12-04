@@ -10,13 +10,11 @@
                 </template>
                 <template v-slot:content>
                     <div>
-                        <co-text v-show="params.auth" simple>收集人：{{ params.author }}</co-text>
-
+                        <co-text v-show="params.author" simple>收集人：{{ params.author }}</co-text>
                         <div v-show="params.description">
                             <co-text simple>详细说明:</co-text>
                             <co-text>{{ params.description }}</co-text>
                         </div>
-
                     </div>
                 </template>
             </co-card>

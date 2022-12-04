@@ -6,18 +6,18 @@
                 <transition-group>
                     <div class="item" v-for="(element, index) in templateData" :key="index">
                         <div>
-                            <components :ref="'component:' + index" :is="getComponentName(element,index)" :idx="index"
-                                        :params="element" :key="index"></components>
+                            <component :ref="'component:' + index" :is="getComponentName(element,index)" :idx="index"
+                                        :params="element" :key="index"></component>
                         </div>
                     </div>
                 </transition-group>
             </draggable>
 
-            <div class="addComponent">
+            <div class="addComponent mobileDisplay">
                 <el-button size="small" @click="addComponent">添加组件</el-button>
             </div>
 
-            <el-dialog title="选择组件" append-to-body :visible.sync="dialogVisible" :before-close="handleClose">
+            <el-dialog title="选择组件" class="mobileDisplay" append-to-body :visible.sync="dialogVisible" :before-close="handleClose">
                 <div class="context">
                     <h3>基础组件</h3>
                     <div class="items">
@@ -47,7 +47,6 @@ import jhFile from '@/components/create/jh-file.vue'
 import jhInput from '@/components/create/jh-input.vue'
 import jhRadio from '@/components/create/jh-radio.vue'
 import jhMulti from '@/components/create/jh-multi.vue'
-import {Message} from 'element-ui'
 import {goto, viewHeight} from '@/api/util'
 import {publish} from '@/api/request'
 
@@ -59,9 +58,7 @@ export default {
             mostUse: this.$store.state.mostUseModule
         }
     },
-    props: {
-        templates: [],
-    },
+    props: ['templates'],
     components: {
         draggable, jhHead, jhFile, coCard, jhInput, jhRadio, jhMulti,
     },
@@ -75,13 +72,13 @@ export default {
                 this.$store.commit('templatePush', val)
             },
         },
-        templateDataString() {
-            return JSON.stringify(this.templates)
-        },
     },
     watch: {
-        templateDataString(n, o) {
-            localStorage.setItem('template', n)
+        templates:{
+            handler(n, o) {
+                localStorage.setItem('template', JSON.stringify(n))
+            },
+            deep: true,
         },
     },
     methods: {
@@ -139,7 +136,7 @@ export default {
                 ret.push(data)
             }
 
-            // 测试代码
+            // 测试代码 输出各个组件的值
             let idx = 1
             ret.forEach((ele) => {
                 let str = '\n'
@@ -251,9 +248,6 @@ h3 {
     transition-duration: 200ms;
 }
 
-.addComponent {
-    display: none;
-}
 
 >>> .el-dialog {
     width: 100%;

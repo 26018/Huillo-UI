@@ -1,0 +1,71 @@
+
+.mobile-create-header {
+    width: 100%;
+}
+
+.mobile-create-title > .el-input__inner {
+    font-size: 1.6rem;
+    padding: 0;
+    border-radius: 0;
+    border: 0;
+    background-color: transparent;
+    /*border: 1px solid rebeccapurple;*/
+}
+
+/*--------------------------------------*/
+
+.mobile-create-author {
+    border-radius: 8px;
+    margin-right: 16px;
+}
+
+.mobile-create-author > .el-input-group__prepend {
+    padding: 0px;
+    border: 0;
+    background-color: transparent;
+}
+
+.mobile-create-author > .el-input__inner {
+    padding: 4px;
+    border: 0;
+    background-color: transparent;
+}
+
+/*---------------------------------------*/
+.mobile-create-endTime {
+    border-radius: 8px;
+    min-width: 136px;
+    width: fit-content;
+}
+
+.mobile-create-endTime .el-input__inner{
+    border: 0;
+    background-color: transparent;
+}
+
+/*----------------------------------------*/
+
+.mobile-create-group{
+    width: 100%;
+}
+
+.mobile-create-group  .el-input__inner {
+    width: 100%;
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+}
+
+.mobile-create-group > .el-select__input {
+    margin: 0;
+    padding: 0;
+}
+
+
+/*----------------------------------------*/
+.mobile-row-line  {
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, .2);
+    border-radius: 8px;
+    padding: 0 0 0 8px;
+    box-sizing: border-box;
+}

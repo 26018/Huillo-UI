@@ -6,16 +6,15 @@
             </div>
             <div class="times">
                 <co-text simple>收集者：{{ data.author }}</co-text>
-                <co-text simple>状态：{{ questionnaireStatus }}</co-text>
+                <co-text simple>状态：<span :style="{color: statusColor }">{{ questionnaireStatus }}</span></co-text>
             </div>
 
             <div class="times">
                 <co-text simple>创建时间: {{ DateFormatter(data.startTime, '/') }}</co-text>
                 <co-text simple>截止时间: {{ DateFormatter(data.endTime, '/') }}</co-text>
             </div>
-            <co-text v-show="data.description">{{ data.description }}</co-text>
             <div class="options">
-                <el-button type="text" @click="$emit('delete')">删除收集</el-button>
+                <el-button type="text" @click.stop="$emit('delete')">删除收集</el-button>
                 <el-button type="text" style="color: red" @click="$emit('close')">结束收集</el-button>
                 <el-button type="text" style="color: sandybrown" @click="$emit('share')">分享</el-button>
             </div>
@@ -34,26 +33,33 @@ export default {
     computed: {
         questionnaireStatus() {
             if (new Date(this.data.endTime) < Date.now()) {
+                this.statusColor = 'red'
                 return "已结束"
             }
+            this.statusColor = 'green'
             return "收集中"
         }
     },
     methods: {
         DateFormatter,
+    },
+    data() {
+        return {
+            statusColor: ""
+        }
     }
 }
 </script>
 
 <style scoped>
 .record-card {
-    width: 95%;
     border-radius: 8px;
     padding: 16px;
-    margin: 8px;
+    margin: 8px auto 0;
     background-color: white;
     box-sizing: border-box;
     box-shadow: 0 0 2px 0 rgb(0, 0, 0, .2);
+    pointer-events: auto;
 }
 
 .tags {
@@ -73,6 +79,7 @@ export default {
 
 .options > * {
     margin-left: 16px;
+    pointer-events: auto;
 }
 
 .title {
@@ -94,7 +101,7 @@ export default {
 }
 
 .times > * {
-    margin: 4px 0;
+    /*margin: 4px 0;*/
 }
 
 

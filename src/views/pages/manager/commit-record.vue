@@ -1,69 +1,84 @@
 <template>
     <div>
-        <div class="record" :style="{height:viewHeight(isMobile()?50:0)}">
-            <div v-show="tableData.length > 0">
-                <div v-show="!isMobile()">
-                    <el-table
-                        :height="viewHeight(isMobile()?100:50)"
-                        :data="tableData"
-                        size="tableSize"
-                        :cell-style="cellStyle"
-                        show-overflow-tooltip="true"
-                        :header-cell-style="{'text-align': 'center'}"
-                        @cell-click="choose">
-                        <el-table-column prop="title" :width="tableCellSpace" fixed label="收集标题"></el-table-column>
-                        <el-table-column prop="author" :width="tableCellSpace" label="收集人"></el-table-column>
-                        <el-table-column prop="status" :width="tableCellSpace" label="收集状态">
-                            <template slot-scope="scope">
-                                <i :class="getStatus(scope.row.endTime)"></i>
-                                <span v-html="'\u00a0'"></span>
-                                {{ scope.row.status }}
-                            </template>
-                        </el-table-column>
-                        <el-table-column prop="commitTimes" :width="tableCellSpace" label="提交次数"></el-table-column>
-                        <el-table-column prop="endTime" :width="tableCellSpace" label="截止时间">
-                            <template slot-scope="scope">
-                                {{ DateFormatter(scope.row.endTime, '/') }}
-                            </template>
-                        </el-table-column>
+        <div class="record" v-show="tableData.length != 0"
+             :style="{height:viewHeight(isMobile()?50:0),overflow:'auto'}">
 
-                        <el-table-column prop="opt" :width="tableCellSpace" label="操作">
-                            <template slot-scope="scope">
-                                <el-button @click="shareQuestionnaire(scope.row.id)" size="medium" type="text">分享
-                                </el-button>
-                                <el-button style="color: red" size="medium" type="text"
-                                           @click="closeQuestionnaire(scope.row.id)">结束收集
-                                </el-button>
-                                <el-button type="text" style="color: seagreen"
-                                           @click="deleteQuestionnaire(scope.row.id)">
-                                    删除
-                                </el-button>
-                            </template>
-                        </el-table-column>
-                    </el-table>
-                    <el-pagination
-                        class="page"
-                        background
-                        :pager-count="pageCount"
-                        :small="isMobile()"
-                        @current-change="pageChange"
-                        :current-page.sync="Number.parseInt(currentPage)"
-                        layout="prev, pager, next, jumper"
-                        :total="total">
-                    </el-pagination>
+            <!--PC端页面-->
+            <pc-view>
+                <el-table
+                    :height="viewHeight(isMobile()?100:50)"
+                    :data="tableData"
+                    size="tableSize"
+                    :cell-style="cellStyle"
+                    show-overflow-tooltip="true"
+                    :header-cell-style="{'text-align': 'center'}"
+                    @cell-click="choose">
+                    <el-table-column prop="title" :width="tableCellSpace" fixed label="收集标题"></el-table-column>
+                    <el-table-column prop="author" :width="tableCellSpace" label="收集人"></el-table-column>
+                    <el-table-column prop="status" :width="tableCellSpace" label="收集状态">
+                        <template slot-scope="scope">
+                            <i :class="getStatus(scope.row.endTime)"></i>
+                            <span v-html="'\u00a0'"></SPAN>
+                            {{ scope.row.status }}
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="commitTimes" :width="tableCellSpace" label="提交次数"></el-table-column>
+                    <el-table-column prop="endTime" :width="tableCellSpace" label="截止时间">
+                        <template slot-scope="scope">
+                            {{ DateFormatter(scope.row.endTime, '/') }}
+                        </template>
+                    </el-table-column>
+
+                    <el-table-column prop="opt" :width="tableCellSpace" label="操作">
+                        <template slot-scope="scope">
+                            <el-button @click="shareQuestionnaire(scope.row.id)" size="medium" type="text">分享
+                            </el-button>
+                            <el-button style="color: red" size="medium" type="text"
+                                       @click="closeQuestionnaire(scope.row.id)">结束收集
+                            </el-button>
+                            <el-button type="text" style="color: seagreen"
+                                       @click="deleteQuestionnaire(scope.row.id)">
+                                删除
+                            </el-button>
+                        </template>
+                    </el-table-column>
+                </el-table>
+                <el-pagination
+                    class="page"
+                    background
+                    :pager-count="pageCount"
+                    :small="isMobile()"
+                    @current-change="pageChange"
+                    :current-page.sync="Number.parseInt(currentPage)"
+                    layout="prev, pager, next, jumper"
+                    :total="total">
+                </el-pagination>
+            </pc-view>
+
+            <!--移动端页面-->
+            <mobile-view>
+                <div class="mobileView"
+                     :style="{height: viewHeight(50)}"
+                     :infinite-scroll-disabled="loading"
+                     infinite-scroll-distance="50"
+                     v-infinite-scroll="load">
+                    <div v-for="ques in tableData">
+                        <questionnaire-record-card
+                            :data="ques" @share="shareQuestionnaire(ques.id)"
+                            @close="closeQuestionnaire(ques.id)"
+                            @delete="deleteQuestionnaire(ques.id)"
+                            @detail="choose(ques,{label:'收集标题'})"
+                        ></questionnaire-record-card>
+                    </div>
+                    <el-backtop :right="20" :bottom="20" target=".mobileView" class="backUP">UP</el-backtop>
                 </div>
-                <div v-show="isMobile()" v-for="ques in tableData">
-                    <questionnaire-record-card
-                        :data="ques" @share="shareQuestionnaire(ques.id)"
-                        @close="closeQuestionnaire(ques.id)"
-                        @delete="deleteQuestionnaire(ques.id)"
-                        @detail="choose(ques,{label:'收集标题'})"
-                    ></questionnaire-record-card>
-                </div>
-            </div>
-            <el-empty v-if="tableData.length == 0" description="暂无记录"></el-empty>
+                <co-text simple style="width: 100%;height: 50px;text-align: center" size="medium" v-if="loading">加载中...
+                </co-text>
+            </mobile-view>
+
         </div>
-
+        <!--空记录-->
+        <el-empty v-if="tableData.length === 0" description="暂无记录"></el-empty>
         <!--分享问卷dialog-->
         <el-dialog append-to-body title="分享" :visible.sync="shareDialogVisible">
             <div>
@@ -84,26 +99,27 @@
 </template>
 
 <script>
-import {DateFormatter, isMobile, viewHeight} from '@/api/util'
+import {isMobile, viewHeight} from '@/api/util'
+import {DateFormatter} from "@/api/time";
 import {closeQuestionnaire, getImage, getList, shareQuestionnairePath} from '@/api/request'
-import {Loading, Message} from "element-ui";
 import CoText from "@/components/co-text";
 import QuestionnaireRecordCard from "@/components/questionnaire-record-card";
+import PcView from "@/components/pc-view";
+import MobileView from "@/components/mobile-view";
 
 export default {
-    components: {QuestionnaireRecordCard, CoText},
+    components: {MobileView, PcView, QuestionnaireRecordCard, CoText},
     data() {
         return {
+            loading: false,
             tableData: [],
             total: 0,
             // 当前页码
             currentPage: 1,
             // 分页页码个数
             pageCount: 5,
-            //列宽度
-            tableCellSpace: '160',
-            // 表格大小 mini | medium
-            tableSize: '',
+            tableCellSpace: '160', //列宽度
+            tableSize: '', // 表格大小 mini | medium
             shareDialogVisible: false,
             shareUrl: "http://192.168.3.235:8080/submit/3748",
             imageUrl: "https://picx.zhimg.com/v2-44d0a8b5d70eabe6f621931da7b0c87e_xl.jpg?source=32738c0c"
@@ -111,6 +127,19 @@ export default {
     },
 
     methods: {
+        load() {
+            this.loading = true;
+            this.currentPage++;
+            setTimeout(() => {
+                getList(this.currentPage).then(res => {
+                    res = res.data.data
+                    this.tableData = this.tableData.concat(res.components)
+                    this.total = res.total
+                    this.loading = false;
+                    console.log(this.tableData.length)
+                });
+            }, 0)
+        },
         isMobile,
         viewHeight,
         DateFormatter,
@@ -122,17 +151,11 @@ export default {
         },
         copyUrl(url) {
             if (navigator.clipboard === undefined) {
-                Message({
-                    message: '浏览器不支持',
-                    type: 'error',
-                })
+                this.$message.info("浏览器不支持")
                 return
             }
             navigator.clipboard.writeText(url)
-            Message({
-                message: '复制成功',
-                type: 'success',
-            })
+            this.$message.success("复制成功");
         },
         shareQuestionnaire(id) {
             this.shareDialogVisible = true
@@ -142,7 +165,7 @@ export default {
             });
         },
         deleteQuestionnaire(id) {
-            //删除问卷
+            this.$message.info("todo 还没写");
         },
         closeQuestionnaire(id) {
             this.$confirm('此操作将结束此收集, 是否继续?', '提示', {
@@ -152,27 +175,15 @@ export default {
             }).then(() => {
                 closeQuestionnaire(id).then(res => {
                     if (res.data.code == 200) {
-                        this.$message({
-                            type: 'success',
-                            message: '操作成功!',
-                            showClose: true,
-                        });
+                        this.$message.success("操作成功");
                         location.reload()
                     } else {
-                        this.$message({
-                            type: 'error',
-                            message: res.data.data,
-                            showClose: true,
-                        });
+                        this.$message.error(res.data.data);
                     }
                 })
 
             }).catch(() => {
-                this.$message({
-                    type: 'info',
-                    message: '已取消',
-                    showClose: true,
-                });
+                this.$message.info("已取消")
             });
         },
         // 设置固定列的颜色
@@ -190,9 +201,8 @@ export default {
             if (id == null) {
                 id = 0
             }
-            console.log(id)
             this.$router.push({
-                path: '/manager/details/' + id,
+                path: '/manager/record/details/' + id,
             })
         },
         getStatus(status) {
@@ -206,8 +216,10 @@ export default {
             localStorage.setItem("currentPage", pageNumber);
             getList(pageNumber).then(res => {
                 res = res.data.data
-                this.tableData = res.components
+                // this.tableData = res.components
+                this.tableData = this.tableData.concat(res.components)
                 this.total = res.total
+                console.log(this.tableData.length)
             });
         }
     },
@@ -215,6 +227,7 @@ export default {
     created: function () {
         // 加载上次停留的页面(pageNumber)
         this.currentPage = localStorage.getItem("currentPage");
+        this.currentPage = 1;
         if (this.currentPage == null) {
             this.currentPage = 1;
         }
@@ -248,6 +261,19 @@ export default {
     width: 100%;
     box-sizing: border-box;
     position: relative;
+}
+
+.mobileView {
+    overflow: auto;
+}
+
+.backUP {
+    background-color: rgb(242, 245, 246);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 6px;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 8px;
+    color: rgb(25, 137, 250);
 }
 
 .page {

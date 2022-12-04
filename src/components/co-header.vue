@@ -1,10 +1,10 @@
 <template>
     <div>
         <div class="co-header font-text" ref="coHeader">
-            <div @click="goto('/index')" class="logo click-able">Huillo</div>
+            <div @click="goto('/index')" class="logo click-able font-text">Huillo</div>
             <div class="text-content click-able space poem" @click="query(current)">{{ current }}</div>
             <div class="menus">
-                <div class="logo space click-able" v-for="(menu, index) in menus" @click="execute(menu)"
+                <div class="logo space click-able font-text" v-for="(menu, index) in menus" @click="execute(menu)"
                      :style="menu.colorStyle"
                      :key="index">
                     {{ menu.name }}
@@ -61,6 +61,10 @@
     cursor: pointer;
     user-select: none;
 }
+
+/*.click-able > *{*/
+/*    -webkit-tap-highlight-color: rgba(255,255,255,0);*/
+/*}*/
 
 .click-able:hover {
     cursor: pointer;

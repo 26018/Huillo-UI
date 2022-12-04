@@ -27,7 +27,6 @@ export default {
                 {name: '收集记录', path: '/manager/record'},
                 {name: '提交记录', path: '/manager/commit-record'},
                 {name: '我的群组', path: '/manager/group'},
-                {name: "我的邮箱", path: "/manager/mail"},
                 {name: '回收空间', path: '/manager/recycle'},
             ],
         }
@@ -45,7 +44,7 @@ export default {
             this.menus.forEach(menu => {
                 let dom = document.getElementById('userNav:' + menu.name)
                 if (menu.name == clickMenu.name) {
-                    dom.style.color = '#409EFF'
+                    dom.style.color = '#409EFF';
                 } else if (!menu.dontChange) {
                     dom.style.color = 'black'
                 }
@@ -59,7 +58,7 @@ export default {
             this.menus.forEach(menu => {
                 if (path.startsWith(menu.path)){
                     menu.style = {
-                        'color': '#409EFF'
+                        'color': '#409EFF',
                     }
                 }
             })

@@ -3,30 +3,25 @@
         <div class="template-details">
             <div class="main-container">
                 <div>
+
+                    <co-text simple size="large">{{ detailInfo.title }}</co-text>
                     <div class="row">
-                        <div style="font-size: 24px">{{ detailInfo.title }}</div>
-                        <div>状态：{{ detailInfo.status }}</div>
+                        <co-text simple v-show="detailInfo.author">{{ '收集人：' + detailInfo.author }}</co-text>
+                        <co-text simple>状态：{{ detailInfo.status }}</co-text>
                     </div>
-                    <co-text simple v-show="detailInfo.author">{{'收集人：'+detailInfo.author}}</co-text>
-                    <co-text simple v-show="detailInfo.description">{{ detailInfo.description }}</co-text>
+<!--                    <co-text simple>收集用时：{{ TimeBetween(params.startTime, params.endTime) }}</co-text>-->
+                    <div class="row">
+                        <co-text simple>开始时间:{{ DateFormatter(detailInfo.startTime, '/') }}</co-text>
+                        <co-text simple>结束时间:{{ DateFormatter(detailInfo.endTime, '/') }}</co-text>
+                    </div>
+                    <co-text v-show="detailInfo.description">{{ detailInfo.description }}</co-text>
                 </div>
 
-                <div>
-                    <div class="row tip-card-title">
-                        <div>收集用时</div>
-                        <div>{{ TimeBetween(params.startTime, params.endTime) }}</div>
-                    </div>
-                    <el-divider></el-divider>
-                    <div class="row">
-                        <div>开始时间:{{ DateFormatter(detailInfo.startTime, '/') }}</div>
-                        <div>结束时间:{{ DateFormatter(detailInfo.endTime, '/') }}</div>
-                    </div>
-                </div>
 
                 <div>
-                    <div class="row tip-card-title">
-                        <div>提交总数</div>
-                        <div>{{ getSubmitTotal }}</div>
+                    <div class="row">
+                        <co-text simple size="large">提交总数</co-text>
+                        <co-text simple size="large">{{ getSubmitTotal }}</co-text>
                     </div>
                     <el-divider></el-divider>
                     <div class="row">
@@ -43,7 +38,7 @@
 
                 <div>
                     <div class="row">
-                        <div>提交者名单</div>
+                        <co-text simple size="large">提交者名单</co-text>
                         <el-button type="text">通知未提交</el-button>
                     </div>
                     <el-select clearable style="width: 100%;" v-model="filterRuleValue" placeholder="筛选规则">
@@ -104,7 +99,7 @@
 <script>
 import {pullData, questionnaireDetail} from "@/api/request";
 import CoText from "@/components/co-text";
-import {DateFormatter, TimeBetween} from "@/api/util";
+import {DateFormatter, TimeBetween} from "@/api/time";
 
 export default {
     components: {CoText},
@@ -122,46 +117,6 @@ export default {
                     date: '2016-05-04',
                     name: '王小虎',
                     address: '上海市普陀区金沙江路 1517 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1519 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1519 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1519 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1519 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1519 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1519 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1519 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1519 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1519 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
                 }],
             currentTableData: [],
             filterRule: [{label: '已提交', value: '1'}, {label: '未提交', value: '2'}],

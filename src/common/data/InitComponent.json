@@ -1,18 +1,18 @@
 [
   {
     "componentName": "jh-head",
-    "title": "收集"
+    "title": "在线文件收集"
   },
   {
     "componentName": "jh-input",
     "title": "姓名",
-    "description": "姓名是指人在出生后用于被别人识别的一种代号",
+    "description": "请填写您的姓名，非昵称",
     "optional": "false"
   },
   {
     "componentName": "jh-radio",
     "title": "性别",
-    "description": "性别用于区分人的类型，主要有[男],[女]两种类型",
+    "description": "请选择您的性别",
     "options": [
       "男",
       "女"

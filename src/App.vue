@@ -52,4 +52,6 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background-color: rgba(144, 147, 153, 0.3);
 }
+
+
 </style>

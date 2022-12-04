@@ -10,11 +10,9 @@ import ElementUI, {Message} from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import '@/common/style/global.css'
 import 'element-ui/lib/theme-chalk/base.css';
-import CollapseTransition from 'element-ui/lib/transitions/collapse-transition';
 
 Vue.use(ElementUI);
 Vue.use(mavonEditor)
-Vue.component(CollapseTransition.name, CollapseTransition)
 
 Vue.prototype.$message = function (msg) {
     msg.type = msg.type == 'error' ? 'warning' : msg.type;

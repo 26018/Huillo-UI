@@ -2,6 +2,7 @@ import router from '@/router';
 import store from '@/store';
 import vhCheck from "vh-check";
 import {Message} from "element-ui";
+import {getImage} from "@/api/request";
 
 
 // 路由跳转
@@ -81,3 +82,4 @@ export function removeOption(options, selects, optionValue) {
         }
     }
 }
+
